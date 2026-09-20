@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Generator QRIS & Barcode — IRGXYMODS</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..600&family=Inter:wght@300..800&family=Cormorant+Garamond:ital,wght@0,400..700;1,400..500&family=Orbitron:wght@400..900&display=swap" rel="stylesheet" />
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="qrisbarcode.css" />
+</head>
+<body>
+<div class="toast-container" id="toastContainer"></div>
+
+<header>
+  <div class="header-top">
+    <a href="index.html" class="logo-brand"><i class="fas fa-crown"></i><h1>IRGXYMODS</h1></a>
+    <div class="header-actions">
+      <div style="position:relative;display:inline-block;">
+        <button class="settings-btn" id="settingsToggle"><i class="fas fa-cog"></i></button>
+        <div class="settings-dropdown" id="settingsDropdown">
+          <a href="login.html" class="dropdown-item"><i class="fas fa-sign-in-alt"></i> Login</a>
+          <div class="dropdown-divider"></div>
+          <button class="dropdown-item" id="profileDropdownBtn"><i class="fas fa-user"></i> Profil</button>
+          <button class="dropdown-item" id="themeToggleBtn"><i class="fas fa-palette"></i> Tema</button>
+          <div class="dropdown-divider"></div>
+          <a href="irgxymods.html" class="dropdown-item"><i class="fas fa-info-circle"></i> Tentang</a>
+          <button class="dropdown-item" id="helpBtn"><i class="fas fa-question-circle"></i> Bantuan</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="nav-tabs-container">
+    <div class="nav-tabs">
+      <a href="index.html" class="nav-tab">Aplikasi Mod</a>
+      <a href="irgxymods.html" class="nav-tab">IrgxyMods</a>
+      <a href="acount.html" class="nav-tab">Akun Premium</a>
+      <a href="fitur.html" class="nav-tab">Fitur Eksklusif</a>
+      <a href="testimoni.html" class="nav-tab">Testimoni</a>
+      <a href="cheat.html" class="nav-tab">Cheat Game</a>
+      <a href="jadwalsholat.html" class="nav-tab"><i class="fas fa-mosque"></i> Jadwal Sholat</a>
+      <a href="tiktok.html" class="nav-tab"><i class="fab fa-tiktok"></i> TikTok</a>
+      <a href="youtube.html" class="nav-tab"><i class="fab fa-youtube"></i> YouTube</a>
+      <a href="instagram.html" class="nav-tab"><i class="fab fa-instagram"></i> Instagram</a>
+      <a href="threads.html" class="nav-tab"><i class="fas fa-at"></i> Threads</a>
+      <a href="facebook.html" class="nav-tab"><i class="fab fa-facebook"></i> Facebook</a>
+      <a href="compressvideo.html" class="nav-tab"><i class="fas fa-compress"></i> Compress Video</a>
+      <a href="iqcgenerator.html" class="nav-tab"><i class="fas fa-comments"></i> IQC Generator</a>
+      <a href="qris-barcode.html" class="nav-tab active"><i class="fas fa-qrcode"></i> QRIS &amp; Barcode</a>      
+      <a href="spotify.html" class="nav-tab"><i class="fab fa-spotify"></i> Spotify</a>
+      <a href="testspeed.html" class="nav-tab"><i class="fas fa-tachometer-alt"></i> Test Speed</a>
+      <a href="proyek.html" class="nav-tab">Proyek Saya</a>
+      <a href="portofolio.html" class="nav-tab">Portofolio</a>
+      <a href="kontak.html" class="nav-tab">Kontak</a>
+      <a href="login.html" class="nav-tab"><i class="fas fa-sign-in-alt"></i> Login</a>
+    </div>
+  </div>
+
+  <div class="search-container">
+    <input type="text" id="searchInput" placeholder="Cari aplikasi mod..." />
+    <button id="searchBtn"><i class="fas fa-search"></i> Cari</button>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+    <section class="section active" style="display:block;">
+
+      <!-- HERO -->
+      <div class="qrb-hero" data-aos="fade-up">
+        <div class="qrb-hero-icon"><i class="fas fa-qrcode"></i></div>
+        <h1 class="qrb-hero-title">Generator QRIS &amp; Barcode</h1>
+        <p class="qrb-hero-sub">
+          Ubah <strong>TEKS</strong> atau <strong>URL</strong> menjadi <strong>QRIS / QR Code / Barcode</strong> dengan kualitas <strong>ULTRA HD</strong> — siap cetak &amp; siap scan 100%.
+        </p>
+        <div class="qrb-hero-pills">
+          <span class="qrb-pill"><i class="fas fa-shield-halved"></i> 100% Offline</span>
+          <span class="qrb-pill"><i class="fas fa-bolt"></i> Instan</span>
+          <span class="qrb-pill"><i class="fas fa-image"></i> Ultra HD PNG/SVG</span>
+          <span class="qrb-pill"><i class="fas fa-lock"></i> Tanpa Server</span>
+        </div>
+      </div>
+
+      <!-- LAYOUT 2 KOLOM -->
+      <div class="qrb-layout">
+
+        <!-- KOLOM KIRI: FORM -->
+        <div class="qrb-form-col" data-aos="fade-right">
+
+          <!-- CARD: INPUT -->
+          <div class="qrb-form-card">
+            <div class="qrb-form-header">
+              <i class="fas fa-keyboard"></i>
+              <span>Masukkan Teks atau URL</span>
+            </div>
+
+            <div class="qrb-field">
+              <label class="qrb-label" for="qrbInput">Teks / URL</label>
+              <div class="qrb-input-row">
+                <input
+                  type="text"
+                  id="qrbInput"
+                  class="qrb-input"
+                  placeholder="Contoh: https://irgxymods.my.id atau 08123456789"
+                  autocomplete="off"
+                  spellcheck="false"
+                />
+                <button class="qrb-btn-icon" id="qrbPasteBtn" type="button" title="Tempel dari clipboard">
+                  <i class="fas fa-paste"></i>
+                </button>
+                <button class="qrb-btn-icon" id="qrbClearBtn" type="button" title="Hapus input">
+                  <i class="fas fa-eraser"></i>
+                </button>
+              </div>
+              <small class="qrb-helper" id="qrbCharCount">0 karakter</small>
+            </div>
+
+            <div class="qrb-field">
+              <label class="qrb-label" for="qrbType">Jenis Konten</label>
+              <select id="qrbType" class="qrb-select">
+                <option value="text">📝 Teks Biasa</option>
+                <option value="url">🔗 URL / Link</option>
+                <option value="email">✉️ Email</option>
+                <option value="phone">📞 Nomor Telepon</option>
+                <option value="sms">💬 SMS</option>
+                <option value="wifi">📶 WiFi</option>
+                <option value="vcard">👤 Kontak (vCard)</option>
+                <option value="qris">💰 QRIS Pembayaran</option>
+              </select>
+              <small class="qrb-helper">Kami akan encode otomatis sesuai jenis konten.</small>
+            </div>
+
+            <div id="qrbDynamicFields"></div>
+          </div>
+
+          <!-- CARD: PENGATURAN -->
+          <div class="qrb-form-card">
+            <div class="qrb-form-header">
+              <i class="fas fa-sliders"></i>
+              <span>Pengaturan Kode</span>
+            </div>
+
+            <div class="qrb-field">
+              <label class="qrb-label">Mode Output</label>
+              <div class="qrb-radio-grid">
+                <label class="qrb-radio">
+                  <input type="radio" name="qrbMode" value="qris" checked />
+                  <span class="qrb-radio-mark"></span>
+                  <span class="qrb-radio-text"><i class="fas fa-qrcode"></i> QRIS / QR Code</span>
+                </label>
+                <label class="qrb-radio">
+                  <input type="radio" name="qrbMode" value="barcode" />
+                  <span class="qrb-radio-mark"></span>
+                  <span class="qrb-radio-text"><i class="fas fa-barcode"></i> Barcode</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- QR Settings -->
+            <div id="qrbQrSettings" class="qrb-mode-settings">
+              <div class="qrb-field">
+                <label class="qrb-label" for="qrbEcc">Tingkat Koreksi Error (ECC)</label>
+                <select id="qrbEcc" class="qrb-select">
+                  <option value="L">L — Low (7%)</option>
+                  <option value="M" selected>M — Medium (15%)</option>
+                  <option value="Q">Q — Quartile (25%)</option>
+                  <option value="H">H — High (30% — tahan rusak)</option>
+                </select>
+              </div>
+
+              <div class="qrb-field">
+                <label class="qrb-label">Warna QR</label>
+                <div class="qrb-color-grid">
+                  <div>
+                    <label class="qrb-label-inline">Warna Depan</label>
+                    <input type="color" id="qrbColorDark" class="qrb-color-picker" value="#000000" />
+                  </div>
+                  <div>
+                    <label class="qrb-label-inline">Warna Belakang</label>
+                    <input type="color" id="qrbColorLight" class="qrb-color-picker" value="#ffffff" />
+                  </div>
+                </div>
+              </div>
+
+              <div class="qrb-field">
+                <label class="qrb-label" for="qrbSize">Ukuran Modul (Size)</label>
+                <input type="range" id="qrbSize" class="qrb-slider" min="128" max="2048" step="32" value="512" />
+                <small class="qrb-helper">Ukuran: <strong id="qrbSizeVal">512</strong> px</small>
+              </div>
+            </div>
+
+            <!-- Barcode Settings -->
+            <div id="qrbBarcodeSettings" class="qrb-mode-settings" style="display:none;">
+              <div class="qrb-field">
+                <label class="qrb-label" for="qrbBarcodeFormat">Format Barcode</label>
+                <select id="qrbBarcodeFormat" class="qrb-select">
+                  <option value="CODE128" selected>CODE128 (Universal — Teks &amp; URL)</option>
+                  <option value="CODE39">CODE39</option>
+                  <option value="EAN13">EAN13 (12–13 digit angka)</option>
+                  <option value="EAN8">EAN8 (7–8 digit angka)</option>
+                  <option value="UPC">UPC-A (11–12 digit angka)</option>
+                  <option value="ITF14">ITF-14 (14 digit angka)</option>
+                  <option value="MSI">MSI</option>
+                  <option value="pharmacode">Pharmacode</option>
+                  <option value="codabar">Codabar</option>
+                </select>
+              </div>
+
+              <div class="qrb-field">
+                <label class="qrb-label" for="qrbBarWidth">Lebar Modul</label>
+                <input type="range" id="qrbBarWidth" class="qrb-slider" min="1" max="6" step="1" value="2" />
+                <small class="qrb-helper">Lebar: <strong id="qrbBarWidthVal">2</strong></small>
+              </div>
+
+              <div class="qrb-field">
+                <label class="qrb-label" for="qrbBarHeight">Tinggi Barcode</label>
+                <input type="range" id="qrbBarHeight" class="qrb-slider" min="40" max="200" step="5" value="100" />
+                <small class="qrb-helper">Tinggi: <strong id="qrbBarHeightVal">100</strong> px</small>
+              </div>
+
+              <div class="qrb-field">
+                <label class="qrb-label">Tampilkan Teks di Bawah Barcode</label>
+                <label class="qrb-toggle">
+                  <input type="checkbox" id="qrbBarShowText" checked />
+                  <span class="qrb-toggle-switch"></span>
+                </label>
+              </div>
+
+              <div class="qrb-field">
+                <label class="qrb-label">Warna Barcode</label>
+                <input type="color" id="qrbBarColor" class="qrb-color-picker" value="#000000" />
+              </div>
+            </div>
+          </div>
+
+          <!-- TOMBOL UTAMA -->
+          <button class="qrb-generate-btn" id="qrbGenerateBtn" type="button">
+            <i class="fas fa-wand-magic-sparkles"></i>
+            <span>Generate Sekarang</span>
+          </button>
+
+          <div class="qrb-action-row">
+            <button class="qrb-btn-secondary" id="qrbRandomBtn" type="button">
+              <i class="fas fa-dice"></i> Contoh Acak
+            </button>
+            <button class="qrb-btn-secondary" id="qrbResetBtn" type="button">
+              <i class="fas fa-rotate-left"></i> Reset
+            </button>
+          </div>
+        </div>
+
+        <!-- KOLOM KANAN: PREVIEW -->
+        <div class="qrb-preview-col" data-aos="fade-left">
+          <div class="qrb-preview-sticky">
+            <div class="qrb-preview-label">
+              <i class="fas fa-eye"></i>
+              <span>Preview Live</span>
+            </div>
+
+            <div class="qrb-preview-card">
+              <div class="qrb-preview-stage" id="qrbPreviewStage">
+                <div class="qrb-empty-state" id="qrbEmptyState">
+                  <i class="fas fa-qrcode"></i>
+                  <p>Belum ada kode.<br />Isi teks/URL lalu klik <strong>Generate</strong>.</p>
+                </div>
+                <div id="qrbQrHolder" style="display:none;"></div>
+                <div id="qrbBarcodeHolder" style="display:none;"></div>
+              </div>
+
+              <div class="qrb-preview-info" id="qrbPreviewInfo" style="display:none;">
+                <div class="qrb-info-item">
+                  <span class="qrb-info-label"><i class="fas fa-tag"></i> Jenis</span>
+                  <span class="qrb-info-value" id="qrbInfoType">-</span>
+                </div>
+                <div class="qrb-info-item">
+                  <span class="qrb-info-label"><i class="fas fa-ruler-combined"></i> Ukuran</span>
+                  <span class="qrb-info-value" id="qrbInfoSize">-</span>
+                </div>
+                <div class="qrb-info-item">
+                  <span class="qrb-info-label"><i class="fas fa-hashtag"></i> Data</span>
+                  <span class="qrb-info-value" id="qrbInfoData">-</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="qrb-download-row" id="qrbDownloadRow" style="display:none;">
+              <button class="qrb-btn-primary qrb-btn-full" id="qrbDownloadPngBtn" type="button">
+                <i class="fas fa-image"></i> Download PNG (Ultra HD)
+              </button>
+              <button class="qrb-btn-primary qrb-btn-full" id="qrbDownloadSvgBtn" type="button">
+                <i class="fas fa-vector-square"></i> Download SVG (Vektor)
+              </button>
+              <button class="qrb-btn-secondary qrb-btn-full" id="qrbCopyImgBtn" type="button">
+                <i class="fas fa-clipboard"></i> Copy Gambar
+              </button>
+              <button class="qrb-btn-secondary qrb-btn-full" id="qrbPrintBtn" type="button">
+                <i class="fas fa-print"></i> Cetak / Print
+              </button>
+              <button class="qrb-btn-secondary qrb-btn-full" id="qrbShareBtn" type="button">
+                <i class="fas fa-share-nodes"></i> Share
+              </button>
+            </div>
+
+            <div class="qrb-preview-hint">
+              <i class="fas fa-circle-info"></i>
+              <span>PNG di-render hingga 2048px — siap cetak spanduk &amp; banner.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- RIWAYAT -->
+      <div class="qrb-history-card" data-aos="fade-up">
+        <div class="qrb-history-header">
+          <h3><i class="fas fa-clock-rotate-left"></i> Riwayat Generate</h3>
+          <button class="qrb-clear-history" id="qrbClearHistoryBtn" type="button">
+            <i class="fas fa-trash"></i> Bersihkan
+          </button>
+        </div>
+        <div id="qrbHistoryList" class="qrb-history-list">
+          <div class="qrb-history-empty">Belum ada riwayat.</div>
+        </div>
+      </div>
+
+      <!-- INFO + FAQ -->
+      <div class="qrb-info-grid" data-aos="fade-up">
+        <div class="qrb-info-card">
+          <h3 class="qrb-info-title"><i class="fas fa-list-check"></i> Cara Pakai</h3>
+          <ol class="qrb-steps">
+            <li><span class="qrb-step-num">1</span><span><strong>Pilih jenis konten</strong> (Teks, URL, WiFi, vCard, QRIS).</span></li>
+            <li><span class="qrb-step-num">2</span><span><strong>Masukkan data</strong> pada input field.</span></li>
+            <li><span class="qrb-step-num">3</span><span>Pilih <strong>mode</strong>: QRIS/QR atau Barcode.</span></li>
+            <li><span class="qrb-step-num">4</span><span>Klik <strong>Generate Sekarang</strong>.</span></li>
+            <li><span class="qrb-step-num">5</span><span>Klik <strong>Download PNG / SVG</strong> atau <strong>Cetak</strong>.</span></li>
+          </ol>
+        </div>
+        <div class="qrb-info-card">
+          <h3 class="qrb-info-title"><i class="fas fa-circle-question"></i> FAQ</h3>
+          <div class="qrb-faq">
+            <div class="qrb-faq-item">
+              <button class="qrb-faq-q" type="button">
+                Apakah data dikirim ke server? <i class="fas fa-chevron-down"></i>
+              </button>
+              <div class="qrb-faq-a"><p><strong>Tidak.</strong> Semua proses 100% di browser Anda. Tidak ada data yang dikirim keluar.</p></div>
+            </div>
+            <div class="qrb-faq-item">
+              <button class="qrb-faq-q" type="button">
+                Kenapa Barcode tidak muncul? <i class="fas fa-chevron-down"></i>
+              </button>
+              <div class="qrb-faq-a"><p>Cek format. EAN13 hanya menerima 12–13 digit angka, UPC 11–12 digit angka. Gunakan <strong>CODE128</strong> untuk teks atau URL.</p></div>
+            </div>
+            <div class="qrb-faq-item">
+              <button class="qrb-faq-q" type="button">
+                Apakah hasil bisa discan? <i class="fas fa-chevron-down"></i>
+              </button>
+              <div class="qrb-faq-a"><p><strong>Ya, 100%.</strong> Menggunakan library <code>qrcode</code> dan <code>JsBarcode</code> standar industri yang kompatibel dengan semua scanner.</p></div>
+            </div>
+            <div class="qrb-faq-item">
+              <button class="qrb-faq-q" type="button">
+                Bisa cetak di kertas A4? <i class="fas fa-chevron-down"></i>
+              </button>
+              <div class="qrb-faq-a"><p>Bisa. Klik <strong>Cetak / Print</strong>, pilih ukuran kertas, atur margin, lalu print. Kualitas tetap tajam karena vector/SVG-friendly.</p></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </div>
+</main>
+
+<!-- PROFILE MODAL -->
+<div id="profileModal" class="profile-modal">
+  <div class="profile-modal-content card-3d">
+    <span class="profile-close" id="profileModalClose">&times;</span>
+    <div class="profile-card">
+      <div class="profile-header">
+        <div class="profile-avatar-container">
+          <img src="https://ik.imagekit.io/IrgxyMods/IMG_20250922_195742.jpg?updatedAt=1758545932127" alt="Avatar" class="profile-avatar" />
+          <div class="profile-status"></div>
+          <div class="profile-edit-icon"><i class="fas fa-camera"></i></div>
+        </div>
+        <div class="profile-title"><h2 class="profile-name">Pengguna IRGXYMODS</h2><p class="profile-rank">Member Premium</p></div>
+        <div class="profile-badges">
+          <div class="badge gold-badge"><i class="fas fa-crown"></i></div>
+          <div class="badge verified-badge"><i class="fas fa-check-circle"></i></div>
+          <div class="badge vip-badge"><i class="fas fa-star"></i></div>
+        </div>
+      </div>
+      <div class="profile-stats">
+        <div class="stat-item"><div class="stat-value" id="statDownloads">0</div><div class="stat-label">Aplikasi Diunduh</div></div>
+        <div class="stat-item"><div class="stat-value" id="statDays">0</div><div class="stat-label">Hari Aktif</div></div>
+        <div class="stat-item"><div class="stat-value" id="statBugs">0</div><div class="stat-label">Laporan Bug</div></div>
+      </div>
+      <div class="profile-info">
+        <div class="info-section">
+          <h3 class="section-title"><i class="fas fa-history"></i> Aktivitas Terbaru</h3>
+          <div id="activityTimeline"></div>
+        </div>
+      </div>
+      <div class="profile-actions">
+        <button class="profile-action-btn edit-profile"><i class="fas fa-edit"></i><span>Edit Profil</span></button>
+        <button class="profile-action-btn upgrade-premium"><i class="fas fa-crown"></i><span>Upgrade Premium</span></button>
+        <button class="profile-action-btn logout"><i class="fas fa-sign-out-alt"></i><span>Keluar</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></div>
+
+<footer>
+  <p style="margin-bottom:0.5rem;color:rgba(255,255,255,0.8);">&copy; 2025 IRGXY MODS — Website Download Aplikasi Mod Dan Premium Terlengkap</p>
+  <p style="margin-bottom:1.5rem;color:rgba(255,255,255,0.6);">✨ Support Modder IrgxyMods ✨</p>
+  <div class="footer-links">
+    <a href="https://policies.google.com/privacy?hl=en-US" class="footer-link" target="_blank">Privacy Policy</a>
+    <a href="https://policies.google.com/terms?hl=en-US" class="footer-link" target="_blank">Terms of Service</a>
+    <a href="https://t.me/irgxyzmods" class="footer-link" target="_blank">Contact Us</a>
+    <a href="https://policies.google.com/faq?hl=id" class="footer-link" target="_blank">FAQ</a>
+  </div>
+</footer>
+
+<!-- Library QR & Barcode (client-side, no build) -->
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.6/dist/JsBarcode.all.min.js"></script>
+
+<!-- AOS + Main.js IRGXYMODS -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="main.js"></script>
+<script src="downloader.js"></script>
+<script src="qris-barcode.js"></script>
+</body>
+</html>

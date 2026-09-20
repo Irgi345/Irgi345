@@ -1,0 +1,2406 @@
+compressvideo.css v5.0 — PREMIUM STYLESHEET LENGKAP
+
+```css
+/* ================================================================
+   IRGXYMODS — COMPRESS VIDEO PREMIUM
+   File    : compressvideo.css
+   Version : 5.0.0 — PREMIUM / COMPLETE / STABLE
+   ================================================================
+   Changelog v5.0 (dari v2.0):
+     [NEW-01] Preset bar dengan icon-ikon brand (WA/IG/TikTok/dll)
+     [NEW-02] Trim panel dengan dual range slider
+     [NEW-03] Advanced Video panel (rotate/flip/fps/filter/denoise)
+     [NEW-04] Watermark panel
+     [NEW-05] Advanced Audio panel
+     [NEW-06] Advanced panel (two-pass, custom args, preset management)
+     [NEW-07] Batch Queue card + item + reorder controls
+     [NEW-08] Log Viewer floating panel dengan filter level
+     [NEW-09] Shortcut Help modal
+     [NEW-10] Floating buttons (log + help)
+     [NEW-11] Worker Status card dengan heartbeat indicator
+     [NEW-12] Progress Chart (SVG container)
+     [NEW-13] Semua komponen responsive + reduced-motion aware
+     [NEW-14] Skip-link untuk aksesibilitas
+     [NEW-15] Print stylesheet
+   ================================================================ */
+
+/* ============================================================
+   00. VARIABEL LOKAL (fallback aman bila style.css gagal load)
+   ============================================================ */
+:root {
+  --cv-bg-1:#0f0f1a;
+  --cv-bg-2:#1a1a2e;
+  --cv-bg-3:#16213e;
+  --cv-text:#e0e0e0;
+  --cv-text-dim:#b0b0b0;
+  --cv-text-muted:#8888aa;
+  --cv-gold:#d4a745;
+  --cv-gold-light:#f0d78c;
+  --cv-gold-dark:#8b6914;
+  --cv-gold-grad:linear-gradient(135deg,#C9A96E 0%,#D4B98C 30%,#B8946A 60%,#C9A96E 100%);
+  --cv-success:#43e97b;
+  --cv-success-soft:#7ff7a3;
+  --cv-danger:#ff416c;
+  --cv-danger-soft:#ff6584;
+  --cv-info:#4facfe;
+  --cv-warn:#ffc107;
+  --cv-purple:#a855f7;
+  --cv-cyan:#00f2fe;
+  --cv-orange:#f7971e;
+  --cv-radius:16px;
+  --cv-radius-sm:10px;
+  --cv-radius-xs:8px;
+  --cv-border:rgba(255,255,255,0.06);
+  --cv-border-gold:rgba(201,169,110,0.32);
+  --cv-border-active:rgba(201,169,110,0.55);
+  --cv-shadow-sm:0 6px 20px rgba(0,0,0,0.25);
+  --cv-shadow-md:0 12px 32px rgba(0,0,0,0.35);
+  --cv-shadow-lg:0 20px 50px rgba(0,0,0,0.5);
+  --cv-shadow-gold:0 8px 28px rgba(201,169,110,0.35);
+  --cv-shadow-gold-lg:0 14px 40px rgba(201,169,110,0.5);
+  --cv-ease:cubic-bezier(0.4,0,0.2,1);
+  --cv-ease-bounce:cubic-bezier(0.34,1.56,0.64,1);
+  --cv-display:'Playfair Display',Georgia,serif;
+  --cv-body:'Inter',system-ui,-apple-system,sans-serif;
+
+  /* Layout v5 */
+  --cv-z-float:9000;
+  --cv-z-panel:9050;
+  --cv-z-modal:9100;
+  --cv-z-toast:9200;
+}
+
+/* ============================================================
+   01. RESET LOKAL + UTIL UMUM
+   ============================================================ */
+.compress-hero *,
+.compress-upload-card *,
+.compress-settings-card *,
+.compress-preset-card *,
+.compress-action-card *,
+.compress-result-card *,
+.compress-history-card *,
+.compress-queue-card *,
+.compress-info-card *,
+.compress-log-panel *,
+.compress-modal *,
+.compress-float-btn {
+  box-sizing: border-box;
+}
+
+/* ============================================================
+   02. ANIMASI GLOBAL
+   ============================================================ */
+@keyframes cvFloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-8px)} }
+@keyframes cvShine { to{background-position:200% center} }
+@keyframes cvSpin  { to{transform:rotate(360deg)} }
+@keyframes cvPulse { 0%,100%{opacity:.5;transform:scale(.9)} 50%{opacity:1;transform:scale(1.1)} }
+@keyframes cvFadeUp { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:translateY(0)} }
+@keyframes cvFadeIn { from{opacity:0} to{opacity:1} }
+@keyframes cvGlow  { 0%{opacity:.4;filter:blur(12px)} 100%{opacity:.85;filter:blur(22px)} }
+@keyframes cvProgressStripe { 0%{background-position:0 0} 100%{background-position:60px 0} }
+@keyframes cvRingPulse {
+  0%{box-shadow:0 0 0 0 rgba(201,169,110,.45)}
+  70%{box-shadow:0 0 0 18px rgba(201,169,110,0)}
+  100%{box-shadow:0 0 0 0 rgba(201,169,110,0)}
+}
+@keyframes cvHeartbeat {
+  0%{transform:scale(1);opacity:1}
+  14%{transform:scale(1.15);opacity:1}
+  28%{transform:scale(1);opacity:1}
+  42%{transform:scale(1.15);opacity:1}
+  70%{transform:scale(1);opacity:1}
+}
+@keyframes cvShakeX {
+  0%,100%{transform:translateX(0)}
+  25%{transform:translateX(-4px)}
+  75%{transform:translateX(4px)}
+}
+@keyframes cvSlideUp {
+  from{opacity:0;transform:translateY(24px)}
+  to{opacity:1;transform:translateY(0)}
+}
+@keyframes cvModalIn {
+  from{opacity:0;transform:scale(0.92) translateY(20px)}
+  to{opacity:1;transform:scale(1) translateY(0)}
+}
+@keyframes cvToastIn {
+  from{opacity:0;transform:translateX(30px)}
+  to{opacity:1;transform:translateX(0)}
+}
+
+/* ============================================================
+   03. SKIP LINK (aksesibilitas)
+   ============================================================ */
+.skip-link:focus {
+  position: fixed !important;
+  top: 8px !important;
+  left: 8px !important;
+  padding: 10px 18px !important;
+  background: var(--cv-gold-grad) !important;
+  color: #1a1a2e !important;
+  border-radius: 10px !important;
+  font-weight: 700 !important;
+  z-index: 99999 !important;
+  text-decoration: none !important;
+  outline: 2px solid #fff !important;
+}
+
+/* ============================================================
+   04. HERO
+   ============================================================ */
+.compress-hero{
+  text-align:center;
+  padding:2.5rem 1rem 1.5rem;
+  position:relative;
+  overflow:hidden;
+  isolation:isolate;
+}
+.compress-hero::before{
+  content:'';
+  position:absolute;
+  top:-120px;left:50%;
+  transform:translateX(-50%);
+  width:520px;height:520px;
+  background:radial-gradient(circle,rgba(201,169,110,0.16) 0%,transparent 70%);
+  pointer-events:none;z-index:-1;
+  animation:cvGlow 4s ease-in-out infinite alternate;
+}
+.compress-hero::after{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(circle at 20% 20%,rgba(168,85,247,0.06) 0%,transparent 40%),
+    radial-gradient(circle at 80% 80%,rgba(0,242,254,0.05) 0%,transparent 45%);
+  pointer-events:none;z-index:-1;
+}
+
+.compress-hero-icon{
+  width:96px;height:96px;
+  margin:0 auto 1.4rem;
+  border-radius:26px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:2.8rem;color:#1a1a2e;
+  background:var(--cv-gold-grad);
+  box-shadow:
+    0 10px 36px rgba(201,169,110,0.4),
+    0 0 60px rgba(201,169,110,0.25),
+    inset 0 1px 0 rgba(255,255,255,0.35);
+  position:relative;
+  animation:cvFloat 4s ease-in-out infinite;
+  transition:transform .5s var(--cv-ease);
+}
+.compress-hero-icon:hover{transform:scale(1.08) rotate(-4deg)}
+.compress-hero-icon::after{
+  content:'';
+  position:absolute;inset:-4px;
+  border-radius:30px;
+  background:var(--cv-gold-grad);
+  z-index:-1;
+  filter:blur(18px);
+  opacity:0.55;
+  animation:cvGlow 3s ease-in-out infinite alternate;
+}
+
+.compress-hero-title{
+  font-family:var(--cv-display);
+  font-size:2.6rem;
+  font-weight:700;
+  margin:0 0 0.6rem;
+  background:var(--cv-gold-grad);
+  background-size:200% auto;
+  -webkit-background-clip:text;background-clip:text;
+  color:transparent;
+  letter-spacing:0.5px;
+  animation:cvShine 4s linear infinite;
+  text-shadow:0 0 40px rgba(201,169,110,0.15);
+}
+.compress-hero-title > span{
+  font-family:var(--cv-body);
+  background:rgba(102,126,234,0.25);
+  -webkit-text-fill-color:#a5b4fc;
+  color:#a5b4fc;
+  padding:4px 12px;
+  border-radius:10px;
+  font-weight:700;
+  vertical-align:middle;
+  letter-spacing:1px;
+}
+
+.compress-hero-sub{
+  color:var(--cv-text-dim);
+  font-size:1.02rem;
+  max-width:640px;
+  margin:0 auto 1.3rem;
+  line-height:1.65;
+}
+.compress-hero-sub strong{
+  color:var(--cv-gold-light);
+  font-weight:700;
+  position:relative;
+}
+.compress-hero-sub strong::after{
+  content:'';
+  position:absolute;
+  left:0;right:0;bottom:-2px;
+  height:2px;
+  background:var(--cv-gold-grad);
+  border-radius:2px;
+  opacity:0.6;
+}
+
+.compress-hero-pills{
+  display:flex;justify-content:center;gap:10px;flex-wrap:wrap;
+}
+.compress-pill{
+  display:inline-flex;align-items:center;gap:7px;
+  padding:7px 15px;
+  background:rgba(255,255,255,0.04);
+  border:1px solid var(--cv-border);
+  border-radius:30px;
+  font-size:0.8rem;
+  color:var(--cv-text-dim);
+  font-weight:500;
+  transition:all .35s var(--cv-ease);
+  backdrop-filter:blur(6px);
+  -webkit-backdrop-filter:blur(6px);
+  position:relative;
+  overflow:hidden;
+  white-space:nowrap;
+}
+.compress-pill:hover{
+  border-color:rgba(201,169,110,0.4);
+  color:var(--cv-gold-light);
+  transform:translateY(-3px);
+  box-shadow:0 8px 20px rgba(201,169,110,0.15);
+}
+.compress-pill i{color:var(--cv-gold);font-size:0.85rem}
+.compress-pill:hover i{color:var(--cv-gold-light)}
+#sabStatusPill{cursor:help}
+
+/* ============================================================
+   05. WORKER STATUS CARD (v5)
+   ============================================================ */
+#workerStatusCard{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  flex-wrap:wrap;
+  justify-content:space-between;
+  padding:14px 20px;
+  margin:1rem 0 1.25rem;
+  background:
+    linear-gradient(90deg,rgba(67,233,123,0.06),rgba(102,126,234,0.04)),
+    rgba(22,33,62,0.35);
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  border:1px solid var(--cv-border);
+  border-left:3px solid var(--cv-success);
+  border-radius:14px;
+  position:relative;
+  overflow:hidden;
+}
+#workerStatusCard::before{
+  content:'';
+  position:absolute;
+  top:0;bottom:0;left:-100%;
+  width:60%;
+  background:linear-gradient(90deg,transparent,rgba(67,233,123,0.08),transparent);
+  animation:cvShine 4s linear infinite;
+  pointer-events:none;
+}
+#workerStatusCard > div:first-child{
+  display:flex;align-items:center;gap:10px;flex-wrap:wrap;min-width:0;
+}
+#workerStatusCard .fa-heartbeat{
+  color:var(--cv-success) !important;
+  animation:cvHeartbeat 2s ease-in-out infinite;
+  font-size:1.1rem;
+}
+#workerStatusCard strong{color:#fff;font-weight:700;font-size:0.92rem}
+#workerStatusText{
+  color:var(--cv-text-dim);
+  font-size:0.86rem;
+  transition:color .3s var(--cv-ease);
+}
+#workerStatusText.is-ready{color:var(--cv-success-soft);font-weight:600}
+#workerStatusText.is-loading{color:var(--cv-warn)}
+#workerStatusText.is-error{color:var(--cv-danger-soft);animation:cvShakeX .4s}
+
+#workerVersionTag{
+  font-size:0.72rem;
+  padding:3px 10px;
+  border-radius:8px;
+  background:rgba(102,126,234,0.2);
+  color:#a5b4fc;
+  font-weight:700;
+  letter-spacing:0.5px;
+  font-family:monospace;
+  border:1px solid rgba(102,126,234,0.3);
+  white-space:nowrap;
+}
+#workerVersionTag:empty{display:none}
+
+#workerStatusCard > div:last-child{display:flex;gap:8px;flex-wrap:wrap}
+
+/* ============================================================
+   06. KARTU DASAR (Upload, Settings, Action, Result, History, Queue)
+   ============================================================ */
+.compress-upload-card,
+.compress-settings-card,
+.compress-preset-card,
+.compress-action-card,
+.compress-result-card,
+.compress-history-card,
+.compress-queue-card{
+  background:
+    linear-gradient(180deg,rgba(255,255,255,0.045),rgba(255,255,255,0.02)),
+    rgba(22,33,62,0.35);
+  backdrop-filter:blur(18px) saturate(1.3);
+  -webkit-backdrop-filter:blur(18px) saturate(1.3);
+  border:1px solid var(--cv-border);
+  border-radius:var(--cv-radius);
+  padding:24px;
+  margin:1rem 0 1.5rem;
+  position:relative;
+  overflow:hidden;
+  box-shadow:var(--cv-shadow-md);
+  transition:border-color .35s var(--cv-ease),transform .35s var(--cv-ease);
+}
+.compress-upload-card:hover,
+.compress-settings-card:hover,
+.compress-preset-card:hover,
+.compress-action-card:hover,
+.compress-result-card:hover,
+.compress-history-card:hover,
+.compress-queue-card:hover{
+  border-color:rgba(201,169,110,0.15);
+}
+.compress-upload-card::before,
+.compress-settings-card::before,
+.compress-preset-card::before,
+.compress-action-card::before,
+.compress-result-card::before,
+.compress-history-card::before,
+.compress-queue-card::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;
+  height:3px;
+  background:linear-gradient(90deg,#C9A96E,#FFD700,#D4B98C,#C9A96E);
+  background-size:200% auto;
+  animation:cvShine 3s linear infinite;
+  box-shadow:0 0 20px rgba(201,169,110,0.35);
+}
+/* Preset card pakai warna beda */
+.compress-preset-card::before{
+  background:linear-gradient(90deg,#a855f7,#ec4899,#f7971e,#a855f7);
+  background-size:200% auto;
+}
+
+.compress-input-header{
+  display:flex;align-items:center;gap:10px;
+  margin-bottom:16px;
+  font-weight:600;
+  color:var(--cv-gold-light);
+  font-size:1rem;
+  letter-spacing:0.3px;
+}
+.compress-input-header i{
+  font-size:1.25rem;
+  color:var(--cv-gold);
+  filter:drop-shadow(0 0 8px rgba(201,169,110,0.4));
+}
+
+/* ============================================================
+   07. DROPZONE
+   ============================================================ */
+.compress-dropzone{
+  border:2px dashed var(--cv-border-gold);
+  border-radius:var(--cv-radius);
+  padding:46px 22px;
+  text-align:center;
+  cursor:pointer;
+  transition:all .4s var(--cv-ease);
+  background:
+    radial-gradient(circle at 50% 0%,rgba(201,169,110,0.05) 0%,transparent 60%),
+    rgba(0,0,0,0.18);
+  position:relative;
+  overflow:hidden;
+}
+.compress-dropzone::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:repeating-linear-gradient(45deg,transparent 0 20px,rgba(201,169,110,0.03) 20px 21px);
+  opacity:0;
+  transition:opacity .4s var(--cv-ease);
+  pointer-events:none;
+}
+.compress-dropzone:hover,
+.compress-dropzone.dragover{
+  border-color:var(--cv-gold);
+  background:
+    radial-gradient(circle at 50% 0%,rgba(201,169,110,0.12) 0%,transparent 70%),
+    rgba(201,169,110,0.05);
+  transform:scale(1.01);
+  box-shadow:0 12px 40px rgba(0,0,0,0.35),inset 0 0 40px rgba(201,169,110,0.06);
+}
+.compress-dropzone:hover::before,
+.compress-dropzone.dragover::before{opacity:1}
+.compress-dropzone:focus-visible{
+  outline:none;
+  border-color:var(--cv-gold-light);
+  box-shadow:0 0 0 4px rgba(201,169,110,0.15);
+}
+.compress-dropzone-icon{
+  font-size:3.2rem;
+  color:var(--cv-gold);
+  margin-bottom:14px;
+  opacity:0.85;
+  transition:transform .4s var(--cv-ease-bounce),color .35s var(--cv-ease);
+  filter:drop-shadow(0 6px 18px rgba(201,169,110,0.35));
+}
+.compress-dropzone:hover .compress-dropzone-icon,
+.compress-dropzone.dragover .compress-dropzone-icon{
+  transform:scale(1.15) translateY(-6px);
+  color:var(--cv-gold-light);
+  opacity:1;
+}
+.compress-dropzone h3{
+  font-size:1.15rem;color:#fff;margin:0 0 8px;
+  font-weight:700;letter-spacing:0.2px;
+}
+.compress-dropzone p{
+  color:var(--cv-text-dim);font-size:0.95rem;margin:0 0 8px;
+}
+.compress-dropzone p strong{color:var(--cv-gold-light);font-weight:700}
+.compress-dropzone small{
+  color:var(--cv-text-muted);font-size:0.75rem;letter-spacing:0.2px;
+  display:block;line-height:1.6;
+}
+.compress-dropzone small strong{color:var(--cv-gold-light)}
+
+/* ============================================================
+   08. PREVIEW
+   ============================================================ */
+.compress-preview{
+  display:grid;
+  grid-template-columns:320px 1fr;
+  gap:22px;
+  align-items:start;
+  animation:cvFadeUp .5s var(--cv-ease);
+}
+.compress-preview-video video{
+  width:100%;
+  border-radius:12px;
+  border:1px solid var(--cv-border);
+  background:#000;
+  max-height:280px;
+  box-shadow:0 8px 24px rgba(0,0,0,0.4);
+}
+.compress-preview-info{min-width:0}
+.compress-preview-info h4{
+  font-size:1rem;color:#fff;margin:0 0 14px;
+  word-break:break-all;font-weight:600;line-height:1.4;
+}
+.compress-meta-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+  margin-bottom:16px;
+}
+.compress-meta-item{
+  display:flex;flex-direction:column;gap:5px;
+  padding:11px 13px;
+  background:rgba(255,255,255,0.03);
+  border:1px solid var(--cv-border);
+  border-radius:10px;
+  transition:all .3s var(--cv-ease);
+}
+.compress-meta-item:hover{
+  border-color:rgba(201,169,110,0.25);
+  background:rgba(201,169,110,0.04);
+  transform:translateY(-2px);
+}
+.compress-meta-item .label{
+  font-size:0.7rem;
+  color:var(--cv-text-muted);
+  text-transform:uppercase;
+  letter-spacing:0.6px;
+  display:flex;align-items:center;gap:6px;
+  font-weight:600;
+}
+.compress-meta-item .label i{color:var(--cv-gold)}
+.compress-meta-item .value{
+  font-weight:700;color:#fff;font-size:0.92rem;letter-spacing:0.2px;
+}
+.compress-preview-actions{display:flex;gap:10px;flex-wrap:wrap}
+
+/* ============================================================
+   09. TOMBOL AKSI UMUM
+   ============================================================ */
+.compress-action-btn{
+  display:inline-flex;align-items:center;gap:8px;
+  padding:11px 18px;
+  background:rgba(255,255,255,0.05);
+  border:1px solid var(--cv-border);
+  border-radius:20px;
+  color:var(--cv-text-dim);
+  cursor:pointer;
+  font-size:0.83rem;
+  font-family:inherit;
+  font-weight:600;
+  transition:all .3s var(--cv-ease);
+  letter-spacing:0.2px;
+  white-space:nowrap;
+  text-decoration:none;
+}
+.compress-action-btn:hover{
+  background:rgba(201,169,110,0.12);
+  color:var(--cv-gold);
+  border-color:rgba(201,169,110,0.35);
+  transform:translateY(-2px);
+  box-shadow:0 6px 18px rgba(201,169,110,0.15);
+}
+.compress-action-btn:active{transform:translateY(0)}
+.compress-action-btn:focus-visible{
+  outline:none;
+  box-shadow:0 0 0 3px rgba(201,169,110,0.3);
+}
+.compress-action-btn.danger:hover{
+  background:rgba(255,65,108,0.12);
+  color:var(--cv-danger-soft);
+  border-color:rgba(255,65,108,0.35);
+  box-shadow:0 6px 18px rgba(255,65,108,0.15);
+}
+.compress-action-btn.primary{
+  background:linear-gradient(135deg,rgba(102,126,234,0.15),rgba(118,75,162,0.1));
+  border-color:rgba(102,126,234,0.35);
+  color:#a5b4fc;
+}
+.compress-action-btn.primary:hover{
+  background:linear-gradient(135deg,rgba(102,126,234,0.25),rgba(118,75,162,0.2));
+  color:#c4b5fd;
+  border-color:rgba(102,126,234,0.55);
+}
+.compress-action-btn:disabled{
+  opacity:0.4;cursor:not-allowed;transform:none !important;
+}
+
+/* ============================================================
+   10. GROUP LABEL
+   ============================================================ */
+.compress-group{margin-bottom:22px}
+.compress-group:last-of-type{margin-bottom:0}
+
+.compress-group-label{
+  display:flex;align-items:center;gap:8px;
+  font-size:0.86rem;
+  font-weight:700;
+  color:var(--cv-gold-light);
+  margin-bottom:11px;
+  font-family:inherit;
+  letter-spacing:0.3px;
+}
+.compress-group-label i{
+  color:var(--cv-gold);
+  font-size:0.92rem;
+  filter:drop-shadow(0 0 6px rgba(201,169,110,0.35));
+}
+
+/* ============================================================
+   11. RADIO CARD GRID
+   ============================================================ */
+.compress-radio-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:9px;
+}
+.compress-radio-grid-res{
+  grid-template-columns:repeat(auto-fit,minmax(90px,1fr));
+}
+
+.compress-radio{
+  display:flex;align-items:center;gap:10px;
+  padding:12px 14px;
+  background:rgba(255,255,255,0.03);
+  border:1.5px solid var(--cv-border);
+  border-radius:10px;
+  cursor:pointer;
+  transition:all .3s var(--cv-ease);
+  position:relative;
+  user-select:none;
+  overflow:hidden;
+  -webkit-tap-highlight-color:transparent;
+}
+.compress-radio:hover{
+  border-color:rgba(201,169,110,0.3);
+  background:rgba(201,169,110,0.05);
+  transform:translateY(-2px);
+}
+.compress-radio:has(input:checked){
+  border-color:var(--cv-gold);
+  background:rgba(201,169,110,0.1);
+  box-shadow:0 0 0 3px rgba(201,169,110,0.1),0 8px 20px rgba(201,169,110,0.12);
+}
+/* Fallback browser tanpa :has */
+.compress-radio input:checked ~ .radio-text{color:#fff;font-weight:600}
+.compress-radio input{position:absolute;opacity:0;pointer-events:none}
+.compress-radio:focus-within{outline:2px solid var(--cv-gold-light);outline-offset:2px}
+
+.compress-radio .radio-mark{
+  width:16px;height:16px;
+  border-radius:50%;
+  border:2px solid rgba(255,255,255,0.3);
+  flex-shrink:0;
+  position:relative;
+  transition:all .3s var(--cv-ease);
+  background:rgba(0,0,0,0.2);
+}
+.compress-radio input:checked + .radio-mark{
+  border-color:var(--cv-gold);
+  background:var(--cv-gold-grad);
+}
+.compress-radio input:checked + .radio-mark::after{
+  content:'';
+  position:absolute;inset:3px;
+  border-radius:50%;
+  background:#1a1a2e;
+}
+.compress-radio .radio-text{
+  font-size:0.86rem;
+  color:var(--cv-text-dim);
+  font-weight:500;
+  display:flex;align-items:center;gap:7px;flex-wrap:wrap;
+  transition:color .3s var(--cv-ease);
+  line-height:1.3;
+}
+
+/* ============================================================
+   12. BADGE CPU / GPU
+   ============================================================ */
+.badge-cpu,.badge-gpu{
+  font-size:0.62rem;
+  padding:3px 9px;
+  border-radius:20px;
+  font-weight:700;
+  letter-spacing:0.4px;
+  font-family:inherit;
+  display:inline-block;
+  white-space:nowrap;
+  transition:all .3s var(--cv-ease);
+}
+.badge-cpu{
+  background:rgba(67,233,123,0.15);
+  color:#43e97b;
+  border:1px solid rgba(67,233,123,0.3);
+}
+.badge-gpu{
+  background:rgba(255,193,7,0.15);
+  color:#ffc107;
+  border:1px solid rgba(255,193,7,0.3);
+}
+.badge-gpu.available{
+  background:rgba(67,233,123,0.15);
+  color:#43e97b;
+  border-color:rgba(67,233,123,0.3);
+}
+.badge-gpu.unavailable{
+  background:rgba(255,65,108,0.15);
+  color:#ff6584;
+  border-color:rgba(255,65,108,0.35);
+}
+
+/* ============================================================
+   13. SLIDER & NUMBER INPUT
+   ============================================================ */
+.compress-slider-wrap{
+  display:flex;align-items:center;gap:16px;
+  padding:14px 18px;
+  background:rgba(0,0,0,0.22);
+  border:1px solid var(--cv-border);
+  border-radius:12px;
+  transition:border-color .3s var(--cv-ease);
+}
+.compress-slider-wrap:hover{border-color:rgba(201,169,110,0.2)}
+.compress-slider-wrap input[type="range"]{
+  flex:1;
+  height:6px;
+  -webkit-appearance:none;appearance:none;
+  background:linear-gradient(90deg,rgba(201,169,110,0.5),rgba(255,255,255,0.08));
+  border-radius:6px;
+  outline:none;
+  cursor:pointer;
+  min-width:0;
+}
+.compress-slider-wrap input[type="range"]::-webkit-slider-thumb{
+  -webkit-appearance:none;appearance:none;
+  width:22px;height:22px;
+  border-radius:50%;
+  background:var(--cv-gold-grad);
+  cursor:pointer;
+  box-shadow:0 0 20px rgba(201,169,110,0.55),0 2px 8px rgba(0,0,0,0.35);
+  border:2px solid rgba(255,255,255,0.15);
+  transition:transform .2s var(--cv-ease-bounce);
+}
+.compress-slider-wrap input[type="range"]::-webkit-slider-thumb:hover{transform:scale(1.18)}
+.compress-slider-wrap input[type="range"]::-moz-range-thumb{
+  width:22px;height:22px;
+  border-radius:50%;
+  background:var(--cv-gold-grad);
+  cursor:pointer;
+  border:2px solid rgba(255,255,255,0.15);
+  box-shadow:0 0 20px rgba(201,169,110,0.55);
+}
+.compress-slider-wrap input[type="range"]:focus-visible{
+  box-shadow:0 0 0 3px rgba(201,169,110,0.25);
+}
+.compress-slider-value{
+  font-family:var(--cv-display);
+  font-size:1.25rem;
+  font-weight:700;
+  color:var(--cv-gold);
+  min-width:80px;
+  text-align:right;
+  letter-spacing:0.5px;
+  font-variant-numeric:tabular-nums;
+  white-space:nowrap;
+}
+
+.compress-number-wrap{
+  display:flex;align-items:center;gap:10px;
+  padding:13px 17px;
+  background:rgba(0,0,0,0.22);
+  border:1px solid var(--cv-border);
+  border-radius:12px;
+  margin-top:10px;
+  transition:all .3s var(--cv-ease);
+}
+.compress-number-wrap:focus-within{
+  border-color:var(--cv-border-active);
+  box-shadow:0 0 0 3px rgba(201,169,110,0.1);
+}
+.compress-number-wrap input{
+  flex:1;
+  background:transparent;
+  border:none;
+  color:#fff;
+  font-size:1.05rem;
+  font-weight:600;
+  outline:none;
+  font-family:inherit;
+  width:100%;
+  min-width:0;
+}
+.compress-number-wrap input::-webkit-outer-spin-button,
+.compress-number-wrap input::-webkit-inner-spin-button{-webkit-appearance:none;margin:0}
+.compress-number-wrap input[type=number]{-moz-appearance:textfield}
+.compress-number-wrap .unit{
+  font-size:0.88rem;
+  color:var(--cv-gold-light);
+  font-weight:700;
+  letter-spacing:0.5px;
+  white-space:nowrap;
+}
+
+/* ============================================================
+   14. WARNING BOX
+   ============================================================ */
+.compress-warning{
+  display:flex;align-items:center;gap:9px;
+  margin-top:11px;
+  padding:11px 15px;
+  background:rgba(255,193,7,0.08);
+  border:1px solid rgba(255,193,7,0.28);
+  border-radius:10px;
+  color:var(--cv-warn);
+  font-size:0.83rem;
+  line-height:1.5;
+  animation:cvFadeUp .4s var(--cv-ease);
+}
+.compress-warning i{color:var(--cv-warn);font-size:0.95rem;flex-shrink:0}
+.compress-warning strong{color:#ffe066}
+.compress-warning.danger{
+  background:rgba(255,65,108,0.08);
+  border-color:rgba(255,65,108,0.28);
+  color:var(--cv-danger-soft);
+}
+.compress-warning.danger i{color:var(--cv-danger-soft)}
+
+/* ============================================================
+   15. AUDIO ROW
+   ============================================================ */
+.compress-audio-row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:11px;
+}
+.compress-select{
+  padding:13px 15px;
+  background:rgba(0,0,0,0.32);
+  border:1.5px solid var(--cv-border);
+  border-radius:10px;
+  color:#fff;
+  font-family:inherit;
+  font-size:0.92rem;
+  font-weight:500;
+  outline:none;
+  cursor:pointer;
+  transition:all .3s var(--cv-ease);
+  appearance:none;
+  -webkit-appearance:none;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path fill='%23C9A96E' d='M6 8L0 2l1.4-1.4L6 5.2 10.6.6 12 2z'/></svg>");
+  background-repeat:no-repeat;
+  background-position:right 14px center;
+  padding-right:38px;
+  width:100%;
+}
+.compress-select:hover{
+  border-color:rgba(201,169,110,0.3);
+  background-color:rgba(0,0,0,0.4);
+}
+.compress-select:focus{
+  border-color:var(--cv-border-active);
+  box-shadow:0 0 0 3px rgba(201,169,110,0.12);
+}
+.compress-select option{background:#1a1a2e;color:#fff;padding:8px}
+
+/* ============================================================
+   16. PRESET BAR (v5) — WA/IG/TikTok/YT/dll
+   ============================================================ */
+.compress-preset-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(150px,1fr));
+  gap:10px;
+  margin-top:8px;
+}
+.compress-preset-btn{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:6px;
+  padding:14px 10px;
+  border-radius:14px;
+  border:1.5px solid rgba(255,255,255,0.1);
+  background:
+    linear-gradient(180deg,rgba(255,255,255,0.04),rgba(255,255,255,0.01));
+  color:inherit;
+  cursor:pointer;
+  transition:all .3s var(--cv-ease);
+  font-family:inherit;
+  position:relative;
+  overflow:hidden;
+  text-align:center;
+}
+.compress-preset-btn::before{
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(135deg,rgba(201,169,110,0.15),transparent 60%);
+  opacity:0;
+  transition:opacity .3s var(--cv-ease);
+  pointer-events:none;
+}
+.compress-preset-btn:hover{
+  border-color:rgba(102,126,234,0.6);
+  background:rgba(102,126,234,0.08);
+  transform:translateY(-3px);
+  box-shadow:0 10px 28px rgba(102,126,234,0.2);
+}
+.compress-preset-btn:hover::before{opacity:1}
+.compress-preset-btn:active{transform:translateY(-1px)}
+.compress-preset-btn:focus-visible{
+  outline:none;
+  border-color:var(--cv-gold-light);
+  box-shadow:0 0 0 3px rgba(201,169,110,0.25);
+}
+.compress-preset-btn i{
+  font-size:1.55rem;
+  color:#667eea;
+  filter:drop-shadow(0 4px 12px rgba(102,126,234,0.4));
+  transition:transform .3s var(--cv-ease-bounce);
+}
+.compress-preset-btn:hover i{transform:scale(1.15)}
+.compress-preset-btn > span{
+  font-size:0.85rem;
+  font-weight:700;
+  color:#fff;
+  letter-spacing:0.2px;
+}
+.compress-preset-btn small{
+  font-size:0.68rem;
+  opacity:0.65;
+  text-align:center;
+  line-height:1.4;
+  color:var(--cv-text-muted);
+}
+/* Warna per brand (opsional, biar menarik) */
+.compress-preset-btn[data-preset="whatsapp"] i{color:#25D366}
+.compress-preset-btn[data-preset="instagram"] i{color:#E4405F}
+.compress-preset-btn[data-preset="tiktok"] i{color:#fe2c55}
+.compress-preset-btn[data-preset="youtube"] i{color:#FF0000}
+.compress-preset-btn[data-preset="twitter"] i{color:#1DA1F2}
+.compress-preset-btn[data-preset="email"] i{color:#4facfe}
+.compress-preset-btn[data-preset="discord"] i{color:#5865F2}
+.compress-preset-btn[data-preset="archiv"] i{color:var(--cv-gold)}
+.compress-preset-btn[data-preset="maxsave"] i{color:var(--cv-success)}
+.compress-preset-btn[data-preset="custom"] i{color:var(--cv-text-muted)}
+
+/* ============================================================
+   17. TRIM PANEL (v5)
+   ============================================================ */
+.compress-trim-panel .compress-trim-row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  align-items:flex-end;
+}
+.compress-trim-field{
+  display:flex;
+  flex-direction:column;
+  gap:4px;
+  font-size:0.82rem;
+  flex:1;
+  min-width:130px;
+}
+.compress-trim-field > span{
+  color:var(--cv-text-muted);
+  font-weight:600;
+  letter-spacing:0.3px;
+  font-size:0.75rem;
+  text-transform:uppercase;
+}
+.compress-trim-field input{
+  padding:10px 12px;
+  border-radius:10px;
+  border:1.5px solid var(--cv-border);
+  background:rgba(0,0,0,0.25);
+  color:#fff;
+  font-family:inherit;
+  font-size:0.92rem;
+  font-weight:600;
+  outline:none;
+  transition:all .3s var(--cv-ease);
+  width:100%;
+}
+.compress-trim-field input:focus{
+  border-color:var(--cv-border-active);
+  box-shadow:0 0 0 3px rgba(201,169,110,0.12);
+}
+.compress-trim-preview{
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  margin-top:12px;
+  position:relative;
+}
+.compress-trim-preview input[type="range"]{
+  width:100%;
+  height:6px;
+  -webkit-appearance:none;appearance:none;
+  background:linear-gradient(90deg,rgba(201,169,110,0.5),rgba(255,255,255,0.08));
+  border-radius:6px;
+  outline:none;
+  cursor:pointer;
+}
+.compress-trim-preview input[type="range"]::-webkit-slider-thumb{
+  -webkit-appearance:none;appearance:none;
+  width:18px;height:18px;
+  border-radius:50%;
+  background:var(--cv-gold-grad);
+  cursor:pointer;
+  box-shadow:0 0 14px rgba(201,169,110,0.55);
+  border:2px solid rgba(255,255,255,0.2);
+}
+.compress-trim-preview input[type="range"]::-moz-range-thumb{
+  width:18px;height:18px;
+  border-radius:50%;
+  background:var(--cv-gold-grad);
+  cursor:pointer;
+  border:2px solid rgba(255,255,255,0.2);
+}
+
+/* Hint text universal */
+.compress-hint{
+  font-size:0.74rem;
+  opacity:0.65;
+  display:block;
+  margin-top:6px;
+  color:var(--cv-text-muted);
+  line-height:1.5;
+  letter-spacing:0.15px;
+}
+
+/* ============================================================
+   18. ADVANCED VIDEO / WATERMARK / AUDIO / ADVANCED (v5)
+   ============================================================ */
+.compress-adv-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
+  gap:12px;
+}
+.compress-adv-field{
+  display:flex;
+  flex-direction:column;
+  gap:5px;
+  font-size:0.82rem;
+  min-width:0;
+}
+.compress-adv-field > span{
+  color:var(--cv-text-muted);
+  font-weight:600;
+  letter-spacing:0.3px;
+  font-size:0.75rem;
+  text-transform:uppercase;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+}
+.compress-adv-field > span em{
+  font-style:normal;
+  color:var(--cv-gold-light);
+  font-family:monospace;
+  font-weight:700;
+  font-size:0.78rem;
+  letter-spacing:0;
+}
+.compress-adv-field input[type="text"],
+.compress-adv-field input[type="number"]{
+  padding:10px 12px;
+  border-radius:10px;
+  border:1.5px solid var(--cv-border);
+  background:rgba(0,0,0,0.25);
+  color:#fff;
+  font-family:inherit;
+  font-size:0.88rem;
+  font-weight:500;
+  outline:none;
+  transition:all .3s var(--cv-ease);
+  width:100%;
+}
+.compress-adv-field input[type="text"]:focus,
+.compress-adv-field input[type="number"]:focus{
+  border-color:var(--cv-border-active);
+  box-shadow:0 0 0 3px rgba(201,169,110,0.12);
+}
+.compress-adv-field input[type="range"]{
+  width:100%;
+  height:5px;
+  -webkit-appearance:none;appearance:none;
+  background:linear-gradient(90deg,rgba(201,169,110,0.5),rgba(255,255,255,0.08));
+  border-radius:5px;
+  outline:none;
+  cursor:pointer;
+}
+.compress-adv-field input[type="range"]::-webkit-slider-thumb{
+  -webkit-appearance:none;appearance:none;
+  width:16px;height:16px;
+  border-radius:50%;
+  background:var(--cv-gold-grad);
+  cursor:pointer;
+  box-shadow:0 0 12px rgba(201,169,110,0.5);
+  border:2px solid rgba(255,255,255,0.15);
+}
+.compress-adv-field input[type="range"]::-moz-range-thumb{
+  width:16px;height:16px;
+  border-radius:50%;
+  background:var(--cv-gold-grad);
+  cursor:pointer;
+  border:2px solid rgba(255,255,255,0.15);
+}
+.compress-adv-field input[type="color"]{
+  width:100%;
+  height:38px;
+  border:1.5px solid var(--cv-border);
+  border-radius:10px;
+  background:transparent;
+  cursor:pointer;
+  padding:2px;
+}
+.compress-adv-field input[type="color"]::-webkit-color-swatch{
+  border-radius:6px;
+  border:none;
+}
+.compress-adv-field input[type="color"]::-moz-color-swatch{
+  border-radius:6px;
+  border:none;
+}
+.compress-adv-field input[type="checkbox"]{
+  width:18px;height:18px;
+  accent-color:var(--cv-gold);
+  cursor:pointer;
+}
+.compress-adv-field:has(input[type="checkbox"]){
+  flex-direction:row;
+  align-items:center;
+  gap:10px;
+  padding:8px 12px;
+  background:rgba(255,255,255,0.03);
+  border:1px solid var(--cv-border);
+  border-radius:10px;
+  cursor:pointer;
+  transition:all .3s var(--cv-ease);
+}
+.compress-adv-field:has(input[type="checkbox"]):hover{
+  border-color:rgba(201,169,110,0.3);
+  background:rgba(201,169,110,0.05);
+}
+.compress-adv-field:has(input[type="checkbox"]) > span{
+  text-transform:none;
+  font-size:0.85rem;
+  color:var(--cv-text-dim);
+  justify-content:flex-start;
+  font-weight:500;
+  letter-spacing:0.1px;
+}
+.compress-adv-field .compress-select{
+  font-size:0.88rem;
+  padding:11px 14px;
+  padding-right:36px;
+}
+
+/* Advanced actions */
+.compress-adv-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-top:14px;
+  padding-top:14px;
+  border-top:1px solid var(--cv-border);
+}
+
+/* ============================================================
+   19. ESTIMATE BOX
+   ============================================================ */
+.compress-estimate{
+  background:
+    linear-gradient(135deg,rgba(201,169,110,0.1),rgba(201,169,110,0.02)),
+    rgba(0,0,0,0.2);
+  border:1px solid rgba(201,169,110,0.22);
+  border-radius:14px;
+  padding:20px;
+  margin-top:6px;
+  position:relative;
+  overflow:hidden;
+}
+.compress-estimate::before{
+  content:'';
+  position:absolute;
+  top:-50%;right:-50%;
+  width:200px;height:200px;
+  background:radial-gradient(circle,rgba(255,215,0,0.08) 0%,transparent 70%);
+  pointer-events:none;
+}
+.compress-estimate h4{
+  font-size:0.92rem;
+  color:var(--cv-gold-light);
+  margin:0 0 14px;
+  display:flex;align-items:center;gap:9px;
+  font-weight:700;letter-spacing:0.4px;
+  position:relative;
+}
+.compress-estimate h4 i{
+  color:var(--cv-gold);
+  filter:drop-shadow(0 0 6px rgba(201,169,110,0.4));
+}
+.compress-estimate-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(140px,1fr));
+  gap:10px;
+  position:relative;
+}
+.compress-estimate-grid > div{
+  display:flex;flex-direction:column;gap:5px;
+  padding:12px 14px;
+  background:rgba(0,0,0,0.28);
+  border-radius:10px;
+  border:1px solid rgba(201,169,110,0.12);
+  transition:all .3s var(--cv-ease);
+}
+.compress-estimate-grid > div:hover{
+  border-color:rgba(201,169,110,0.3);
+  transform:translateY(-2px);
+}
+.compress-estimate-grid > div span{
+  font-size:0.68rem;
+  color:var(--cv-text-muted);
+  text-transform:uppercase;
+  letter-spacing:0.7px;
+  font-weight:600;
+}
+.compress-estimate-grid > div strong{
+  font-family:var(--cv-display);
+  font-size:1.05rem;
+  color:var(--cv-gold);
+  font-weight:700;
+  letter-spacing:0.3px;
+  font-variant-numeric:tabular-nums;
+}
+
+/* ============================================================
+   20. TOMBOL MULAI COMPRESS
+   ============================================================ */
+.compress-start-btn{
+  width:100%;
+  padding:18px;
+  border:none;
+  border-radius:14px;
+  background:var(--cv-gold-grad);
+  background-size:200% auto;
+  color:#1a1a2e;
+  font-weight:800;
+  font-size:1.08rem;
+  cursor:pointer;
+  transition:all .35s var(--cv-ease);
+  display:flex;align-items:center;justify-content:center;gap:11px;
+  font-family:inherit;
+  letter-spacing:0.6px;
+  box-shadow:0 8px 26px rgba(201,169,110,0.35),inset 0 1px 0 rgba(255,255,255,0.4);
+  position:relative;
+  overflow:hidden;
+  animation:cvShine 5s linear infinite;
+}
+.compress-start-btn::after{
+  content:'';
+  position:absolute;inset:0;
+  background:linear-gradient(120deg,transparent 30%,rgba(255,255,255,0.35) 50%,transparent 70%);
+  transform:translateX(-100%);
+  transition:transform .6s var(--cv-ease);
+  pointer-events:none;
+}
+.compress-start-btn:hover:not(:disabled)::after{transform:translateX(100%)}
+.compress-start-btn:hover:not(:disabled){
+  transform:translateY(-3px);
+  box-shadow:0 14px 40px rgba(201,169,110,0.5),inset 0 1px 0 rgba(255,255,255,0.4);
+  letter-spacing:0.9px;
+}
+.compress-start-btn:active:not(:disabled){
+  transform:translateY(-1px);
+  box-shadow:0 6px 20px rgba(201,169,110,0.35);
+}
+.compress-start-btn:disabled{opacity:0.5;cursor:not-allowed;animation:none}
+.compress-start-btn:focus-visible{
+  outline:none;
+  box-shadow:0 8px 26px rgba(201,169,110,0.35),0 0 0 4px rgba(201,169,110,0.3);
+}
+
+/* ============================================================
+   21. PROGRESS
+   ============================================================ */
+.compress-progress-wrap{
+  margin-top:18px;
+  animation:cvFadeUp .4s var(--cv-ease);
+}
+.compress-progress-bar{
+  height:12px;
+  background:rgba(0,0,0,0.4);
+  border-radius:12px;
+  overflow:hidden;
+  position:relative;
+  border:1px solid var(--cv-border);
+  box-shadow:inset 0 2px 4px rgba(0,0,0,0.3);
+}
+.compress-progress-fill{
+  height:100%;
+  background:linear-gradient(90deg,#C9A96E,#FFD700,#D4B98C,#C9A96E);
+  background-size:200% auto;
+  animation:cvShine 3s linear infinite;
+  border-radius:12px;
+  transition:width .3s var(--cv-ease);
+  box-shadow:0 0 20px rgba(201,169,110,0.6),inset 0 1px 0 rgba(255,255,255,0.3);
+  position:relative;
+  will-change:width;
+}
+.compress-progress-fill::after{
+  content:'';
+  position:absolute;inset:0;
+  background-image:repeating-linear-gradient(45deg,rgba(255,255,255,0.15) 0 8px,transparent 8px 16px);
+  background-size:60px 100%;
+  animation:cvProgressStripe 1s linear infinite;
+  border-radius:12px;
+  opacity:0.7;
+}
+.compress-progress-info{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-top:12px;
+  flex-wrap:wrap;
+  gap:12px;
+}
+.compress-progress-pct{
+  font-family:var(--cv-display);
+  font-size:1.6rem;
+  font-weight:800;
+  color:var(--cv-gold);
+  letter-spacing:0.5px;
+  font-variant-numeric:tabular-nums;
+  text-shadow:0 0 20px rgba(201,169,110,0.35);
+}
+.compress-progress-stats{
+  display:flex;
+  gap:16px;
+  flex-wrap:wrap;
+  font-size:0.82rem;
+  color:var(--cv-text-dim);
+}
+.compress-progress-stats span{display:inline-flex;align-items:center;gap:6px}
+.compress-progress-stats i{color:var(--cv-gold);font-size:0.85rem}
+.compress-progress-stats span > span{
+  font-family:monospace;
+  color:#fff;
+  font-weight:600;
+  letter-spacing:0.3px;
+}
+
+/* Progress chart (v5) */
+.compress-progress-chart{
+  height:36px;
+  margin-top:12px;
+  border-radius:10px;
+  background:rgba(0,0,0,0.2);
+  border:1px solid var(--cv-border);
+  overflow:hidden;
+  position:relative;
+}
+.compress-progress-chart svg{
+  width:100%;
+  height:100%;
+  display:block;
+}
+
+.compress-cancel-btn{
+  display:inline-flex;align-items:center;gap:9px;
+  padding:11px 20px;
+  background:rgba(255,65,108,0.1);
+  border:1px solid rgba(255,65,108,0.32);
+  border-radius:20px;
+  color:var(--cv-danger-soft);
+  cursor:pointer;
+  font-size:0.83rem;
+  font-weight:700;
+  font-family:inherit;
+  transition:all .3s var(--cv-ease);
+  margin-top:12px;
+  letter-spacing:0.3px;
+}
+.compress-cancel-btn:hover{
+  background:rgba(255,65,108,0.2);
+  border-color:rgba(255,65,108,0.5);
+  transform:translateY(-2px);
+  box-shadow:0 6px 20px rgba(255,65,108,0.2);
+}
+.compress-cancel-btn:focus-visible{
+  outline:none;
+  box-shadow:0 0 0 3px rgba(255,65,108,0.3);
+}
+
+/* ============================================================
+   22. HASIL KOMPRESI
+   ============================================================ */
+.compress-result-grid{
+  display:grid;
+  grid-template-columns:minmax(0,340px) 1fr;
+  gap:24px;
+  align-items:start;
+}
+.compress-result-video video{
+  width:100%;
+  border-radius:12px;
+  border:1px solid var(--cv-border);
+  background:#000;
+  max-height:300px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.4);
+}
+.compress-result-info{min-width:0}
+.compress-compare{
+  display:grid;
+  grid-template-columns:1fr auto 1fr;
+  gap:12px;
+  align-items:center;
+  margin-bottom:18px;
+}
+.compress-compare-item{
+  display:flex;flex-direction:column;gap:5px;
+  padding:16px 14px;
+  border-radius:12px;
+  text-align:center;
+  border:1px solid var(--cv-border);
+  transition:transform .3s var(--cv-ease);
+}
+.compress-compare-item:hover{transform:translateY(-3px)}
+.compress-compare-item.before{
+  background:linear-gradient(180deg,rgba(255,65,108,0.08),rgba(255,65,108,0.02));
+  border-color:rgba(255,65,108,0.25);
+}
+.compress-compare-item.after{
+  background:linear-gradient(180deg,rgba(67,233,123,0.08),rgba(67,233,123,0.02));
+  border-color:rgba(67,233,123,0.3);
+  box-shadow:0 0 25px rgba(67,233,123,0.12);
+}
+.compress-compare-item span{
+  font-size:0.66rem;
+  letter-spacing:1.6px;
+  color:var(--cv-text-muted);
+  font-weight:700;
+  font-family:inherit;
+}
+.compress-compare-item strong{
+  font-family:var(--cv-display);
+  font-size:1.35rem;
+  color:#fff;
+  font-weight:800;
+  letter-spacing:0.3px;
+  font-variant-numeric:tabular-nums;
+}
+.compress-compare-item.before strong{color:#ff8fa3}
+.compress-compare-item.after strong{color:var(--cv-success-soft)}
+.compress-compare-item small{
+  font-size:0.72rem;
+  color:var(--cv-text-muted);
+  letter-spacing:0.2px;
+}
+.compress-compare-arrow{
+  color:var(--cv-gold);
+  font-size:1.35rem;
+  filter:drop-shadow(0 0 12px rgba(201,169,110,0.5));
+  animation:cvFloat 3s ease-in-out infinite;
+}
+.compress-saved{
+  text-align:center;
+  padding:14px 18px;
+  background:linear-gradient(135deg,rgba(67,233,123,0.12),rgba(67,233,123,0.03));
+  border:1px solid rgba(67,233,123,0.3);
+  border-radius:12px;
+  color:var(--cv-success-soft);
+  font-weight:800;
+  font-size:0.98rem;
+  margin-bottom:18px;
+  letter-spacing:0.4px;
+  box-shadow:0 6px 20px rgba(67,233,123,0.12);
+  position:relative;
+  overflow:hidden;
+}
+.compress-saved::before{
+  content:'';
+  position:absolute;
+  top:0;left:-100%;
+  width:100%;height:100%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.15),transparent);
+  animation:cvShine 3s linear infinite;
+}
+.compress-result-actions{display:flex;gap:11px;flex-wrap:wrap}
+
+.compress-download-btn{
+  display:inline-flex;align-items:center;gap:10px;
+  padding:15px 28px;
+  background:var(--cv-gold-grad);
+  background-size:200% auto;
+  color:#1a1a2e;
+  border-radius:30px;
+  font-weight:800;
+  font-size:0.92rem;
+  text-decoration:none;
+  transition:all .35s var(--cv-ease);
+  box-shadow:0 8px 24px rgba(201,169,110,0.35);
+  letter-spacing:0.4px;
+  animation:cvShine 4s linear infinite;
+  border:none;
+  cursor:pointer;
+  font-family:inherit;
+}
+.compress-download-btn:hover{
+  transform:translateY(-3px);
+  box-shadow:0 14px 40px rgba(201,169,110,0.5);
+  letter-spacing:0.7px;
+}
+.compress-download-btn:focus-visible{
+  outline:none;
+  box-shadow:0 8px 24px rgba(201,169,110,0.35),0 0 0 4px rgba(201,169,110,0.3);
+}
+.compress-download-btn i{font-size:0.95rem}
+
+/* ============================================================
+   23. BATCH QUEUE (v5)
+   ============================================================ */
+.compress-queue-card{margin-top:1rem}
+.compress-queue-actions{
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+}
+.compress-queue-list{
+  display:flex;
+  flex-direction:column;
+  gap:9px;
+  margin-top:14px;
+  max-height:460px;
+  overflow-y:auto;
+  padding-right:6px;
+}
+.compress-queue-list::-webkit-scrollbar{width:6px}
+.compress-queue-list::-webkit-scrollbar-track{background:transparent}
+.compress-queue-list::-webkit-scrollbar-thumb{
+  background:rgba(201,169,110,0.3);
+  border-radius:6px;
+}
+.compress-queue-list::-webkit-scrollbar-thumb:hover{background:rgba(201,169,110,0.5)}
+
+.compress-queue-item{
+  display:flex;
+  align-items:center;
+  gap:12px;
+  padding:12px 15px;
+  border-radius:12px;
+  background:rgba(255,255,255,0.03);
+  border:1.5px solid rgba(255,255,255,0.08);
+  transition:all .3s var(--cv-ease);
+  animation:cvFadeUp .3s var(--cv-ease);
+}
+.compress-queue-item:hover{
+  background:rgba(255,255,255,0.05);
+  transform:translateX(4px);
+}
+.compress-queue-item.status-waiting{border-color:rgba(255,255,255,0.1)}
+.compress-queue-item.status-loading{border-color:rgba(255,193,7,0.4);background:rgba(255,193,7,0.04)}
+.compress-queue-item.status-processing{
+  border-color:rgba(102,126,234,0.6);
+  background:rgba(102,126,234,0.06);
+  box-shadow:0 0 20px rgba(102,126,234,0.15);
+}
+.compress-queue-item.status-done{
+  border-color:rgba(67,233,123,0.5);
+  background:rgba(67,233,123,0.04);
+}
+.compress-queue-item.status-error{
+  border-color:rgba(255,65,108,0.5);
+  background:rgba(255,65,108,0.04);
+}
+.compress-queue-item.status-cancelled{opacity:0.6}
+
+.cq-index{
+  width:28px;height:28px;
+  border-radius:50%;
+  background:rgba(102,126,234,0.2);
+  border:1px solid rgba(102,126,234,0.3);
+  display:flex;align-items:center;justify-content:center;
+  font-size:0.78rem;
+  font-weight:700;
+  color:#a5b4fc;
+  flex-shrink:0;
+  font-variant-numeric:tabular-nums;
+}
+.cq-icon i{font-size:1.15rem;color:#667eea}
+.compress-queue-item.status-done .cq-icon i{color:var(--cv-success)}
+.compress-queue-item.status-error .cq-icon i{color:var(--cv-danger-soft)}
+
+.cq-info{flex:1;min-width:0}
+.cq-name{
+  font-size:0.88rem;
+  font-weight:600;
+  color:#fff;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  letter-spacing:0.15px;
+}
+.cq-meta{
+  font-size:0.73rem;
+  color:var(--cv-text-muted);
+  margin-top:3px;
+  letter-spacing:0.15px;
+}
+.cq-progress{
+  height:4px;
+  border-radius:2px;
+  background:rgba(255,255,255,0.1);
+  margin-top:7px;
+  overflow:hidden;
+  position:relative;
+}
+.cq-progress > div{
+  height:100%;
+  background:linear-gradient(90deg,#667eea,#43e97b);
+  transition:width .3s var(--cv-ease);
+  border-radius:2px;
+  position:relative;
+}
+.cq-progress > div::after{
+  content:'';
+  position:absolute;inset:0;
+  background:repeating-linear-gradient(45deg,rgba(255,255,255,0.2) 0 6px,transparent 6px 12px);
+  background-size:40px 100%;
+  animation:cvProgressStripe 1s linear infinite;
+  border-radius:2px;
+}
+.cq-error{
+  font-size:0.73rem;
+  color:var(--cv-danger-soft);
+  margin-top:5px;
+  line-height:1.4;
+}
+.cq-status{
+  font-size:0.73rem;
+  opacity:0.9;
+  white-space:nowrap;
+  font-weight:600;
+  letter-spacing:0.2px;
+}
+.compress-queue-item.status-done .cq-status{color:var(--cv-success-soft)}
+.compress-queue-item.status-error .cq-status{color:var(--cv-danger-soft)}
+.compress-queue-item.status-processing .cq-status{color:#a5b4fc}
+
+.cq-actions{display:flex;gap:4px;flex-shrink:0}
+.cq-actions button{
+  width:28px;height:28px;
+  border-radius:8px;
+  border:1px solid rgba(255,255,255,0.12);
+  background:rgba(255,255,255,0.04);
+  color:var(--cv-text-dim);
+  cursor:pointer;
+  font-size:0.72rem;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .2s var(--cv-ease);
+  font-family:inherit;
+}
+.cq-actions button:hover{
+  background:rgba(102,126,234,0.2);
+  color:#a5b4fc;
+  border-color:rgba(102,126,234,0.4);
+  transform:translateY(-1px);
+}
+.cq-actions button[data-act="remove"]:hover{
+  background:rgba(255,65,108,0.15);
+  color:var(--cv-danger-soft);
+  border-color:rgba(255,65,108,0.4);
+}
+#queueCount{
+  color:var(--cv-gold-light);
+  font-family:monospace;
+  font-size:0.9em;
+  opacity:0.8;
+  font-weight:700;
+}
+
+/* ============================================================
+   24. RIWAYAT
+   ============================================================ */
+.compress-history-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:16px;
+  flex-wrap:wrap;
+  gap:12px;
+}
+.compress-history-header h3{
+  font-family:var(--cv-display);
+  font-size:1.22rem;
+  color:#fff;
+  display:flex;align-items:center;gap:11px;
+  font-weight:700;margin:0;
+}
+.compress-history-header h3 i{
+  color:var(--cv-gold);
+  filter:drop-shadow(0 0 8px rgba(201,169,110,0.4));
+}
+.compress-clear-history{
+  background:rgba(255,65,108,0.08);
+  border:1px solid rgba(255,65,108,0.22);
+  color:var(--cv-danger-soft);
+  padding:9px 16px;
+  border-radius:20px;
+  font-size:0.78rem;
+  font-weight:700;
+  cursor:pointer;
+  font-family:inherit;
+  transition:all .3s var(--cv-ease);
+  display:flex;align-items:center;gap:7px;
+  letter-spacing:0.3px;
+}
+.compress-clear-history:hover{
+  background:rgba(255,65,108,0.18);
+  border-color:rgba(255,65,108,0.4);
+  transform:translateY(-2px);
+  box-shadow:0 6px 18px rgba(255,65,108,0.15);
+}
+.compress-history-list{
+  display:flex;
+  flex-direction:column;
+  gap:9px;
+  max-height:360px;
+  overflow-y:auto;
+  padding-right:6px;
+}
+.compress-history-list::-webkit-scrollbar{width:6px}
+.compress-history-list::-webkit-scrollbar-track{background:transparent}
+.compress-history-list::-webkit-scrollbar-thumb{
+  background:rgba(201,169,110,0.3);
+  border-radius:6px;
+}
+.compress-history-list::-webkit-scrollbar-thumb:hover{background:rgba(201,169,110,0.5)}
+.compress-history-item{
+  display:flex;
+  align-items:center;
+  gap:13px;
+  padding:13px 15px;
+  background:rgba(255,255,255,0.03);
+  border:1px solid var(--cv-border);
+  border-radius:11px;
+  transition:all .3s var(--cv-ease);
+  cursor:pointer;
+}
+.compress-history-item:hover{
+  background:rgba(201,169,110,0.06);
+  border-color:rgba(201,169,110,0.28);
+  transform:translateX(5px);
+}
+.compress-history-item .hi-icon{
+  width:40px;height:40px;
+  border-radius:50%;
+  background:rgba(201,169,110,0.15);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--cv-gold);
+  font-size:0.92rem;
+  flex-shrink:0;
+  border:1px solid rgba(201,169,110,0.2);
+}
+.compress-history-item .hi-content{flex:1;min-width:0}
+.compress-history-item .hi-name{
+  font-weight:600;color:#fff;font-size:0.86rem;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  letter-spacing:0.2px;
+}
+.compress-history-item .hi-meta{
+  font-size:0.73rem;color:var(--cv-text-muted);
+  margin-top:3px;letter-spacing:0.2px;
+}
+.compress-history-item .hi-save{
+  margin-left:auto;
+  font-weight:800;
+  color:var(--cv-success-soft);
+  font-size:0.82rem;
+  white-space:nowrap;
+  font-family:var(--cv-display);
+  letter-spacing:0.3px;
+  text-shadow:0 0 12px rgba(67,233,123,0.3);
+}
+.compress-history-empty{
+  text-align:center;
+  padding:24px;
+  color:var(--cv-text-muted);
+  font-size:0.85rem;
+  font-style:italic;
+}
+
+/* ============================================================
+   25. INFO & FAQ
+   ============================================================ */
+.compress-info-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:18px;
+  margin-bottom:2rem;
+}
+.compress-info-card{
+  background:rgba(255,255,255,0.03);
+  border:1px solid var(--cv-border);
+  border-radius:var(--cv-radius);
+  padding:24px;
+  position:relative;
+  overflow:hidden;
+  transition:all .35s var(--cv-ease);
+}
+.compress-info-card:hover{
+  border-color:rgba(201,169,110,0.2);
+  transform:translateY(-3px);
+  box-shadow:0 12px 32px rgba(0,0,0,0.3);
+}
+.compress-info-card::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;
+  height:2px;
+  background:var(--cv-gold-grad);
+  opacity:0.55;
+}
+.compress-info-title{
+  font-family:var(--cv-display);
+  font-size:1.18rem;
+  color:#fff;
+  margin:0 0 16px;
+  display:flex;align-items:center;gap:11px;
+  font-weight:700;letter-spacing:0.3px;
+}
+.compress-info-title i{
+  color:var(--cv-gold);
+  filter:drop-shadow(0 0 8px rgba(201,169,110,0.35));
+}
+.compress-steps{
+  list-style:none;
+  padding:0;
+  display:flex;flex-direction:column;gap:13px;
+  margin:0;
+}
+.compress-steps li{
+  display:flex;align-items:flex-start;gap:13px;
+  color:var(--cv-text-dim);
+  font-size:0.88rem;
+  line-height:1.55;
+}
+.compress-steps li strong{color:var(--cv-gold-light);font-weight:700}
+.compress-step-num{
+  flex-shrink:0;
+  width:27px;height:27px;
+  border-radius:50%;
+  background:var(--cv-gold-grad);
+  color:#1a1a2e;
+  font-weight:800;
+  font-size:0.78rem;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 12px rgba(201,169,110,0.3);
+  letter-spacing:0;
+}
+.compress-steps li .compress-step-num i{color:#1a1a2e;font-size:0.85rem}
+
+/* FAQ */
+.compress-faq{display:flex;flex-direction:column;gap:9px}
+.compress-faq-item{
+  background:rgba(0,0,0,0.22);
+  border:1px solid var(--cv-border);
+  border-radius:11px;
+  overflow:hidden;
+  transition:all .3s var(--cv-ease);
+}
+.compress-faq-item:hover{
+  border-color:rgba(201,169,110,0.28);
+  background:rgba(201,169,110,0.03);
+}
+.compress-faq-item.open{
+  border-color:rgba(201,169,110,0.35);
+  box-shadow:0 6px 20px rgba(0,0,0,0.2);
+}
+.compress-faq-q{
+  width:100%;
+  background:none;
+  border:none;
+  padding:13px 16px;
+  color:#fff;
+  font-size:0.86rem;
+  font-weight:600;
+  text-align:left;
+  cursor:pointer;
+  display:flex;justify-content:space-between;align-items:center;gap:11px;
+  font-family:inherit;
+  transition:color .3s var(--cv-ease);
+  letter-spacing:0.2px;
+  line-height:1.4;
+}
+.compress-faq-q:hover{color:var(--cv-gold-light)}
+.compress-faq-q i{
+  color:var(--cv-gold);
+  transition:transform .35s var(--cv-ease);
+  font-size:0.82rem;
+  flex-shrink:0;
+}
+.compress-faq-item.open .compress-faq-q i{transform:rotate(180deg)}
+.compress-faq-a{
+  max-height:0;
+  overflow:hidden;
+  transition:max-height .4s var(--cv-ease),padding .3s var(--cv-ease);
+  padding:0 16px;
+  color:var(--cv-text-muted);
+  font-size:0.83rem;
+  line-height:1.65;
+}
+.compress-faq-item.open .compress-faq-a{
+  max-height:320px;
+  padding:0 16px 15px;
+}
+.compress-faq-a strong{color:var(--cv-gold-light);font-weight:700}
+.compress-faq-a kbd{
+  display:inline-block;
+  padding:2px 7px;
+  border-radius:5px;
+  background:rgba(255,255,255,0.08);
+  border:1px solid rgba(255,255,255,0.15);
+  font-family:monospace;
+  font-size:0.75rem;
+  color:#fff;
+}
+
+/* ============================================================
+   26. FLOATING BUTTONS (v5) — Log & Help
+   ============================================================ */
+.compress-float-btn{
+  position:fixed;
+  right:18px;
+  bottom:18px;
+  width:48px;
+  height:48px;
+  border-radius:50%;
+  border:none;
+  background:linear-gradient(135deg,#667eea,#764ba2);
+  color:#fff;
+  cursor:pointer;
+  box-shadow:0 6px 18px rgba(102,126,234,0.4);
+  z-index:var(--cv-z-float);
+  font-size:1.1rem;
+  transition:all .3s var(--cv-ease);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-family:inherit;
+  padding:0;
+}
+.compress-float-btn:hover{
+  transform:scale(1.08) translateY(-2px);
+  box-shadow:0 12px 32px rgba(102,126,234,0.6);
+}
+.compress-float-btn:active{transform:scale(1.02)}
+.compress-float-btn:focus-visible{
+  outline:none;
+  box-shadow:0 0 0 4px rgba(102,126,234,0.4);
+}
+#compressHelpBtn{
+  bottom:78px !important;
+  background:linear-gradient(135deg,#f7971e,#ffd200);
+  color:#1a1a2e;
+  box-shadow:0 6px 18px rgba(247,151,30,0.4);
+}
+#compressHelpBtn:hover{
+  box-shadow:0 12px 32px rgba(247,151,30,0.55);
+}
+
+/* ============================================================
+   27. LOG VIEWER (v5)
+   ============================================================ */
+.compress-log-panel{
+  position:fixed;
+  right:18px;
+  bottom:140px;
+  width:min(520px,calc(100vw - 36px));
+  height:min(400px,calc(100vh - 200px));
+  background:#0f0f1a;
+  border:1px solid rgba(255,255,255,0.12);
+  border-radius:14px;
+  box-shadow:var(--cv-shadow-lg);
+  z-index:var(--cv-z-panel);
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+  animation:cvSlideUp .3s var(--cv-ease);
+}
+.compress-log-head{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:10px 14px;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+  font-size:0.85rem;
+  background:rgba(255,255,255,0.02);
+  flex-shrink:0;
+}
+.compress-log-head strong{
+  display:flex;align-items:center;gap:8px;
+  color:#fff;
+  font-weight:700;
+  letter-spacing:0.3px;
+}
+.compress-log-head strong i{color:var(--cv-success)}
+.compress-log-head > div{
+  display:flex;
+  gap:6px;
+  align-items:center;
+}
+.compress-log-head select{
+  padding:4px 8px;
+  border-radius:6px;
+  background:rgba(0,0,0,0.35);
+  color:#fff;
+  border:1px solid rgba(255,255,255,0.12);
+  font-size:0.75rem;
+  font-family:inherit;
+  cursor:pointer;
+  outline:none;
+  transition:border-color .2s var(--cv-ease);
+}
+.compress-log-head select:hover{border-color:rgba(201,169,110,0.35)}
+.compress-log-head button{
+  background:transparent;
+  border:1px solid transparent;
+  color:var(--cv-text-dim);
+  cursor:pointer;
+  padding:5px 8px;
+  border-radius:6px;
+  transition:all .2s var(--cv-ease);
+  font-family:inherit;
+  font-size:0.85rem;
+}
+.compress-log-head button:hover{
+  background:rgba(255,65,108,0.15);
+  color:var(--cv-danger-soft);
+  border-color:rgba(255,65,108,0.3);
+}
+.compress-log-body{
+  flex:1;
+  overflow-y:auto;
+  padding:10px 14px;
+  font-family:'SF Mono',Menlo,Monaco,Consolas,monospace;
+  font-size:0.74rem;
+  line-height:1.6;
+  background:#0b0b14;
+}
+.compress-log-body::-webkit-scrollbar{width:8px}
+.compress-log-body::-webkit-scrollbar-track{background:transparent}
+.compress-log-body::-webkit-scrollbar-thumb{
+  background:rgba(255,255,255,0.15);
+  border-radius:8px;
+}
+.compress-log-body::-webkit-scrollbar-thumb:hover{background:rgba(255,255,255,0.3)}
+
+.compress-log-line{
+  display:flex;
+  gap:10px;
+  padding:2px 0;
+  word-break:break-word;
+  animation:cvFadeIn .2s var(--cv-ease);
+}
+.log-ts{
+  opacity:0.5;
+  white-space:nowrap;
+  color:#7d8590;
+  flex-shrink:0;
+  font-variant-numeric:tabular-nums;
+}
+.log-msg{flex:1;min-width:0}
+.compress-log-info .log-msg{color:#c9d1d9}
+.compress-log-debug .log-msg{color:#8b949e}
+.compress-log-warn .log-msg{color:#f0b429}
+.compress-log-error .log-msg{color:#ff6b6b}
+.compress-log-info .log-msg::before{content:'▸ ';color:#43e97b;opacity:0.7}
+.compress-log-warn .log-msg::before{content:'⚠ ';color:#f0b429}
+.compress-log-error .log-msg::before{content:'✕ ';color:#ff6b6b}
+.compress-log-debug .log-msg::before{content:'· ';opacity:0.5}
+
+/* ============================================================
+   28. MODAL / SHORTCUT HELP (v5)
+   ============================================================ */
+.compress-modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,0.72);
+  backdrop-filter:blur(6px);
+  -webkit-backdrop-filter:blur(6px);
+  z-index:var(--cv-z-modal);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:20px;
+  animation:cvFadeIn .2s var(--cv-ease);
+}
+.compress-modal-content{
+  background:linear-gradient(180deg,#1a1a2e,#141420);
+  border:1px solid rgba(255,255,255,0.12);
+  border-radius:18px;
+  padding:26px;
+  max-width:520px;
+  width:100%;
+  max-height:calc(100vh - 40px);
+  overflow-y:auto;
+  box-shadow:0 30px 80px rgba(0,0,0,0.6),0 0 60px rgba(201,169,110,0.1);
+  animation:cvModalIn .35s var(--cv-ease-bounce);
+  position:relative;
+}
+.compress-modal-content::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;right:0;
+  height:3px;
+  background:var(--cv-gold-grad);
+  background-size:200% auto;
+  animation:cvShine 3s linear infinite;
+  border-radius:18px 18px 0 0;
+}
+.compress-modal h3{
+  margin:0 0 18px;
+  font-size:1.15rem;
+  font-family:var(--cv-display);
+  color:#fff;
+  display:flex;align-items:center;gap:11px;
+  letter-spacing:0.3px;
+  font-weight:700;
+}
+.compress-modal h3 i{
+  color:var(--cv-gold);
+  filter:drop-shadow(0 0 8px rgba(201,169,110,0.4));
+}
+.compress-shortcuts{
+  display:flex;
+  flex-direction:column;
+  gap:9px;
+  margin-bottom:20px;
+}
+.compress-shortcuts > div{
+  display:flex;
+  gap:10px;
+  align-items:center;
+  font-size:0.85rem;
+  padding:8px 10px;
+  border-radius:8px;
+  background:rgba(255,255,255,0.02);
+  transition:background .2s var(--cv-ease);
+}
+.compress-shortcuts > div:hover{background:rgba(201,169,110,0.05)}
+.compress-shortcuts kbd{
+  display:inline-block;
+  padding:3px 9px;
+  border-radius:6px;
+  background:linear-gradient(180deg,rgba(255,255,255,0.1),rgba(255,255,255,0.04));
+  border:1px solid rgba(255,255,255,0.18);
+  border-bottom-width:2px;
+  font-family:'SF Mono',Menlo,Monaco,Consolas,monospace;
+  font-size:0.72rem;
+  color:#fff;
+  font-weight:600;
+  box-shadow:0 2px 0 rgba(0,0,0,0.3);
+  min-width:26px;
+  text-align:center;
+}
+.compress-shortcuts span{
+  opacity:0.85;
+  color:var(--cv-text-dim);
+  margin-left:auto;
+  text-align:right;
+  font-size:0.82rem;
+}
+.compress-modal .compress-action-btn{width:100%;justify-content:center}
+
+/* ============================================================
+   29. TOAST NOTIFICATION (fallback bila belum ada di style.css)
+   ============================================================ */
+.toast-container{
+  position:fixed;
+  top:20px;
+  right:20px;
+  z-index:var(--cv-z-toast);
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  pointer-events:none;
+  max-width:min(380px,calc(100vw - 40px));
+}
+.toast-container > *{
+  pointer-events:auto;
+  padding:12px 18px;
+  border-radius:12px;
+  background:rgba(26,26,46,0.95);
+  border:1px solid rgba(255,255,255,0.12);
+  color:#fff;
+  font-size:0.85rem;
+  font-weight:500;
+  box-shadow:0 10px 30px rgba(0,0,0,0.4);
+  animation:cvToastIn .3s var(--cv-ease);
+  backdrop-filter:blur(10px);
+  -webkit-backdrop-filter:blur(10px);
+  line-height:1.5;
+  max-width:100%;
+  word-break:break-word;
+}
+
+/* ============================================================
+   30. RESPONSIVE
+   ============================================================ */
+@media (max-width:1024px){
+  .compress-hero-title{font-size:2.2rem}
+  .compress-preview{grid-template-columns:1fr}
+  .compress-preview-video video{max-height:340px}
+  .compress-result-grid{grid-template-columns:1fr}
+  .compress-info-grid{grid-template-columns:1fr}
+  .compress-adv-grid{grid-template-columns:repeat(auto-fit,minmax(140px,1fr))}
+}
+
+@media (max-width:768px){
+  .compress-hero{padding:2rem 1rem 1.2rem}
+  .compress-hero-title{font-size:1.85rem}
+  .compress-hero-icon{width:76px;height:76px;font-size:2.1rem;border-radius:22px}
+  .compress-hero-sub{font-size:0.94rem}
+  .compress-meta-grid{grid-template-columns:1fr 1fr}
+  .compress-audio-row{grid-template-columns:1fr}
+  .compress-compare{grid-template-columns:1fr;gap:9px}
+  .compress-compare-arrow{transform:rotate(90deg);text-align:center}
+  .compress-radio-grid{grid-template-columns:1fr 1fr}
+  .compress-radio-grid-res{grid-template-columns:repeat(3,1fr)}
+  .compress-progress-info{flex-direction:column;align-items:flex-start}
+  .compress-progress-pct{font-size:1.35rem}
+  .compress-preset-grid{grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px}
+  .compress-preset-btn{padding:10px 8px}
+  .compress-preset-btn i{font-size:1.3rem}
+  .compress-preset-btn > span{font-size:0.78rem}
+  .compress-preset-btn small{font-size:0.62rem}
+  .compress-queue-item{flex-wrap:wrap;gap:10px}
+  .cq-actions{margin-left:auto}
+  .compress-log-panel{width:calc(100vw - 24px);right:12px;height:60vh;bottom:130px}
+  .compress-shortcuts > div{flex-wrap:wrap}
+  .compress-shortcuts span{margin-left:0;flex-basis:100%;text-align:left;padding-left:2px}
+}
+
+@media (max-width:480px){
+  .compress-hero{padding:1.6rem 0.8rem 1rem}
+  .compress-hero-title{font-size:1.5rem;letter-spacing:0.2px}
+  .compress-hero-sub{font-size:0.86rem;line-height:1.55}
+  .compress-hero-icon{width:66px;height:66px;font-size:1.85rem;border-radius:18px}
+  .compress-pill{font-size:0.72rem;padding:5px 11px;gap:5px}
+  .compress-upload-card,
+  .compress-settings-card,
+  .compress-preset-card,
+  .compress-action-card,
+  .compress-result-card,
+  .compress-history-card,
+  .compress-queue-card{padding:16px;border-radius:14px}
+  .compress-dropzone{padding:32px 16px}
+  .compress-dropzone-icon{font-size:2.6rem}
+  .compress-dropzone h3{font-size:1rem}
+  .compress-dropzone p{font-size:0.86rem}
+  .compress-dropzone small{font-size:0.7rem}
+  .compress-radio-grid,
+  .compress-radio-grid-res{grid-template-columns:1fr 1fr}
+  .compress-radio{padding:10px 12px;gap:8px}
+  .compress-radio .radio-text{font-size:0.78rem;gap:5px}
+  .badge-cpu,.badge-gpu{font-size:0.56rem;padding:2px 6px}
+  .compress-preview-actions{flex-direction:column}
+  .compress-action-btn{width:100%;justify-content:center}
+  .compress-meta-grid{grid-template-columns:1fr}
+  .compress-slider-value{font-size:1.05rem;min-width:64px}
+  .compress-progress-stats{gap:11px;font-size:0.76rem;flex-direction:column;align-items:flex-start}
+  .compress-start-btn{font-size:0.98rem;padding:16px}
+  .compress-download-btn{font-size:0.85rem;padding:13px 22px;width:100%;justify-content:center}
+  .compress-result-actions{flex-direction:column}
+  .compress-compare-item{padding:13px 11px}
+  .compress-compare-item strong{font-size:1.15rem}
+  .compress-estimate{padding:16px}
+  .compress-estimate-grid{grid-template-columns:1fr 1fr}
+  .compress-estimate-grid > div{padding:10px 11px}
+  .compress-estimate-grid > div strong{font-size:0.95rem}
+  .compress-info-card{padding:18px}
+  .compress-info-title{font-size:1rem}
+  .compress-faq-q{font-size:0.82rem;padding:12px 13px}
+  .compress-faq-a{font-size:0.78rem}
+  .compress-history-header h3{font-size:1.05rem}
+  .compress-history-item{padding:11px 13px;gap:10px}
+  .compress-history-item .hi-icon{width:36px;height:36px;font-size:0.85rem}
+  .compress-history-item .hi-name{font-size:0.82rem}
+  .compress-history-item .hi-save{font-size:0.76rem}
+  .compress-adv-grid{grid-template-columns:1fr}
+  .compress-adv-actions{flex-direction:column}
+  .compress-adv-actions .compress-action-btn{width:100%;justify-content:center}
+  .compress-queue-actions{flex-direction:column;width:100%}
+  .compress-queue-actions .compress-action-btn{width:100%;justify-content:center}
+  .compress-trim-row{flex-direction:column;align-items:stretch}
+  .compress-trim-field{min-width:0}
+  .compress-float-btn{width:44px;height:44px;font-size:1rem}
+  #compressHelpBtn{bottom:70px !important}
+  .compress-log-panel{bottom:120px;height:55vh}
+  .compress-modal{padding:12px}
+  .compress-modal-content{padding:20px;border-radius:14px}
+  .compress-modal h3{font-size:1rem}
+  .compress-shortcuts > div{font-size:0.78rem;padding:6px 8px}
+  .compress-shortcuts kbd{font-size:0.66rem;padding:2px 7px}
+}
+
+@media (max-width:360px){
+  .compress-hero-title{font-size:1.32rem}
+  .compress-radio-grid,
+  .compress-radio-grid-res{grid-template-columns:1fr}
+  .compress-estimate-grid{grid-template-columns:1fr}
+  .compress-progress-pct{font-size:1.2rem}
+  .compress-preset-grid{grid-template-columns:1fr 1fr}
+  .compress-adv-grid{grid-template-columns:1fr}
+}
+
+/* ============================================================
+   31. REDUCED MOTION
+   ============================================================ */
+@media (prefers-reduced-motion:reduce){
+  .compress-hero-icon,
+  .compress-hero-icon::after,
+  .compress-hero-title,
+  .compress-start-btn,
+  .compress-start-btn::after,
+  .compress-download-btn,
+  .compress-progress-fill,
+  .compress-progress-fill::after,
+  .compress-compare-arrow,
+  .compress-saved::before,
+  .compress-float-btn,
+  #workerStatusCard::before,
+  #workerStatusCard .fa-heartbeat,
+  .cq-progress > div::after{
+    animation:none !important;
+    transition:none !important;
+  }
+  .compress-dropzone,
+  .compress-radio,
+  .compress-action-btn,
+  .compress-preset-btn,
+  .compress-queue-item,
+  .compress-history-item,
+  .compress-info-card,
+  .compress-float-btn{
+    transition:none !important;
+  }
+}
+
+/* ============================================================
+   32. PRINT
+   ============================================================ */
+@media print{
+  .compress-hero-icon,
+  .compress-hero-icon::after,
+  .compress-progress-fill::after,
+  .compress-saved::before,
+  .compress-float-btn,
+  .compress-log-panel,
+  .compress-modal,
+  #workerStatusCard,
+  .compress-queue-card{display:none !important}
+  .compress-start-btn,
+  .compress-cancel-btn,
+  .compress-download-btn,
+  .compress-upload-card,
+  .compress-settings-card,
+  .compress-action-card,
+  .compress-result-card,
+  .compress-history-card{box-shadow:none !important;background:#fff !important;color:#000 !important}
+  .compress-hero-title{color:#000 !important;background:none !important;-webkit-text-fill-color:#000 !important}
+  .compress-group-label,
+  .compress-input-header,
+  .compress-info-title{color:#333 !important}
+}
+
+/* ============================================================
+   33. HIGH CONTRAST / FORCED COLORS
+   ============================================================ */
+@media (forced-colors:active){
+  .compress-radio,
+  .compress-action-btn,
+  .compress-preset-btn,
+  .compress-select,
+  .compress-start-btn,
+  .compress-cancel-btn,
+  .compress-download-btn,
+  .compress-float-btn,
+  .compress-log-head button,
+  .cq-actions button{
+    border:1px solid CanvasText;
+  }
+  .compress-radio:has(input:checked),
+  .compress-start-btn,
+  .compress-download-btn,
+  #workerStatusCard .fa-heartbeat{
+    forced-color-adjust:none;
+  }
+}

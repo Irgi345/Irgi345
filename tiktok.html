@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>TikTok Downloader — IRGXYMODS</title>
+<meta name="description" content="Download video, foto, dan audio TikTok tanpa watermark — cepat, akurat, tanpa batas. IRGXYMODS TikTok Downloader." />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,600&family=Inter:wght@300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap" rel="stylesheet" />
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div class="toast-container" id="toastContainer"></div>
+
+<header>
+  <div class="header-top">
+    <a href="index.html" class="logo-brand"><i class="fas fa-crown"></i><h1>IRGXYMODS</h1></a>
+    <div class="header-actions">
+      <div style="position:relative;display:inline-block;">
+        <button class="settings-btn" id="settingsToggle"><i class="fas fa-cog"></i></button>
+        <div class="settings-dropdown" id="settingsDropdown">
+          <a href="login.html" class="dropdown-item"><i class="fas fa-sign-in-alt"></i> Login</a>
+          <div class="dropdown-divider"></div>
+          <button class="dropdown-item" id="profileDropdownBtn"><i class="fas fa-user"></i> Profil</button>
+          <button class="dropdown-item" id="themeToggleBtn"><i class="fas fa-palette"></i> Tema</button>
+          <div class="dropdown-divider"></div>
+          <a href="irgxymods.html" class="dropdown-item"><i class="fas fa-info-circle"></i> Tentang</a>
+          <button class="dropdown-item" id="helpBtn"><i class="fas fa-question-circle"></i> Bantuan</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="nav-tabs-container">
+    <div class="nav-tabs">
+      <a href="index.html" class="nav-tab">Aplikasi Mod</a>
+      <a href="irgxymods.html" class="nav-tab">IrgxyMods</a>
+      <a href="acount.html" class="nav-tab">Akun Premium</a>
+      <a href="fitur.html" class="nav-tab">Fitur Eksklusif</a>
+      <a href="testimoni.html" class="nav-tab">Testimoni</a>
+      <a href="cheat.html" class="nav-tab">Cheat Game</a>
+      <a href="jadwalsholat.html" class="nav-tab"><i class="fas fa-mosque"></i> Jadwal Sholat</a>
+      <a href="tiktok.html" class="nav-tab active"><i class="fab fa-tiktok"></i> TikTok</a>
+      <a href="youtube.html" class="nav-tab"><i class="fab fa-youtube"></i> YouTube</a>
+      <a href="instagram.html" class="nav-tab"><i class="fab fa-instagram"></i> Instagram</a>
+      <a href="threads.html" class="nav-tab"><i class="fas fa-at"></i> Threads</a>
+      <a href="facebook.html" class="nav-tab"><i class="fab fa-facebook"></i> Facebook</a>
+      <a href="compressvideo.html" class="nav-tab"><i class="fas fa-compress"></i> Compress Video</a>
+      <a href="iqcgenerator.html" class="nav-tab"><i class="fas fa-comments"></i> IQC Generator</a>
+      <a href="qris-barcode.html" class="nav-tab"><i class="fas fa-qrcode"></i> QRIS &amp; Barcode</a>      
+      <a href="spotify.html" class="nav-tab"><i class="fab fa-spotify"></i> Spotify</a>
+      <a href="testspeed.html" class="nav-tab"><i class="fas fa-tachometer-alt"></i> Test Speed</a>
+      <a href="proyek.html" class="nav-tab">Proyek Saya</a>
+      <a href="portofolio.html" class="nav-tab">Portofolio</a>
+      <a href="kontak.html" class="nav-tab">Kontak</a>
+      <a href="login.html" class="nav-tab"><i class="fas fa-sign-in-alt"></i> Login</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+    <section id="tiktok-section" class="section active" style="display:block;">
+
+      <!-- HERO -->
+      <div class="tiktok-hero" data-aos="fade-up">
+        <div class="tiktok-hero-icon"><i class="fab fa-tiktok"></i></div>
+        <h2 class="tiktok-hero-title">TikTok Video &amp; Foto Downloader</h2>
+        <p class="tiktok-hero-sub">Download video, foto, dan audio TikTok tanpa watermark — cepat, akurat, tanpa batas.</p>
+        <div class="tiktok-hero-pills">
+          <span class="tiktok-pill"><i class="fas fa-bolt"></i> Cepat</span>
+          <span class="tiktok-pill"><i class="fas fa-shield-alt"></i> Aman</span>
+          <span class="tiktok-pill"><i class="fas fa-water"></i> Tanpa Watermark</span>
+          <span class="tiktok-pill"><i class="fas fa-infinity"></i> Tanpa Batas</span>
+        </div>
+      </div>
+
+      <!-- INPUT CARD -->
+      <div class="tiktok-input-card card-3d" data-aos="fade-up">
+        <div class="tiktok-input-header">
+          <i class="fab fa-tiktok"></i>
+          <span>Tempel link TikTok</span>
+        </div>
+        <div class="tiktok-input-row">
+          <input
+            type="text"
+            id="tiktokUrlInput"
+            class="tiktok-input"
+            placeholder="https://www.tiktok.com/@user/video/... atau vm.tiktok.com/..."
+            autocomplete="off"
+            spellcheck="false"
+          />
+          <button type="button" class="tiktok-mini-btn" id="tiktokPasteBtn" title="Paste dari clipboard"><i class="fas fa-paste"></i></button>
+          <button type="button" class="tiktok-mini-btn" id="tiktokClearBtn" title="Bersihkan" style="display:none;"><i class="fas fa-times"></i></button>
+        </div>
+        <button type="button" class="tiktok-parse-btn" id="tiktokParseBtn">
+          <i class="fas fa-download"></i>
+          <span id="tiktokParseBtnText">Download</span>
+        </button>
+      </div>
+
+      <!-- STATUS -->
+      <div class="tiktok-status" id="tiktokStatus">
+        <span class="tiktok-status-icon" id="tiktokStatusIcon"></span>
+        <span class="tiktok-status-text" id="tiktokStatusText"></span>
+      </div>
+
+      <!-- RESULT CARD -->
+      <div class="tiktok-result-card" id="tiktokResultCard">
+        <div class="tiktok-result-grid">
+          <div class="tiktok-thumb-wrap">
+            <img id="tiktokThumb" class="tiktok-thumb" src="" alt="Thumbnail TikTok" />
+            <span class="tiktok-duration-badge" id="tiktokDuration"></span>
+            <span class="tiktok-type-badge" id="tiktokTypeBadge"></span>
+          </div>
+          <div class="tiktok-info">
+            <div class="tiktok-author">
+              <div class="tiktok-author-avatar" id="tiktokAuthorAvatar">?</div>
+              <div class="tiktok-author-text">
+                <div class="tiktok-author-name" id="tiktokAuthorName">TikTok User</div>
+                <div class="tiktok-author-handle" id="tiktokAuthorHandle">@user</div>
+              </div>
+            </div>
+            <p class="tiktok-desc" id="tiktokDesc">—</p>
+            <button type="button" class="tiktok-desc-toggle" id="tiktokDescToggle" style="display:none;">Selengkapnya</button>
+
+            <div class="tiktok-stats">
+              <span class="tiktok-stat"><i class="fas fa-eye"></i> <strong id="tiktokPlays">0</strong></span>
+              <span class="tiktok-stat"><i class="fas fa-heart"></i> <strong id="tiktokLikes">0</strong></span>
+              <span class="tiktok-stat"><i class="fas fa-comment"></i> <strong id="tiktokComments">0</strong></span>
+              <span class="tiktok-stat"><i class="fas fa-share"></i> <strong id="tiktokShares">0</strong></span>
+            </div>
+
+            <div class="tiktok-meta-row">
+              <span class="tiktok-meta-item"><i class="fas fa-calendar-alt"></i> <span id="tiktokDate">—</span></span>
+              <span class="tiktok-meta-item"><i class="fas fa-server"></i> <span id="tiktokSource">—</span></span>
+            </div>
+
+            <div class="tiktok-dl-grid">
+              <a id="tiktokDownloadNoWm" class="tiktok-dl-btn primary" href="#" target="_blank" rel="noopener">
+                <i class="fas fa-video"></i> Video HD Tanpa Watermark
+              </a>
+              <a id="tiktokDownloadWm" class="tiktok-dl-btn secondary" href="#" target="_blank" rel="noopener">
+                <i class="fas fa-film"></i> Video Dengan Watermark
+              </a>
+              <a id="tiktokDownloadAudio" class="tiktok-dl-btn audio" href="#" target="_blank" rel="noopener">
+                <i class="fas fa-music"></i> Download Audio MP3
+              </a>
+              <a id="tiktokDownloadThumb" class="tiktok-dl-btn thumb" href="#" target="_blank" rel="noopener" download>
+                <i class="fas fa-image"></i> Download Thumbnail
+              </a>
+              <button type="button" id="tiktokDownloadAllPhotos" class="tiktok-dl-btn photos" style="display:none;">
+                <i class="fas fa-images"></i> <span id="tiktokPhotosLabel">Download Semua Foto</span>
+              </button>
+            </div>
+
+            <div class="tiktok-action-row">
+              <button type="button" class="tiktok-action-btn" id="tiktokCopyLinkBtn"><i class="fas fa-link"></i> Copy Link</button>
+              <button type="button" class="tiktok-action-btn" id="tiktokShareBtn"><i class="fas fa-share-alt"></i> Share</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- HISTORY -->
+      <div class="tiktok-history" id="tiktokHistory" style="display:none;">
+        <div class="tiktok-history-header">
+          <h3 class="tiktok-section-title"><i class="fas fa-history"></i> Riwayat Download</h3>
+          <button type="button" class="tiktok-clear-history" id="tiktokClearHistory">
+            <i class="fas fa-trash-alt"></i> Hapus Semua
+          </button>
+        </div>
+        <div class="tiktok-history-list" id="tiktokHistoryList"></div>
+      </div>
+
+      <!-- INFO / FAQ -->
+      <div class="tiktok-info-grid">
+        <div class="tiktok-info-card" data-aos="fade-up">
+          <h3 class="tiktok-info-title"><i class="fas fa-magic"></i> Cara Menggunakan</h3>
+          <ol class="tiktok-steps">
+            <li><span class="tiktok-step-num">1</span> Buka aplikasi TikTok, salin link video/foto yang ingin diunduh.</li>
+            <li><span class="tiktok-step-num">2</span> Tempel link di kolom input di atas.</li>
+            <li><span class="tiktok-step-num">3</span> Klik tombol <strong>Download</strong> dan tunggu beberapa detik.</li>
+            <li><span class="tiktok-step-num">4</span> Pilih format yang diinginkan dan simpan ke perangkat Anda.</li>
+          </ol>
+        </div>
+
+        <div class="tiktok-info-card" data-aos="fade-up">
+          <h3 class="tiktok-info-title"><i class="fas fa-question-circle"></i> FAQ</h3>
+          <div class="tiktok-faq">
+            <div class="tiktok-faq-item">
+              <button type="button" class="tiktok-faq-q">Kenapa video saya tidak bisa diunduh? <i class="fas fa-chevron-down"></i></button>
+              <div class="tiktok-faq-a">Video private, dihapus, atau dibatasi region tidak dapat diakses. Coba video lain atau pastikan akun TikTok publik.</div>
+            </div>
+            <div class="tiktok-faq-item">
+              <button type="button" class="tiktok-faq-q">Apakah aman menggunakan layanan ini? <i class="fas fa-chevron-down"></i></button>
+              <div class="tiktok-faq-a">Ya, 100% aman. Kami tidak menyimpan file maupun data Anda. Semua proses dilakukan langsung di browser.</div>
+            </div>
+            <div class="tiktok-faq-item">
+              <button type="button" class="tiktok-faq-q">Kenapa hasilnya tidak ada watermark? <i class="fas fa-chevron-down"></i></button>
+              <div class="tiktok-faq-a">Kami menggunakan multiple API resmi yang menyediakan versi "no watermark" langsung dari server TikTok.</div>
+            </div>
+            <div class="tiktok-faq-item">
+              <button type="button" class="tiktok-faq-q">Apakah mendukung postingan foto/carousel? <i class="fas fa-chevron-down"></i></button>
+              <div class="tiktok-faq-a">Ya. Jika link berupa postingan foto, Anda bisa mengunduh semua foto sekaligus dengan tombol "Download Semua Foto".</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </div>
+</main>
+
+<!-- PROFILE MODAL (hanya ini yang diperlukan) -->
+<div id="profileModal" class="profile-modal">
+  <div class="profile-modal-content card-3d">
+    <span class="profile-close" id="profileModalClose">&times;</span>
+    <div class="profile-card">
+      <div class="profile-header">
+        <div class="profile-avatar-container">
+          <img src="https://ik.imagekit.io/IrgxyMods/IMG_20250922_195742.jpg?updatedAt=1758545932127" alt="Avatar" class="profile-avatar" />
+          <div class="profile-status"></div>
+          <div class="profile-edit-icon"><i class="fas fa-camera"></i></div>
+        </div>
+        <div class="profile-title"><h2 class="profile-name">Pengguna IRGXYMODS</h2><p class="profile-rank">Member Premium</p></div>
+        <div class="profile-badges">
+          <div class="badge gold-badge"><i class="fas fa-crown"></i></div>
+          <div class="badge verified-badge"><i class="fas fa-check-circle"></i></div>
+          <div class="badge vip-badge"><i class="fas fa-star"></i></div>
+        </div>
+      </div>
+      <div class="profile-stats">
+        <div class="stat-item"><div class="stat-value" id="statDownloads">0</div><div class="stat-label">Aplikasi Diunduh</div></div>
+        <div class="stat-item"><div class="stat-value" id="statDays">0</div><div class="stat-label">Hari Aktif</div></div>
+        <div class="stat-item"><div class="stat-value" id="statBugs">0</div><div class="stat-label">Laporan Bug</div></div>
+      </div>
+      <div class="profile-info">
+        <div class="info-section">
+          <h3 class="section-title"><i class="fas fa-history"></i> Aktivitas Terbaru</h3>
+          <div id="activityTimeline"></div>
+        </div>
+      </div>
+      <div class="profile-actions">
+        <button class="profile-action-btn edit-profile"><i class="fas fa-edit"></i><span>Edit Profil</span></button>
+        <button class="profile-action-btn upgrade-premium"><i class="fas fa-crown"></i><span>Upgrade Premium</span></button>
+        <button class="profile-action-btn logout"><i class="fas fa-sign-out-alt"></i><span>Keluar</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></div>
+
+<footer>
+  <p style="margin-bottom:0.5rem;color:rgba(255,255,255,0.8);">&copy; 2025 IRGXY MODS — Website Download Aplikasi Mod Dan Premium Terlengkap</p>
+  <p style="margin-bottom:1.5rem;color:rgba(255,255,255,0.6);">✨ Support Modder IrgxyMods ✨</p>
+  <div class="footer-links">
+    <a href="https://policies.google.com/privacy?hl=en-US" class="footer-link" target="_blank">Privacy Policy</a>
+    <a href="https://policies.google.com/terms?hl=en-US" class="footer-link" target="_blank">Terms of Service</a>
+    <a href="https://t.me/irgxyzmods" class="footer-link" target="_blank">Contact Us</a>
+    <a href="https://policies.google.com/faq?hl=id" class="footer-link" target="_blank">FAQ</a>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="main.js"></script>
+<script src="downloader.js"></script>
+</body>
+</html>

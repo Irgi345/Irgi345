@@ -1,0 +1,1274 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Jadwal Sholat — IRGXYMODS</title>
+
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+<!-- Google Fonts: Playfair Display, Inter, Cormorant Garamond + Orbitron + Rajdhani + Amiri -->
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,600&family=Inter:wght@300;400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Orbitron:wght@400;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Amiri:wght@400;700&display=swap" rel="stylesheet" />
+
+<!-- AOS -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+<!-- Google reCAPTCHA -->
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
+<!-- Main Stylesheet (WAJIB - berisi semua style termasuk .prayer-*) -->
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<!-- Toast Container (dibaca main.js) -->
+<div class="toast-container" id="toastContainer"></div>
+
+<!-- ================================================================
+     HEADER (konsisten dengan index.html)
+     ================================================================ -->
+<header>
+  <div class="header-top">
+    <a href="index.html" class="logo-brand"><i class="fas fa-crown"></i><h1>IRGXYMODS</h1></a>
+    <div class="header-actions">
+      <div style="position:relative;display:inline-block;">
+        <button class="settings-btn" id="settingsToggle" aria-label="Pengaturan"><i class="fas fa-cog"></i></button>
+        <div class="settings-dropdown" id="settingsDropdown">
+          <a href="login.html" class="dropdown-item"><i class="fas fa-sign-in-alt"></i> Login</a>
+          <div class="dropdown-divider"></div>
+          <button class="dropdown-item" id="profileDropdownBtn"><i class="fas fa-user"></i> Profil</button>
+          <button class="dropdown-item" id="themeToggleBtn"><i class="fas fa-palette"></i> Tema</button>
+          <div class="dropdown-divider"></div>
+          <a href="irgxymods.html" class="dropdown-item"><i class="fas fa-info-circle"></i> Tentang</a>
+          <button class="dropdown-item" id="helpBtn"><i class="fas fa-question-circle"></i> Bantuan</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="nav-tabs-container">
+    <div class="nav-tabs">
+      <a href="index.html" class="nav-tab">Aplikasi Mod</a>
+      <a href="irgxymods.html" class="nav-tab">IrgxyMods</a>
+      <a href="acount.html" class="nav-tab">Akun Premium</a>
+      <a href="fitur.html" class="nav-tab">Fitur Eksklusif</a>
+      <a href="testimoni.html" class="nav-tab">Testimoni</a>
+      <a href="cheat.html" class="nav-tab">Cheat Game</a>
+      <a href="jadwalsholat.html" class="nav-tab active"><i class="fas fa-mosque"></i> Jadwal Sholat</a>
+      <a href="tiktok.html" class="nav-tab"><i class="fab fa-tiktok"></i> TikTok</a>
+      <a href="youtube.html" class="nav-tab"><i class="fab fa-youtube"></i> YouTube</a>
+      <a href="instagram.html" class="nav-tab"><i class="fab fa-instagram"></i> Instagram</a>
+      <a href="threads.html" class="nav-tab"><i class="fas fa-at"></i> Threads</a>
+      <a href="facebook.html" class="nav-tab"><i class="fab fa-facebook"></i> Facebook</a>
+      <a href="compressvideo.html" class="nav-tab"><i class="fas fa-compress"></i> Compress Video</a>
+      <a href="iqcgenerator.html" class="nav-tab"><i class="fas fa-comments"></i> IQC Generator</a>
+      <a href="qris-barcode.html" class="nav-tab"><i class="fas fa-qrcode"></i> QRIS &amp; Barcode</a>      
+      <a href="spotify.html" class="nav-tab"><i class="fab fa-spotify"></i> Spotify</a>
+      <a href="testspeed.html" class="nav-tab"><i class="fas fa-tachometer-alt"></i> Test Speed</a>
+      <a href="proyek.html" class="nav-tab">Proyek Saya</a>
+      <a href="portofolio.html" class="nav-tab">Portofolio</a>
+      <a href="kontak.html" class="nav-tab">Kontak</a>
+      <a href="login.html" class="nav-tab"><i class="fas fa-sign-in-alt"></i> Login</a>
+    </div>
+  </div>
+
+  <div class="search-container">
+    <input type="text" id="searchInput" placeholder="Cari aplikasi mod..." />
+    <button id="searchBtn"><i class="fas fa-search"></i> Cari</button>
+  </div>
+</header>
+
+<!-- ================================================================
+     MAIN CONTENT
+     ================================================================ -->
+<main>
+  <section class="prayer-section" id="prayer-section">
+    <div class="container">
+      <div style="text-align:center;margin-bottom:6px;">
+        <span class="section-label"><i class="fas fa-mosque"></i> Jadwal Sholat</span>
+      </div>
+      <h2 class="section-title-3d" style="display:block;text-align:center;">WAKTU IBADAH</h2>
+      <p style="color:var(--text-secondary);text-align:center;margin-bottom:24px;font-size:0.92rem;">
+        Jadwal sholat real-time — presisi dengan perhitungan falak. Suara adzan otomatis saat masuk waktu sholat.
+      </p>
+
+      <div class="prayer-card-modern" id="prayerCardModern" data-aos="fade-up" role="main" aria-label="Jadwal Sholat Digital">
+
+        <!-- Header -->
+        <div class="prayer-header-top">
+          <div class="prayer-brand"><i class="fas fa-mosque"></i>Jadwal <span>Sholat</span></div>
+          <button class="prayer-location-badge" id="prayerLocationBadge" aria-label="Ganti lokasi" title="Klik untuk mengubah lokasi">
+            <i class="fas fa-map-pin"></i><span id="prayerLocationName">Jakarta</span>
+          </button>
+        </div>
+
+        <!-- Clock -->
+        <div class="prayer-clock-section">
+          <div class="prayer-digital-clock" id="prayerDigitalClock">
+            <span id="prayerClockHours">00</span><span class="pclock-sep">:</span>
+            <span id="prayerClockMinutes">00</span><span class="pclock-sep">:</span>
+            <span class="pclock-seconds" id="prayerClockSeconds">00</span>
+            <span class="prayer-clock-ampm" id="prayerClockAmPm">WIB</span>
+          </div>
+          <div class="prayer-date-row">
+            <span class="pdate-masehi" id="prayerDateMasehi">—</span>
+            <span class="pdate-sep">•</span>
+            <span class="pdate-hijri" id="prayerDateHijri">—</span>
+          </div>
+        </div>
+
+        <!-- Status -->
+        <div class="prayer-status-bar" id="prayerStatusBar">
+          <div class="prayer-status-current">
+            <span class="pstatus-dot" id="prayerStatusDot"></span>
+            <span class="pstatus-name">Saat ini: <span class="highlight" id="prayerCurrentName">—</span></span>
+          </div>
+          <div class="prayer-countdown-wrap">
+            <i class="fas fa-hourglass-half"></i>
+            <span class="pcountdown-label">Menuju</span>
+            <span class="pcountdown-time" id="prayerCountdownTime">--:--:--</span>
+            <span class="pcountdown-label" id="prayerCountdownLabel">—</span>
+          </div>
+        </div>
+
+        <!-- Grid 5 Waktu Sholat -->
+        <div class="prayer-grid-modern" id="prayerGridModern">
+          <!-- populated by JS -->
+        </div>
+
+        <!-- Footer Info -->
+        <div class="prayer-card-footer">
+          <div class="pfooter-left">
+            <span class="pcoord"><i class="fas fa-globe-asia"></i> <span id="prayerCoordDisplay">-6.2088, 106.8456</span></span>
+            <span class="pcoord"><i class="fas fa-clock"></i> <span id="prayerTzDisplay">UTC+7</span></span>
+          </div>
+          <div class="pfooter-right">
+            <span class="pmethod-badge" id="prayerMethodBadge"><i class="fas fa-calculator"></i> <span id="prayerMethodName">Kemenag RI</span></span>
+            <button class="prefresh-btn" id="prayerRefreshBtn" aria-label="Perbarui jadwal & lokasi" title="Perbarui jadwal & lokasi">
+              <i class="fas fa-sync-alt"></i>
+            </button>
+            <button class="psettings-toggle" id="prayerSettingsToggle" aria-label="Buka pengaturan">
+              <i class="fas fa-sliders-h"></i> <span>Pengaturan</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Settings Panel -->
+        <div class="prayer-settings-section" id="prayerSettingsSection">
+          <div class="psettings-row">
+            <div class="psetting-group">
+              <label for="prayerMethodSelect"><i class="fas fa-calculator"></i> Metode Perhitungan</label>
+              <select id="prayerMethodSelect">
+                <option value="kemenag">Kemenag RI (Subuh -20°, Isya -18°)</option>
+                <option value="mwl">Muslim World League (Subuh -18°, Isya -17°)</option>
+              </select>
+              <span class="phelper">Metode resmi untuk wilayah Indonesia & Asia Tenggara</span>
+            </div>
+            <div class="psetting-group">
+              <label for="prayerLocationInput"><i class="fas fa-city"></i> Kota (fallback)</label>
+              <input type="text" id="prayerLocationInput" placeholder="Jakarta" value="Jakarta" />
+              <span class="phelper">Gunakan jika deteksi lokasi otomatis gagal</span>
+            </div>
+            <div class="psetting-group" style="flex:0 0 auto; min-width:100px;">
+              <label>&nbsp;</label>
+              <button class="papply-btn" id="prayerApplySettingsBtn"><i class="fas fa-check"></i> Terapkan</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- ADZAN CONTROLS -->
+        <div class="adzan-controls" id="adzanControls">
+          <div class="adzan-header">
+            <i class="fas fa-bullhorn"></i>
+            <span>Adzan Otomatis</span>
+            <span class="adzan-status" id="adzanStatusBadge">AKTIF</span>
+          </div>
+          <div class="adzan-buttons">
+            <button id="adzanToggleBtn" class="adzan-btn active" title="On/Off Suara Adzan">
+              <i class="fas fa-volume-up"></i> <span id="adzanToggleLabel">Adzan: ON</span>
+            </button>
+            <button id="adzanTestBtn" class="adzan-btn" title="Test Suara Adzan">
+              <i class="fas fa-play"></i> Test Adzan
+            </button>
+          </div>
+          <div class="adzan-volume-row">
+            <i class="fas fa-volume-low" id="adzanVolumeIcon"></i>
+            <input type="range" id="adzanVolumeSlider" min="0" max="100" value="80" aria-label="Volume Adzan" />
+            <span class="adzan-volume-label" id="adzanVolumeLabel">80%</span>
+          </div>
+        </div>
+
+        <!-- HISTORY ADZAN -->
+        <div class="adzan-history" id="adzanHistory">
+          <div class="history-title"><i class="fas fa-history"></i> Riwayat Adzan Hari Ini</div>
+          <div class="history-list" id="adzanHistoryList">
+            <div class="history-empty"><i class="fas fa-hourglass-start" style="margin-right:6px;"></i>Belum ada adzan yang diputar hari ini</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Toolbar Bawah -->
+      <div class="prayer-toolbar">
+        <button class="ptool-btn" id="prayerFullscreenBtn" title="Mode Layar Penuh">
+          <i class="fas fa-expand"></i> Layar Penuh
+        </button>
+        <button class="ptool-btn" id="prayerExportBtn" title="Salin jadwal hari ini">
+          <i class="fas fa-copy"></i> Salin Jadwal
+        </button>
+        <button class="ptool-btn" id="prayerNotifBtn" title="Aktifkan Notifikasi Browser">
+          <i class="fas fa-bell"></i> Notifikasi
+        </button>
+      </div>
+
+    </div>
+  </section>
+</main>
+
+<!-- ================================================================
+     MODALS (agar main.js berfungsi)
+     ================================================================ -->
+
+<!-- Profile Modal -->
+<div id="profileModal" class="profile-modal">
+  <div class="profile-modal-content card-3d">
+    <span class="profile-close" id="profileModalClose">&times;</span>
+    <div class="profile-card">
+      <div class="profile-header">
+        <div class="profile-avatar-container">
+          <img src="https://ik.imagekit.io/IrgxyMods/IMG_20250922_195742.jpg?updatedAt=1758545932127" alt="Avatar" class="profile-avatar" />
+          <div class="profile-status"></div>
+          <div class="profile-edit-icon"><i class="fas fa-camera"></i></div>
+        </div>
+        <div class="profile-title"><h2 class="profile-name">Pengguna IRGXYMODS</h2><p class="profile-rank">Member Premium</p></div>
+        <div class="profile-badges">
+          <div class="badge gold-badge"><i class="fas fa-crown"></i></div>
+          <div class="badge verified-badge"><i class="fas fa-check-circle"></i></div>
+          <div class="badge vip-badge"><i class="fas fa-star"></i></div>
+        </div>
+      </div>
+      <div class="profile-stats">
+        <div class="stat-item"><div class="stat-value" id="statDownloads">0</div><div class="stat-label">Aplikasi Diunduh</div></div>
+        <div class="stat-item"><div class="stat-value" id="statDays">0</div><div class="stat-label">Hari Aktif</div></div>
+        <div class="stat-item"><div class="stat-value" id="statBugs">0</div><div class="stat-label">Laporan Bug</div></div>
+      </div>
+      <div class="profile-info">
+        <div class="info-section">
+          <h3 class="section-title"><i class="fas fa-history"></i> Aktivitas Terbaru</h3>
+          <div id="activityTimeline"></div>
+        </div>
+      </div>
+      <div class="profile-actions">
+        <button class="profile-action-btn edit-profile"><i class="fas fa-edit"></i><span>Edit Profil</span></button>
+        <button class="profile-action-btn upgrade-premium"><i class="fas fa-crown"></i><span>Upgrade Premium</span></button>
+        <button class="profile-action-btn logout"><i class="fas fa-sign-out-alt"></i><span>Keluar</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- reCAPTCHA Modal -->
+<div id="recaptchaModal" class="recaptcha-modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);backdrop-filter:blur(5px);z-index:2000;align-items:center;justify-content:center;">
+  <div class="card-3d" style="background:rgba(30,30,42,0.95);border-radius:16px;padding:30px;max-width:500px;width:90%;text-align:center;border:1px solid var(--border-subtle);position:relative;">
+    <span id="recaptchaModalClose" style="position:absolute;top:15px;right:15px;color:rgba(255,255,255,0.7);font-size:1.5rem;cursor:pointer;">&times;</span>
+    <h3 style="font-size:1.5rem;margin-bottom:1rem;color:#fff;"><i class="fas fa-shield-alt"></i> Verifikasi Download</h3>
+    <p style="margin-bottom:1.5rem;color:rgba(255,255,255,0.8);">Harap verifikasi bahwa Anda bukan robot sebelum mengunduh.</p>
+    <div class="g-recaptcha" data-sitekey="6LdtFAksAAAAAIPvTbNODpNyrE9zvK6a3iDljat4" data-callback="onDownloadRecaptchaSuccess" data-expired-callback="onDownloadRecaptchaExpired" style="display:flex;justify-content:center;margin-bottom:1.5rem;"></div>
+    <button id="downloadVerifiedBtn" disabled style="background:var(--gold-gradient);color:#1a1a2e;border:none;padding:14px 28px;border-radius:50px;font-weight:700;cursor:pointer;font-size:1rem;"><i class="fas fa-download"></i> Lanjutkan Download</button>
+    <div id="downloadRecaptchaStatus" style="margin-top:1rem;padding:10px 15px;border-radius:8px;font-weight:500;display:none;"></div>
+  </div>
+</div>
+
+<!-- Back to top -->
+<div class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></div>
+
+<!-- ================================================================
+     FOOTER (konsisten dengan index.html)
+     ================================================================ -->
+<footer>
+  <p style="margin-bottom:0.5rem;color:rgba(255,255,255,0.8);">&copy; 2025 IRGXY MODS — Website Download Aplikasi Mod Dan Premium Terlengkap</p>
+  <p style="margin-bottom:1.5rem;color:rgba(255,255,255,0.6);">✨ Support Modder IrgxyMods ✨</p>
+  <div class="footer-links">
+    <a href="https://policies.google.com/privacy?hl=en-US" class="footer-link" target="_blank">Privacy Policy</a>
+    <a href="https://policies.google.com/terms?hl=en-US" class="footer-link" target="_blank">Terms of Service</a>
+    <a href="https://t.me/irgxyzmods" class="footer-link" target="_blank">Contact Us</a>
+    <a href="https://policies.google.com/faq?hl=id" class="footer-link" target="_blank">FAQ</a>
+  </div>
+</footer>
+
+<!-- ================================================================
+     SCRIPTS
+     ================================================================ -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="main.js"></script>
+
+<script>
+/* ================================================================
+   JADWAL SHOLAT — CORE SYSTEM (v1.0)
+   Migrasi penuh dari al-quran.html + Sistem Adzan Otomatis
+   ================================================================ */
+(function () {
+  'use strict';
+
+  /* ---------- GLOBAL ERROR GUARD ---------- */
+  window.addEventListener('error', (e) => {
+    console.warn('[JadwalSholat] Runtime error:', e.message);
+  });
+  window.addEventListener('unhandledrejection', (e) => {
+    console.warn('[JadwalSholat] Unhandled rejection:', e.reason);
+  });
+
+  /* ---------- SAFE HELPERS ---------- */
+  const $  = (s, ctx = document) => ctx.querySelector(s);
+  const $$ = (s, ctx = document) => Array.from(ctx.querySelectorAll(s));
+  const pad2 = (n) => String(n).padStart(2, '0');
+
+  const withTimeout = (ms) => {
+    if (typeof AbortSignal !== 'undefined' && typeof AbortSignal.timeout === 'function') {
+      try { return AbortSignal.timeout(ms); } catch (_) {}
+    }
+    const controller = new AbortController();
+    const timer = setTimeout(() => {
+      try { controller.abort(new DOMException('TimeoutError', 'TimeoutError')); }
+      catch (_) { controller.abort(); }
+    }, ms);
+    if (controller.signal && typeof controller.signal.addEventListener === 'function') {
+      controller.signal.addEventListener('abort', () => clearTimeout(timer));
+    }
+    return controller.signal;
+  };
+
+  /* ---------- TOAST ---------- */
+  function showPrayerToast(message, icon = 'fa-check-circle') {
+    let toast = document.querySelector('.ptoast');
+    if (!toast) {
+      toast = document.createElement('div');
+      toast.className = 'ptoast';
+      document.body.appendChild(toast);
+    }
+    toast.innerHTML = `<i class="fas ${icon}"></i><span>${message}</span>`;
+    toast.classList.add('show');
+    clearTimeout(toast._hideTimer);
+    toast._hideTimer = setTimeout(() => toast.classList.remove('show'), 3500);
+    if (typeof window.showToast === 'function' && icon === 'fa-exclamation-circle') {
+      try { window.showToast(message, 'error'); } catch (_) {}
+    }
+  }
+
+  /* ================================================================
+     PRAYER CONFIG
+     ================================================================ */
+  const PRAYER_CONFIG = {
+    method: 'kemenag',
+    latitude: -6.2088,
+    longitude: 106.8456,
+    timezone: 7,
+    locationName: 'Jakarta',
+    elevation: 0
+  };
+
+  const ANGLES = {
+    kemenag: { fajr: -20, isha: -18, maghrib: -0.833, asrRatio: 1 },
+    mwl:     { fajr: -18, isha: -17, maghrib: -0.833, asrRatio: 1 }
+  };
+
+  const PRAYER_NAMES   = ['subuh', 'dhuhr', 'ashar', 'maghrib', 'isha'];
+  const PRAYER_DISPLAY = { subuh: 'Subuh', dhuhr: 'Dzuhur', ashar: 'Ashar', maghrib: 'Maghrib', isha: 'Isya' };
+  const PRAYER_ICONS   = { subuh: 'fa-sun', dhuhr: 'fa-sun', ashar: 'fa-cloud-sun', maghrib: 'fa-moon', isha: 'fa-moon' };
+
+  let currentPrayerTimes = null;
+  let nextPrayerIndex = -1;
+  let currentPrayerIndex = -1;
+
+  /* ================================================================
+     MATH HELPERS (FALAK)
+     ================================================================ */
+  function minutesToTime(mins) {
+    if (mins == null || isNaN(mins) || !isFinite(mins)) return '--:--';
+    let m = Math.round(mins);
+    if (m < 0) m += 1440;
+    if (m >= 1440) m -= 1440;
+    return pad2(Math.floor(m / 60)) + ':' + pad2(m % 60);
+  }
+  const toRad = (d) => d * Math.PI / 180;
+  const toDeg = (r) => r * 180 / Math.PI;
+  const sinDeg = (d) => Math.sin(toRad(d));
+  const cosDeg = (d) => Math.cos(toRad(d));
+  const asinDeg = (v) => toDeg(Math.asin(Math.max(-1, Math.min(1, v))));
+  const acosDeg = (v) => toDeg(Math.acos(Math.max(-1, Math.min(1, v))));
+  const atan2Deg = (y, x) => toDeg(Math.atan2(y, x));
+
+  function calcJulianDay(year, month, day) {
+    if (month <= 2) { year -= 1; month += 12; }
+    const A = Math.floor(year / 100);
+    const B = 2 - A + Math.floor(A / 4);
+    return Math.floor(365.25 * (year + 4716)) + Math.floor(30.6001 * (month + 1)) + day + B - 1524.5;
+  }
+
+  function calcSunDeclination(jd) {
+    const T = (jd - 2451545.0) / 36525.0;
+    const M = 357.5291 + 35999.0503 * T - 0.0001559 * T * T - 0.00000048 * T * T * T;
+    const M_norm = M % 360;
+    const C = (1.9146 - 0.004817 * T - 0.000014 * T * T) * sinDeg(M_norm) +
+              (0.019993 - 0.000101 * T) * sinDeg(2 * M_norm) +
+              0.000289 * sinDeg(3 * M_norm);
+    const L = (M_norm + C + 180 + 102.9372) % 360;
+    const eps = 23.439291 - 0.0130042 * T - 0.00000016 * T * T + 0.000000504 * T * T * T;
+    return asinDeg(sinDeg(eps) * sinDeg(L));
+  }
+
+  function calcEquationOfTime(jd) {
+    const T = (jd - 2451545.0) / 36525.0;
+    const M = 357.5291 + 35999.0503 * T - 0.0001559 * T * T - 0.00000048 * T * T * T;
+    const M_norm = M % 360;
+    const C = (1.9146 - 0.004817 * T - 0.000014 * T * T) * sinDeg(M_norm) +
+              (0.019993 - 0.000101 * T) * sinDeg(2 * M_norm) +
+              0.000289 * sinDeg(3 * M_norm);
+    const L = (M_norm + C + 180 + 102.9372) % 360;
+    const eps = 23.439291 - 0.0130042 * T - 0.00000016 * T * T + 0.000000504 * T * T * T;
+    const RA = (atan2Deg(sinDeg(L) * cosDeg(eps), cosDeg(L))) % 360;
+    let eot = 4 * (RA - L);
+    while (eot > 180) eot -= 360;
+    while (eot < -180) eot += 360;
+    return eot;
+  }
+
+  function calcHourAngle(altitudeDeg, latitudeDeg, declinationDeg) {
+    const latR = toRad(latitudeDeg);
+    const decR = toRad(declinationDeg);
+    const altR = toRad(altitudeDeg);
+    const cosHA = (Math.sin(altR) - Math.sin(latR) * Math.sin(decR)) /
+                  (Math.cos(latR) * Math.cos(decR));
+    return acosDeg(Math.max(-1, Math.min(1, cosHA)));
+  }
+
+  function calculatePrayerTimes(date, lat, lon, tz, method) {
+    const year = date.getFullYear();
+    const month = date.getMonth() + 1;
+    const day = date.getDate();
+
+    const jd = calcJulianDay(year, month, day);
+    const decl = calcSunDeclination(jd);
+    const eot = calcEquationOfTime(jd);
+
+    const lstDeg = tz * 15;
+    const solarNoonUTC = 12 * 60 - eot + 4 * (lstDeg - lon);
+    const dhuhr = solarNoonUTC + 1;
+
+    const angles = ANGLES[method] || ANGLES.kemenag;
+
+    const haFajr = calcHourAngle(angles.fajr, lat, decl);
+    const haIsha = calcHourAngle(angles.isha, lat, decl);
+    const haMaghrib = calcHourAngle(angles.maghrib, lat, decl);
+
+    const delta = Math.abs(lat - decl);
+    const tanDelta = Math.tan(toRad(delta));
+    const asrAlt = toDeg(Math.atan(1 / (tanDelta + angles.asrRatio)));
+    const haAsr = calcHourAngle(asrAlt, lat, decl);
+
+    const subuh   = solarNoonUTC - (haFajr / 15) * 60;
+    const ashar   = solarNoonUTC + (haAsr / 15) * 60;
+    const maghrib = solarNoonUTC + (haMaghrib / 15) * 60;
+    const isha    = solarNoonUTC + (haIsha / 15) * 60;
+
+    const normalize = (m) => {
+      let v = m;
+      while (v < 0) v += 1440;
+      while (v >= 1440) v -= 1440;
+      return v;
+    };
+
+    const ihtiyat = (method === 'kemenag') ? 1 : 0;
+
+    return {
+      subuh:   normalize(subuh - ihtiyat),
+      dhuhr:   normalize(dhuhr),
+      ashar:   normalize(ashar),
+      maghrib: normalize(maghrib),
+      isha:    normalize(isha + ihtiyat)
+    };
+  }
+
+  /* ================================================================
+     HIJRI CONVERSION (Approx.)
+     ================================================================ */
+  function toHijri(date) {
+    const y = date.getFullYear();
+    const m = date.getMonth() + 1;
+    const d = date.getDate();
+    let jd = calcJulianDay(y, m, d);
+    jd = Math.floor(jd) + 0.5;
+    const base = 1948440;
+    const days = jd - base;
+    if (days < 0) return { day: 1, month: 1, year: 1 };
+    let year = Math.floor(days / 354.366);
+    let remaining = days - year * 354.366;
+    while (remaining < 0) { year--; remaining += 354.366; }
+    const mLen = [30, 29, 30, 29, 30, 29, 30, 29, 30, 29, 30, 29];
+    let month = 12, rem2 = 0;
+    for (let i = 0; i < 12; i++) {
+      if (remaining < mLen[i]) { month = i + 1; rem2 = remaining; break; }
+      remaining -= mLen[i];
+    }
+    return { day: Math.floor(rem2) + 1, month, year };
+  }
+
+  function formatHijri(date) {
+    const h = toHijri(date);
+    const names = ['مُحَرَّم','صَفَر','رَبِيع الْأَوَّل','رَبِيع الثَّانِي','جُمَادَى الْأُولَى','جُمَادَى الثَّانِيَة',
+                   'رَجَب','شَعْبَان','رَمَضَان','شَوَّال','ذُو الْقَعْدَة','ذُو الْحِجَّة'];
+    const arDigits = '٠١٢٣٤٥٦٧٨٩';
+    const toAr = (s) => String(s).split('').map(c => {
+      const n = parseInt(c, 10);
+      return !isNaN(n) ? arDigits[n] : c;
+    }).join('');
+    return `${toAr(h.day)} ${names[h.month - 1] || ''} ${toAr(h.year)}`;
+  }
+
+  /* ================================================================
+     ADZAN SYSTEM
+     ================================================================ */
+  const ADZAN_AUDIO_URL = 'https://ik.imagekit.io/IrgxyMods/adzan.mp3';
+
+  const AdzanSystem = {
+    audio: null,
+    enabled: localStorage.getItem('irgxy_adzan_enabled') !== 'false',
+    volume: parseFloat(localStorage.getItem('irgxy_adzan_volume') || '0.8'),
+    lastPlayed: {},
+    history: [],
+
+    init() {
+      try {
+        const stored = JSON.parse(localStorage.getItem('irgxy_adzan_lastPlayed') || '{}');
+        this.lastPlayed = (stored && typeof stored === 'object') ? stored : {};
+      } catch (_) { this.lastPlayed = {}; }
+
+      try {
+        const h = JSON.parse(localStorage.getItem('irgxy_adzan_history') || '[]');
+        this.history = Array.isArray(h) ? h : [];
+      } catch (_) { this.history = []; }
+
+      this.audio = new Audio(ADZAN_AUDIO_URL);
+      this.audio.preload = 'auto';
+      this.audio.volume = Math.max(0, Math.min(1, this.volume));
+      this.audio.crossOrigin = 'anonymous';
+
+      this.audio.addEventListener('ended', () => {
+        showPrayerToast('Adzan selesai. Mari tunaikan sholat.', 'fa-mosque');
+      });
+      this.audio.addEventListener('error', (e) => {
+        console.warn('[Adzan] Gagal memuat audio:', e);
+      });
+
+      this.updateUI();
+      this.renderHistory();
+    },
+
+    todayKey() {
+      const d = new Date();
+      return `${d.getFullYear()}-${pad2(d.getMonth() + 1)}-${pad2(d.getDate())}`;
+    },
+
+    checkAndPlay() {
+      if (!this.enabled || !this.audio) return;
+      if (!currentPrayerTimes) return;
+
+      const now = new Date();
+      const nowSec = now.getHours() * 3600 + now.getMinutes() * 60 + now.getSeconds();
+      const today = this.todayKey();
+
+      const prayers = {
+        subuh:   currentPrayerTimes.subuh,
+        dhuhr:   currentPrayerTimes.dhuhr,
+        ashar:   currentPrayerTimes.ashar,
+        maghrib: currentPrayerTimes.maghrib,
+        isha:    currentPrayerTimes.isha
+      };
+
+      for (const [key, mins] of Object.entries(prayers)) {
+        const targetSec = Math.round(mins * 60);
+        const diff = Math.abs(nowSec - targetSec);
+        const flagKey = `${today}_${key}`;
+        if (diff <= 5 && !this.lastPlayed[flagKey]) {
+          this.lastPlayed[flagKey] = true;
+          try { localStorage.setItem('irgxy_adzan_lastPlayed', JSON.stringify(this.lastPlayed)); } catch (_) {}
+          this.play(key);
+          this.addHistory(key, now);
+          break;
+        }
+      }
+
+      const cutoff = Date.now() - 3 * 86400000;
+      let dirty = false;
+      for (const k of Object.keys(this.lastPlayed)) {
+        const parts = k.split('_');
+        if (parts.length === 2) {
+          const [y, m, d] = parts[0].split('-').map(Number);
+          const ts = new Date(y, m - 1, d).getTime();
+          if (ts < cutoff) { delete this.lastPlayed[k]; dirty = true; }
+        }
+      }
+      if (dirty) { try { localStorage.setItem('irgxy_adzan_lastPlayed', JSON.stringify(this.lastPlayed)); } catch (_) {} }
+    },
+
+    play(prayerKey) {
+      if (!this.audio) return;
+      const name = PRAYER_DISPLAY[prayerKey] || prayerKey;
+      try { this.audio.currentTime = 0; } catch (_) {}
+      this.audio.volume = Math.max(0, Math.min(1, this.volume));
+
+      showPrayerToast(`🕌 Waktu ${name} telah tiba`, 'fa-mosque');
+      this.notifyBrowser(name);
+
+      const p = this.audio.play();
+      if (p && typeof p.catch === 'function') {
+        p.catch((err) => {
+          console.warn('[Adzan] Autoplay diblokir:', err);
+          this.showManualButton(name, prayerKey);
+        });
+      }
+    },
+
+    showManualButton(name, key) {
+      const old = document.getElementById('adzanManualFallback');
+      if (old) old.remove();
+
+      const el = document.createElement('div');
+      el.id = 'adzanManualFallback';
+      el.className = 'adzan-manual-fallback';
+      el.innerHTML = `
+        <div class="amf-icon"><i class="fas fa-mosque"></i></div>
+        <div class="amf-text"><strong>Waktu ${name} telah tiba</strong>Klik untuk memutar adzan</div>
+        <button class="amf-btn" id="adzanManualPlayBtn"><i class="fas fa-play"></i> Putar Adzan</button>
+        <button class="amf-close" id="adzanManualCloseBtn" aria-label="Tutup"><i class="fas fa-times"></i></button>
+      `;
+      document.body.appendChild(el);
+
+      const playBtn = el.querySelector('#adzanManualPlayBtn');
+      const closeBtn = el.querySelector('#adzanManualCloseBtn');
+
+      playBtn.addEventListener('click', () => {
+        try {
+          this.audio.currentTime = 0;
+          this.audio.volume = Math.max(0, Math.min(1, this.volume));
+          this.audio.play().then(() => {
+            el.remove();
+          }).catch((err) => {
+            showPrayerToast('Gagal memutar adzan: ' + err.message, 'fa-exclamation-circle');
+          });
+        } catch (e) {
+          showPrayerToast('Error memutar adzan', 'fa-exclamation-circle');
+        }
+      });
+
+      closeBtn.addEventListener('click', () => el.remove());
+
+      setTimeout(() => {
+        const stillThere = document.getElementById('adzanManualFallback');
+        if (stillThere) stillThere.remove();
+      }, 5 * 60 * 1000);
+    },
+
+    toggle() {
+      this.enabled = !this.enabled;
+      try { localStorage.setItem('irgxy_adzan_enabled', String(this.enabled)); } catch (_) {}
+      this.updateUI();
+      showPrayerToast(
+        this.enabled ? '🔊 Adzan: ON' : '🔇 Adzan: OFF',
+        this.enabled ? 'fa-volume-up' : 'fa-volume-mute'
+      );
+      return this.enabled;
+    },
+
+    setVolume(v) {
+      this.volume = Math.max(0, Math.min(1, v));
+      if (this.audio) this.audio.volume = this.volume;
+      try { localStorage.setItem('irgxy_adzan_volume', String(this.volume)); } catch (_) {}
+      this.updateVolumeUI();
+    },
+
+    test() {
+      if (!this.audio) {
+        showPrayerToast('Audio adzan belum siap', 'fa-exclamation-circle');
+        return;
+      }
+      try {
+        this.audio.currentTime = 0;
+        this.audio.volume = Math.max(0, Math.min(1, this.volume));
+        const p = this.audio.play();
+        if (p && typeof p.catch === 'function') {
+          p.catch((err) => {
+            showPrayerToast('Gagal memutar adzan: ' + err.message, 'fa-exclamation-circle');
+          });
+        } else {
+          showPrayerToast('Memutar adzan (test)...', 'fa-play');
+        }
+      } catch (err) {
+        showPrayerToast('Error memutar adzan', 'fa-exclamation-circle');
+      }
+    },
+
+    notifyBrowser(prayerName) {
+      if (!('Notification' in window)) return;
+      if (Notification.permission !== 'granted') return;
+      try {
+        new Notification('🕌 Waktu ' + prayerName + ' telah tiba', {
+          body: 'Mari tunaikan sholat. — IRGXYMODS',
+          icon: 'https://ik.imagekit.io/IrgxyMods/IMG_20250922_195742.jpg?updatedAt=1758545932127',
+          tag: 'adzan-' + prayerName,
+          renotify: true
+        });
+      } catch (_) {}
+    },
+
+    addHistory(prayerKey, when) {
+      this.history.unshift({
+        key: prayerKey,
+        name: PRAYER_DISPLAY[prayerKey] || prayerKey,
+        time: pad2(when.getHours()) + ':' + pad2(when.getMinutes()) + ':' + pad2(when.getSeconds()),
+        date: this.todayKey()
+      });
+      this.history = this.history.filter(h => h.date === this.todayKey()).slice(0, 10);
+      try { localStorage.setItem('irgxy_adzan_history', JSON.stringify(this.history)); } catch (_) {}
+      this.renderHistory();
+    },
+
+    renderHistory() {
+      const list = document.getElementById('adzanHistoryList');
+      if (!list) return;
+      const today = this.todayKey();
+      const items = this.history.filter(h => h.date === today);
+      if (!items.length) {
+        list.innerHTML = '<div class="history-empty"><i class="fas fa-hourglass-start" style="margin-right:6px;"></i>Belum ada adzan yang diputar hari ini</div>';
+        return;
+      }
+      list.innerHTML = items.map(h => `
+        <div class="history-item">
+          <div class="hi-icon"><i class="fas fa-mosque"></i></div>
+          <div class="hi-prayer">${h.name}</div>
+          <div class="hi-time">${h.time}</div>
+        </div>
+      `).join('');
+    },
+
+    updateUI() {
+      const toggleBtn = document.getElementById('adzanToggleBtn');
+      const toggleLabel = document.getElementById('adzanToggleLabel');
+      const statusBadge = document.getElementById('adzanStatusBadge');
+
+      if (toggleBtn) toggleBtn.classList.toggle('active', this.enabled);
+      if (toggleLabel) toggleLabel.textContent = this.enabled ? 'Adzan: ON' : 'Adzan: OFF';
+      if (statusBadge) {
+        statusBadge.textContent = this.enabled ? 'AKTIF' : 'NONAKTIF';
+        statusBadge.style.background = this.enabled ? 'rgba(0,240,255,0.1)' : 'rgba(255,65,108,0.1)';
+        statusBadge.style.borderColor = this.enabled ? 'rgba(0,240,255,0.25)' : 'rgba(255,65,108,0.25)';
+        statusBadge.style.color = this.enabled ? '#00f0ff' : '#ff6584';
+      }
+      this.updateVolumeUI();
+    },
+
+    updateVolumeUI() {
+      const slider = document.getElementById('adzanVolumeSlider');
+      const label = document.getElementById('adzanVolumeLabel');
+      const icon = document.getElementById('adzanVolumeIcon');
+      const v = Math.round(this.volume * 100);
+      if (slider) slider.value = v;
+      if (label) label.textContent = v + '%';
+      if (icon) {
+        if (v === 0) icon.className = 'fas fa-volume-mute';
+        else if (v < 40) icon.className = 'fas fa-volume-low';
+        else if (v < 70) icon.className = 'fas fa-volume-down';
+        else icon.className = 'fas fa-volume-up';
+      }
+    },
+
+    bindUI() {
+      const toggleBtn = document.getElementById('adzanToggleBtn');
+      const testBtn = document.getElementById('adzanTestBtn');
+      const slider = document.getElementById('adzanVolumeSlider');
+
+      if (toggleBtn) toggleBtn.addEventListener('click', () => this.toggle());
+      if (testBtn) testBtn.addEventListener('click', () => { this.test(); });
+      if (slider) slider.addEventListener('input', (e) => {
+        this.setVolume(parseInt(e.target.value, 10) / 100);
+      });
+    }
+  };
+
+  /* ================================================================
+     UI UPDATE FUNCTIONS
+     ================================================================ */
+  function updatePrayerClock(now) {
+    const h = now.getHours(), m = now.getMinutes(), s = now.getSeconds();
+    const hh = document.getElementById('prayerClockHours');
+    const mm = document.getElementById('prayerClockMinutes');
+    const ss = document.getElementById('prayerClockSeconds');
+    if (hh) hh.textContent = pad2(h);
+    if (mm) mm.textContent = pad2(m);
+    if (ss) ss.textContent = pad2(s);
+
+    const tz = PRAYER_CONFIG.timezone;
+    let tzLabel = 'WIB';
+    if (tz === 8) tzLabel = 'WITA';
+    else if (tz === 9) tzLabel = 'WIT';
+    else if (tz === 0) tzLabel = 'UTC';
+    else if (tz > 0) tzLabel = 'UTC+' + tz;
+    else tzLabel = 'UTC' + tz;
+
+    const ampm = document.getElementById('prayerClockAmPm');
+    if (ampm) ampm.textContent = tzLabel;
+  }
+
+  function updatePrayerDate(now) {
+    const days = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
+    const months = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+    const el = document.getElementById('prayerDateMasehi');
+    if (el) el.textContent = `${days[now.getDay()]}, ${now.getDate()} ${months[now.getMonth()]} ${now.getFullYear()}`;
+    const elH = document.getElementById('prayerDateHijri');
+    if (elH) {
+      try { elH.textContent = formatHijri(now); }
+      catch (_) { elH.textContent = '—'; }
+    }
+  }
+
+  function updatePrayerStatus(now) {
+    const totalMinutes = now.getHours() * 60 + now.getMinutes() + now.getSeconds() / 60;
+    const times = currentPrayerTimes;
+    if (!times) { currentPrayerIndex = -1; nextPrayerIndex = 0; return; }
+
+    const tArray = [times.subuh, times.dhuhr, times.ashar, times.maghrib, times.isha];
+    let currentIdx = -1;
+    for (let i = 0; i < tArray.length; i++) {
+      const start = tArray[i];
+      const end = (i < tArray.length - 1) ? tArray[i + 1] : tArray[0] + 1440;
+      let adjustedEnd = end;
+      if (i === 0 && end < start) adjustedEnd = end + 1440;
+      let currentMins = totalMinutes;
+      if (i === 0 && totalMinutes < start) currentMins = totalMinutes + 1440;
+      if (currentMins >= start && currentMins < adjustedEnd) { currentIdx = i; break; }
+    }
+    if (currentIdx === -1) {
+      let minDist = Infinity, best = 0;
+      for (let i = 0; i < tArray.length; i++) {
+        let t = tArray[i];
+        if (t < totalMinutes) t += 1440;
+        const d = t - totalMinutes;
+        if (d < minDist && d > 0) { minDist = d; best = i; }
+      }
+      currentIdx = best;
+    }
+    currentPrayerIndex = currentIdx;
+
+    let nextIdx = -1;
+    for (let i = 0; i < tArray.length; i++) {
+      const idx = (currentIdx + 1 + i) % tArray.length;
+      let t = tArray[idx];
+      if (t <= totalMinutes) t += 1440;
+      if (t > totalMinutes) { nextIdx = idx; break; }
+    }
+    if (nextIdx === -1) nextIdx = 0;
+    nextPrayerIndex = nextIdx;
+
+    const nameEl = document.getElementById('prayerCurrentName');
+    if (nameEl) nameEl.textContent = PRAYER_DISPLAY[PRAYER_NAMES[currentIdx]] || '—';
+
+    const colors = { subuh: '#f59e0b', dhuhr: '#3b82f6', ashar: '#a855f7', maghrib: '#ef4444', isha: '#06b6d4' };
+    const dot = document.getElementById('prayerStatusDot');
+    if (dot) {
+      const c = colors[PRAYER_NAMES[currentIdx]] || '#d4a745';
+      dot.style.background = c;
+      dot.style.boxShadow = `0 0 20px ${c}80`;
+    }
+  }
+
+  function renderPrayerGrid(now) {
+    const times = currentPrayerTimes;
+    const grid = document.getElementById('prayerGridModern');
+    if (!grid) return;
+
+    if (!times) {
+      grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;padding:20px;color:var(--text-muted);">⏳ Memuat jadwal...</div>`;
+      return;
+    }
+    const tArray = [times.subuh, times.dhuhr, times.ashar, times.maghrib, times.isha];
+
+    let html = '';
+    for (let i = 0; i < PRAYER_NAMES.length; i++) {
+      const key = PRAYER_NAMES[i];
+      const display = PRAYER_DISPLAY[key];
+      const icon = PRAYER_ICONS[key];
+      const timeStr = minutesToTime(tArray[i]);
+
+      let cls = 'prayer-item-modern';
+      if (i === currentPrayerIndex) cls += ' active';
+      if (i === nextPrayerIndex && i !== currentPrayerIndex) cls += ' next';
+
+      html += `
+        <div class="${cls}" data-prayer="${key}" data-index="${i}">
+          <span class="prayer-icon"><i class="fas ${icon}"></i></span>
+          <div class="prayer-name">${display}</div>
+          <div class="prayer-time">${timeStr}</div>
+        </div>`;
+    }
+    grid.innerHTML = html;
+  }
+
+  function updatePrayerCountdown(now) {
+    const times = currentPrayerTimes;
+    const timeEl = document.getElementById('prayerCountdownTime');
+    const labelEl = document.getElementById('prayerCountdownLabel');
+    if (!times || nextPrayerIndex < 0) {
+      if (timeEl) timeEl.textContent = '--:--:--';
+      if (labelEl) labelEl.textContent = '—';
+      return;
+    }
+
+    const tArray = [times.subuh, times.dhuhr, times.ashar, times.maghrib, times.isha];
+    const totalMinutes = now.getHours() * 60 + now.getMinutes() + now.getSeconds() / 60;
+
+    let nextTime = tArray[nextPrayerIndex];
+    if (nextTime <= totalMinutes) nextTime += 1440;
+
+    const diffSeconds = Math.round((nextTime - totalMinutes) * 60);
+    if (diffSeconds <= 0) {
+      if (timeEl) timeEl.textContent = '00:00:00';
+      if (labelEl) labelEl.textContent = 'Sekarang!';
+      return;
+    }
+    const hrs = Math.floor(diffSeconds / 3600);
+    const mins = Math.floor((diffSeconds % 3600) / 60);
+    const secs = diffSeconds % 60;
+    if (timeEl) timeEl.textContent = `${pad2(hrs)}:${pad2(mins)}:${pad2(secs)}`;
+    if (labelEl) labelEl.textContent = PRAYER_DISPLAY[PRAYER_NAMES[nextPrayerIndex]] || '—';
+  }
+
+  function updatePrayerLocationInfo() {
+    const nameEl = document.getElementById('prayerLocationName');
+    if (nameEl) nameEl.textContent = PRAYER_CONFIG.locationName || 'Jakarta';
+
+    const coordEl = document.getElementById('prayerCoordDisplay');
+    if (coordEl) coordEl.textContent = `${PRAYER_CONFIG.latitude.toFixed(4)}, ${PRAYER_CONFIG.longitude.toFixed(4)}`;
+
+    const tz = PRAYER_CONFIG.timezone;
+    const tzStr = tz >= 0 ? `UTC+${tz}` : `UTC${tz}`;
+    const tzEl = document.getElementById('prayerTzDisplay');
+    if (tzEl) tzEl.textContent = tzStr;
+
+    const label = PRAYER_CONFIG.method === 'kemenag' ? 'Kemenag RI' : 'Muslim World League';
+    const mEl = document.getElementById('prayerMethodName');
+    if (mEl) mEl.textContent = label;
+  }
+
+  function updatePrayerAll() {
+    try {
+      const now = new Date();
+      const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+      const cacheKey = today.getTime();
+
+      if (!currentPrayerTimes || window._prayerCacheDate !== cacheKey) {
+        currentPrayerTimes = calculatePrayerTimes(
+          today, PRAYER_CONFIG.latitude, PRAYER_CONFIG.longitude,
+          PRAYER_CONFIG.timezone, PRAYER_CONFIG.method
+        );
+        window._prayerCacheDate = cacheKey;
+      }
+
+      updatePrayerClock(now);
+      updatePrayerDate(now);
+      updatePrayerStatus(now);
+      renderPrayerGrid(now);
+      updatePrayerCountdown(now);
+      updatePrayerLocationInfo();
+    } catch (err) {
+      console.warn('[Prayer] Error:', err);
+    }
+  }
+
+  /* ================================================================
+     LOCATION DETECTION
+     ================================================================ */
+  function detectLocation() {
+    return new Promise((resolve) => {
+      if (!navigator.geolocation) { resolve(false); return; }
+      const timeoutId = setTimeout(() => resolve(false), 8000);
+      navigator.geolocation.getCurrentPosition(
+        (pos) => {
+          clearTimeout(timeoutId);
+          const lat = pos.coords.latitude;
+          const lon = pos.coords.longitude;
+          if (isFinite(lat) && isFinite(lon) && Math.abs(lat) <= 90 && Math.abs(lon) <= 180) {
+            PRAYER_CONFIG.latitude = lat;
+            PRAYER_CONFIG.longitude = lon;
+            const estTz = Math.round(lon / 15);
+            PRAYER_CONFIG.timezone = Math.max(-12, Math.min(12, estTz));
+            PRAYER_CONFIG.locationName = 'Lokasi Saya';
+            resolve(true);
+          } else resolve(false);
+        },
+        () => { clearTimeout(timeoutId); resolve(false); },
+        { enableHighAccuracy: true, timeout: 7000, maximumAge: 60000 }
+      );
+    });
+  }
+
+  async function detectLocationViaIP() {
+    try {
+      const resp = await fetch('https://ipapi.co/json/', { signal: withTimeout(5000) });
+      if (!resp.ok) throw new Error('HTTP ' + resp.status);
+      const data = await resp.json();
+      if (data.latitude && data.longitude) {
+        const lat = parseFloat(data.latitude);
+        const lon = parseFloat(data.longitude);
+        if (isFinite(lat) && isFinite(lon)) {
+          PRAYER_CONFIG.latitude = lat;
+          PRAYER_CONFIG.longitude = lon;
+          const estTz = Math.round(lon / 15);
+          PRAYER_CONFIG.timezone = Math.max(-12, Math.min(12, estTz));
+          PRAYER_CONFIG.locationName = data.city || data.region || 'Lokasi';
+          return true;
+        }
+      }
+      return false;
+    } catch (_) { return false; }
+  }
+
+  async function initPrayerLocation() {
+    let ok = await detectLocation();
+    if (!ok) ok = await detectLocationViaIP();
+    if (!ok) {
+      PRAYER_CONFIG.latitude = -6.2088;
+      PRAYER_CONFIG.longitude = 106.8456;
+      PRAYER_CONFIG.timezone = 7;
+      PRAYER_CONFIG.locationName = 'Jakarta';
+    }
+    updatePrayerLocationInfo();
+    window._prayerCacheDate = null;
+    updatePrayerAll();
+
+    const sel = document.getElementById('prayerMethodSelect');
+    if (sel) sel.value = PRAYER_CONFIG.method;
+    const inp = document.getElementById('prayerLocationInput');
+    if (inp) inp.value = PRAYER_CONFIG.locationName;
+  }
+
+  /* ================================================================
+     SETTINGS
+     ================================================================ */
+  function applyPrayerSettings() {
+    const method = document.getElementById('prayerMethodSelect')?.value || 'kemenag';
+    const locName = document.getElementById('prayerLocationInput')?.value.trim() || 'Jakarta';
+    PRAYER_CONFIG.method = method;
+    PRAYER_CONFIG.locationName = locName;
+    window._prayerCacheDate = null;
+    updatePrayerAll();
+    showPrayerToast('Pengaturan diterapkan ✓', 'fa-check-circle');
+    document.getElementById('prayerSettingsSection')?.classList.remove('open');
+    document.getElementById('prayerSettingsToggle')?.classList.remove('open');
+  }
+
+  function togglePrayerSettings() {
+    document.getElementById('prayerSettingsSection')?.classList.toggle('open');
+    document.getElementById('prayerSettingsToggle')?.classList.toggle('open');
+  }
+
+  async function refreshPrayerAll() {
+    showPrayerToast('Menyegarkan lokasi...', 'fa-sync-alt');
+    await initPrayerLocation();
+    showPrayerToast('Jadwal diperbarui ✓', 'fa-check-circle');
+  }
+
+  /* ================================================================
+     BONUS FEATURES
+     ================================================================ */
+  function toggleFullscreen() {
+    const card = document.getElementById('prayerCardModern');
+    if (!card) return;
+    const isFs = card.classList.contains('prayer-fs-active');
+    if (isFs) {
+      card.classList.remove('prayer-fs-active');
+      document.body.style.overflow = '';
+      showPrayerToast('Mode layar penuh dimatikan', 'fa-compress');
+    } else {
+      card.classList.add('prayer-fs-active');
+      document.body.style.overflow = 'hidden';
+      showPrayerToast('Mode layar penuh aktif', 'fa-expand');
+    }
+  }
+
+  function exportPrayerSchedule() {
+    if (!currentPrayerTimes) {
+      showPrayerToast('Jadwal belum tersedia', 'fa-exclamation-circle');
+      return;
+    }
+    const d = new Date();
+    const days = ['Minggu','Senin','Selasa','Rabu','Kamis','Jumat','Sabtu'];
+    const months = ['Januari','Februari','Maret','April','Mei','Juni','Juli','Agustus','September','Oktober','November','Desember'];
+    const dateStr = `${days[d.getDay()]}, ${d.getDate()} ${months[d.getMonth()]} ${d.getFullYear()}`;
+    const lines = [
+      '🕌 JADWAL SHOLAT — IRGXYMODS',
+      '📍 Lokasi: ' + PRAYER_CONFIG.locationName,
+      '📅 ' + dateStr,
+      '🕋 Hijriah: ' + formatHijri(d),
+      '───────────────────────',
+      'Subuh   : ' + minutesToTime(currentPrayerTimes.subuh),
+      'Dzuhur  : ' + minutesToTime(currentPrayerTimes.dhuhr),
+      'Ashar   : ' + minutesToTime(currentPrayerTimes.ashar),
+      'Maghrib : ' + minutesToTime(currentPrayerTimes.maghrib),
+      'Isya    : ' + minutesToTime(currentPrayerTimes.isha),
+      '───────────────────────',
+      'Metode: ' + (PRAYER_CONFIG.method === 'kemenag' ? 'Kemenag RI' : 'Muslim World League'),
+      '🌐 ' + PRAYER_CONFIG.latitude.toFixed(4) + ', ' + PRAYER_CONFIG.longitude.toFixed(4)
+    ];
+    const text = lines.join('\n');
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(() => {
+        showPrayerToast('Jadwal disalin ke clipboard ✓', 'fa-check-circle');
+      }).catch(() => fallbackCopy(text));
+    } else {
+      fallbackCopy(text);
+    }
+  }
+
+  function fallbackCopy(text) {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed';
+    ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try {
+      document.execCommand('copy');
+      showPrayerToast('Jadwal disalin ✓', 'fa-check-circle');
+    } catch (_) {
+      showPrayerToast('Gagal menyalin, silakan cek manual', 'fa-exclamation-circle');
+    }
+    document.body.removeChild(ta);
+  }
+
+  function requestNotifPermission() {
+    if (!('Notification' in window)) {
+      showPrayerToast('Browser tidak mendukung notifikasi', 'fa-exclamation-circle');
+      return;
+    }
+    if (Notification.permission === 'granted') {
+      showPrayerToast('Notifikasi sudah aktif ✓', 'fa-bell');
+      AdzanSystem.notifyBrowser('Test');
+      return;
+    }
+    if (Notification.permission === 'denied') {
+      showPrayerToast('Notifikasi diblokir oleh browser', 'fa-exclamation-circle');
+      return;
+    }
+    Notification.requestPermission().then((perm) => {
+      if (perm === 'granted') showPrayerToast('Notifikasi diaktifkan ✓', 'fa-bell');
+      else showPrayerToast('Notifikasi tidak diaktifkan', 'fa-bell-slash');
+    });
+  }
+
+  /* ================================================================
+     INIT
+     ================================================================ */
+  let prayerInterval = null;
+  let visibilityHandler = null;
+
+  function startInterval() {
+    if (prayerInterval) clearInterval(prayerInterval);
+    prayerInterval = setInterval(() => {
+      try {
+        updatePrayerAll();
+        AdzanSystem.checkAndPlay();
+      } catch (e) {
+        console.warn('[Prayer interval] Error:', e);
+      }
+    }, 1000);
+  }
+
+  function stopInterval() {
+    if (prayerInterval) { clearInterval(prayerInterval); prayerInterval = null; }
+  }
+
+  async function initJadwalSholat() {
+    if (window.AOS && typeof AOS.init === 'function') {
+      try { AOS.init({ duration: 650, easing: 'ease-out-expo', once: true, offset: 30 }); } catch (_) {}
+    }
+
+    try { AdzanSystem.init(); AdzanSystem.bindUI(); }
+    catch (e) { console.warn('[Adzan] Init failed:', e); }
+
+    await initPrayerLocation();
+
+    startInterval();
+
+    visibilityHandler = () => {
+      if (document.hidden) stopInterval();
+      else { updatePrayerAll(); startInterval(); }
+    };
+    document.addEventListener('visibilitychange', visibilityHandler);
+
+    const settingsToggle = document.getElementById('prayerSettingsToggle');
+    if (settingsToggle) settingsToggle.addEventListener('click', togglePrayerSettings);
+
+    const applyBtn = document.getElementById('prayerApplySettingsBtn');
+    if (applyBtn) applyBtn.addEventListener('click', applyPrayerSettings);
+
+    const refreshBtn = document.getElementById('prayerRefreshBtn');
+    if (refreshBtn) refreshBtn.addEventListener('click', refreshPrayerAll);
+
+    const locBadge = document.getElementById('prayerLocationBadge');
+    if (locBadge) locBadge.addEventListener('click', () => {
+      const sec = document.getElementById('prayerSettingsSection');
+      if (sec && !sec.classList.contains('open')) togglePrayerSettings();
+      document.getElementById('prayerLocationInput')?.focus();
+    });
+
+    const fsBtn = document.getElementById('prayerFullscreenBtn');
+    if (fsBtn) fsBtn.addEventListener('click', toggleFullscreen);
+
+    const exportBtn = document.getElementById('prayerExportBtn');
+    if (exportBtn) exportBtn.addEventListener('click', exportPrayerSchedule);
+
+    const notifBtn = document.getElementById('prayerNotifBtn');
+    if (notifBtn) notifBtn.addEventListener('click', requestNotifPermission);
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        const card = document.getElementById('prayerCardModern');
+        if (card && card.classList.contains('prayer-fs-active')) toggleFullscreen();
+      }
+    });
+
+    const resumeAudioOnce = () => {
+      if (AdzanSystem.audio) {
+        AdzanSystem._userInteracted = true;
+      }
+      document.removeEventListener('click', resumeAudioOnce);
+      document.removeEventListener('touchstart', resumeAudioOnce);
+      document.removeEventListener('keydown', resumeAudioOnce);
+    };
+    document.addEventListener('click', resumeAudioOnce, { once: true, passive: true });
+    document.addEventListener('touchstart', resumeAudioOnce, { once: true, passive: true });
+    document.addEventListener('keydown', resumeAudioOnce, { once: true });
+
+    console.log('✅ Jadwal Sholat ready — Sistem real-time aktif, presisi falak, adzan otomatis.');
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initJadwalSholat);
+  } else {
+    initJadwalSholat();
+  }
+
+  window.__jadwalSholat = {
+    PRAYER_CONFIG,
+    AdzanSystem,
+    updatePrayerAll,
+    refreshPrayerAll,
+    getCurrentPrayerTimes: () => currentPrayerTimes
+  };
+})();
+</script>
+
+</body>
+</html>
