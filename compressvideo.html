@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Compress Video Premium v6.1 — IRGXYMODS</title>
+<meta name="description" content="Kompres video MP4/MOV/MKV/WebM hingga 90% lebih kecil langsung di browser. 100% offline, privasi terjaga." />
+<meta name="keywords" content="compress video, kompres video online, ffmpeg wasm, kompres mp4, kompres tanpa upload, irgxymods" />
+<meta name="theme-color" content="#0f0f1a" />
+<meta name="color-scheme" content="dark" />
+<meta name="author" content="IRGXYMODS" />
+<meta name="robots" content="index, follow" />
+<meta property="og:title" content="Compress Video Premium — IRGXYMODS" />
+<meta property="og:description" content="Kompres video langsung di browser. 100% offline, privasi terjaga." />
+<meta property="og:type" content="website" />
+
+<link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin />
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" crossorigin="anonymous" />
+<link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" crossorigin="anonymous" />
+<link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="compressvideo.css" />
+</head>
+<body>
+
+<div class="toast-container" id="toastContainer" aria-live="polite"></div>
+
+<noscript>
+  <div style="position:fixed;top:0;left:0;right:0;padding:16px;background:#ff416c;color:#fff;text-align:center;z-index:99999;font-family:sans-serif;">
+    Halaman ini membutuhkan JavaScript.
+  </div>
+</noscript>
+
+<a href="#mainContent" class="cv-skip-link">Lewati ke konten</a>
+
+<!-- ============ HEADER (sama seperti situs) ============ -->
+<header>
+  <div class="header-top">
+    <a href="index.html" class="logo-brand" aria-label="IRGXYMODS Beranda">
+      <i class="fas fa-crown"></i><h1>IRGXYMODS</h1>
+    </a>
+  </div>
+  <nav class="nav-tabs-container" aria-label="Navigasi utama">
+    <div class="nav-tabs">
+      <a href="index.html" class="nav-tab">Aplikasi Mod</a>
+      <a href="compressvideo.html" class="nav-tab active" aria-current="page"><i class="fas fa-compress"></i> Compress Video</a>
+      <a href="iqcgenerator.html" class="nav-tab"><i class="fas fa-comments"></i> IQC Generator</a>
+      <a href="qris-barcode.html" class="nav-tab"><i class="fas fa-qrcode"></i> QRIS &amp; Barcode</a>
+      <a href="spotify.html" class="nav-tab"><i class="fab fa-spotify"></i> Spotify</a>
+      <a href="testspeed.html" class="nav-tab"><i class="fas fa-tachometer-alt"></i> Test Speed</a>
+    </div>
+  </nav>
+</header>
+
+<main id="mainContent">
+  <div class="cv-container">
+
+    <!-- ============ HERO ============ -->
+    <section class="cv-hero" data-aos="fade-up">
+      <div class="cv-hero-icon"><i class="fas fa-compress"></i></div>
+      <h1 class="cv-hero-title">Compress Video <span>v6.1</span></h1>
+      <p class="cv-hero-sub">
+        Kompres video hingga <strong>90% lebih kecil</strong> langsung di browser —
+        tanpa upload ke server, privasi 100% terjaga.
+      </p>
+      <div class="cv-hero-pills">
+        <span class="cv-pill"><i class="fas fa-bolt"></i> Cepat</span>
+        <span class="cv-pill"><i class="fas fa-shield-alt"></i> Offline</span>
+        <span class="cv-pill"><i class="fas fa-lock"></i> Privasi</span>
+        <span class="cv-pill"><i class="fas fa-magic"></i> 8 Preset</span>
+      </div>
+    </section>
+
+    <!-- ============ WORKER STATUS ============ -->
+    <div class="cv-worker-status" id="workerStatus">
+      <i class="fas fa-circle-notch fa-spin"></i>
+      <span id="workerStatusText">Memuat worker...</span>
+      <span class="cv-worker-version" id="workerVersionTag"></span>
+    </div>
+
+    <!-- ============ UPLOAD ============ -->
+    <section class="cv-card" data-aos="fade-up">
+      <div class="cv-card-header"><i class="fas fa-file-video"></i><span>Pilih Video</span></div>
+
+      <div class="cv-dropzone" id="dropzone" role="button" tabindex="0" aria-label="Area upload video">
+        <input type="file" id="fileInput"
+               accept="video/mp4,video/webm,video/quicktime,video/x-matroska,video/x-msvideo,.mp4,.mov,.mkv,.webm,.avi,.m4v,.3gp"
+               hidden />
+        <i class="fas fa-cloud-upload-alt cv-dropzone-icon"></i>
+        <h3>Tarik &amp; Lepaskan Video</h3>
+        <p>atau <strong>klik untuk memilih file</strong></p>
+        <small>MP4, MOV, MKV, WebM, AVI — Maks 1 GB (disarankan &lt; 500 MB)</small>
+      </div>
+
+      <div class="cv-preview" id="preview" style="display:none;">
+        <div class="cv-preview-video">
+          <video id="videoPreview" controls playsinline preload="metadata"></video>
+        </div>
+        <div class="cv-preview-info">
+          <h4 id="fileName">-</h4>
+          <div class="cv-meta-grid">
+            <div class="cv-meta-item"><span>Ukuran</span><strong id="fileSize">-</strong></div>
+            <div class="cv-meta-item"><span>Durasi</span><strong id="fileDuration">-</strong></div>
+            <div class="cv-meta-item"><span>Resolusi</span><strong id="fileResolution">-</strong></div>
+            <div class="cv-meta-item"><span>Bitrate</span><strong id="fileBitrate">-</strong></div>
+          </div>
+          <div class="cv-preview-actions">
+            <button type="button" class="cv-btn" id="btnChangeFile"><i class="fas fa-exchange-alt"></i> Ganti File</button>
+            <button type="button" class="cv-btn danger" id="btnRemoveFile"><i class="fas fa-trash"></i> Hapus</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SETTINGS ============ -->
+    <section class="cv-card" id="settingsCard" style="display:none;" data-aos="fade-up">
+      <div class="cv-card-header"><i class="fas fa-sliders-h"></i><span>Pengaturan Kompresi</span></div>
+
+      <!-- Preset -->
+      <div class="cv-group">
+        <label class="cv-group-label"><i class="fas fa-magic"></i> Profil Cepat</label>
+        <div class="cv-preset-grid">
+          <button type="button" class="cv-preset-btn" data-preset="whatsapp">
+            <i class="fab fa-whatsapp"></i><span>WhatsApp</span><small>720p · ≤16 MB</small>
+          </button>
+          <button type="button" class="cv-preset-btn" data-preset="instagram">
+            <i class="fab fa-instagram"></i><span>Instagram</span><small>1080p · 3.5 Mbps</small>
+          </button>
+          <button type="button" class="cv-preset-btn" data-preset="tiktok">
+            <i class="fab fa-tiktok"></i><span>TikTok</span><small>1080p · 4 Mbps</small>
+          </button>
+          <button type="button" class="cv-preset-btn" data-preset="youtube">
+            <i class="fab fa-youtube"></i><span>YouTube HD</span><small>1080p · 8 Mbps</small>
+          </button>
+          <button type="button" class="cv-preset-btn" data-preset="twitter">
+            <i class="fab fa-twitter"></i><span>Twitter/X</span><small>720p · 5 Mbps</small>
+          </button>
+          <button type="button" class="cv-preset-btn" data-preset="email">
+            <i class="fas fa-envelope"></i><span>Email</span><small>480p · ≤20 MB</small>
+          </button>
+          <button type="button" class="cv-preset-btn" data-preset="discord">
+            <i class="fab fa-discord"></i><span>Discord</span><small>720p · ≤8 MB</small>
+          </button>
+          <button type="button" class="cv-preset-btn" data-preset="maxsave">
+            <i class="fas fa-compress-arrows-alt"></i><span>Hemat Maks</span><small>480p · H.265 CRF 32</small>
+          </button>
+        </div>
+      </div>
+
+      <!-- Codec -->
+      <div class="cv-group">
+        <label class="cv-group-label"><i class="fas fa-video"></i> Video Codec</label>
+        <div class="cv-radio-grid">
+          <label class="cv-radio">
+            <input type="radio" name="codec" value="h264-cpu" checked />
+            <span class="cv-radio-mark"></span>
+            <span class="cv-radio-text">H.264 <small>(Cepat, Kompatibel)</small></span>
+          </label>
+          <label class="cv-radio">
+            <input type="radio" name="codec" value="h265-cpu" />
+            <span class="cv-radio-mark"></span>
+            <span class="cv-radio-text">H.265 <small>(Lebih Kecil, Modern)</small></span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Method -->
+      <div class="cv-group">
+        <label class="cv-group-label"><i class="fas fa-crosshairs"></i> Metode Kompresi</label>
+        <div class="cv-radio-grid">
+          <label class="cv-radio">
+            <input type="radio" name="method" value="size-percent" checked />
+            <span class="cv-radio-mark"></span>
+            <span class="cv-radio-text">Target Ukuran (%)</span>
+          </label>
+          <label class="cv-radio">
+            <input type="radio" name="method" value="size-mb" />
+            <span class="cv-radio-mark"></span>
+            <span class="cv-radio-text">Target Ukuran (MB)</span>
+          </label>
+          <label class="cv-radio">
+            <input type="radio" name="method" value="quality" />
+            <span class="cv-radio-mark"></span>
+            <span class="cv-radio-text">Kualitas (CRF)</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Dynamic Input -->
+      <div class="cv-group" id="dynamicInput">
+        <label class="cv-group-label" id="dynamicLabel"><i class="fas fa-percent"></i> Target Ukuran (%)</label>
+        <div class="cv-slider-wrap" id="sliderWrap">
+          <input type="range" id="slider" min="5" max="95" value="50" step="1" />
+          <div class="cv-slider-value"><span id="sliderValue">50</span><span id="sliderUnit">%</span></div>
+        </div>
+        <div class="cv-number-wrap" id="numberWrap" style="display:none;">
+          <input type="number" id="numberInput" min="1" max="2048" value="50" step="1" inputmode="numeric" />
+          <span class="cv-number-unit" id="numberUnit">MB</span>
+        </div>
+      </div>
+
+      <!-- Resolution -->
+      <div class="cv-group">
+        <label class="cv-group-label"><i class="fas fa-expand"></i> Resolusi</label>
+        <div class="cv-radio-grid cv-radio-grid-res">
+          <label class="cv-radio"><input type="radio" name="resolution" value="1920x1080" /><span class="cv-radio-mark"></span><span class="cv-radio-text">1080p</span></label>
+          <label class="cv-radio"><input type="radio" name="resolution" value="1280x720" checked /><span class="cv-radio-mark"></span><span class="cv-radio-text">720p</span></label>
+          <label class="cv-radio"><input type="radio" name="resolution" value="960x540" /><span class="cv-radio-mark"></span><span class="cv-radio-text">540p</span></label>
+          <label class="cv-radio"><input type="radio" name="resolution" value="854x480" /><span class="cv-radio-mark"></span><span class="cv-radio-text">480p</span></label>
+          <label class="cv-radio"><input type="radio" name="resolution" value="640x360" /><span class="cv-radio-mark"></span><span class="cv-radio-text">360p</span></label>
+          <label class="cv-radio"><input type="radio" name="resolution" value="426x240" /><span class="cv-radio-mark"></span><span class="cv-radio-text">240p</span></label>
+          <label class="cv-radio"><input type="radio" name="resolution" value="256x144" /><span class="cv-radio-mark"></span><span class="cv-radio-text">144p</span></label>
+          <label class="cv-radio"><input type="radio" name="resolution" value="keep" /><span class="cv-radio-mark"></span><span class="cv-radio-text">Asli</span></label>
+        </div>
+        <div class="cv-warning" id="resolutionWarning" style="display:none;">
+          <i class="fas fa-info-circle"></i>
+          <span>Resolusi target lebih besar dari sumber — tidak akan di-upscale.</span>
+        </div>
+      </div>
+
+      <!-- Audio -->
+      <div class="cv-group">
+        <label class="cv-group-label"><i class="fas fa-volume-up"></i> Audio</label>
+        <div class="cv-row-2">
+          <select id="audioCodec" class="cv-select">
+            <option value="aac" selected>AAC (Default)</option>
+            <option value="libopus">Opus</option>
+            <option value="libmp3lame">MP3</option>
+            <option value="copy">Copy (tanpa re-encode)</option>
+            <option value="none">Tanpa Audio</option>
+          </select>
+          <select id="audioBitrate" class="cv-select">
+            <option value="64">64 kbps</option>
+            <option value="96">96 kbps</option>
+            <option value="128" selected>128 kbps</option>
+            <option value="192">192 kbps</option>
+            <option value="256">256 kbps</option>
+            <option value="320">320 kbps</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Trim -->
+      <div class="cv-group">
+        <label class="cv-group-label"><i class="fas fa-cut"></i> Trim Video (opsional)</label>
+        <div class="cv-trim-row">
+          <label class="cv-field">
+            <span>Mulai (detik)</span>
+            <input type="number" id="trimStart" min="0" step="0.1" value="0" inputmode="decimal" />
+          </label>
+          <label class="cv-field">
+            <span>Selesai (detik)</span>
+            <input type="number" id="trimEnd" min="0" step="0.1" value="0" inputmode="decimal" />
+          </label>
+          <button type="button" class="cv-btn" id="btnTrimFull"><i class="fas fa-expand"></i> Penuh</button>
+        </div>
+        <input type="range" id="trimStartRange" min="0" max="100" step="0.1" value="0" class="cv-range" style="margin-top:8px;" />
+        <input type="range" id="trimEndRange" min="0" max="100" step="0.1" value="100" class="cv-range" />
+        <small class="cv-hint">Kosongkan / 0 = proses seluruh video.</small>
+      </div>
+
+      <!-- Transform -->
+      <div class="cv-group">
+        <label class="cv-group-label"><i class="fas fa-sync"></i> Transformasi</label>
+        <div class="cv-row-2">
+          <label class="cv-field">
+            <span>Rotasi</span>
+            <select id="advRotate" class="cv-select">
+              <option value="0">0°</option>
+              <option value="90">90°</option>
+              <option value="180">180°</option>
+              <option value="270">270°</option>
+            </select>
+          </label>
+          <label class="cv-field">
+            <span>Flip</span>
+            <select id="advFlip" class="cv-select">
+              <option value="none">Tidak</option>
+              <option value="h">Horizontal</option>
+              <option value="v">Vertical</option>
+            </select>
+          </label>
+        </div>
+      </div>
+
+      <!-- Color filter -->
+      <div class="cv-group">
+        <label class="cv-group-label"><i class="fas fa-image"></i> Filter Warna</label>
+        <div class="cv-row-3">
+          <label class="cv-field">
+            <span>Brightness <em id="valBrightness">0</em></span>
+            <input type="range" id="fBrightness" min="-1" max="1" step="0.05" value="0" />
+          </label>
+          <label class="cv-field">
+            <span>Contrast <em id="valContrast">1.0</em></span>
+            <input type="range" id="fContrast" min="0.5" max="2" step="0.05" value="1" />
+          </label>
+          <label class="cv-field">
+            <span>Saturation <em id="valSaturation">1.0</em></span>
+            <input type="range" id="fSaturation" min="0" max="2" step="0.05" value="1" />
+          </label>
+        </div>
+      </div>
+
+      <!-- Watermark -->
+      <div class="cv-group">
+        <label class="cv-group-label"><i class="fas fa-tint"></i> Watermark Teks (opsional)</label>
+        <div class="cv-field" style="margin-bottom:8px;">
+          <input type="text" id="wmText" placeholder="Contoh: © IRGXYMODS 2025" maxlength="60" />
+        </div>
+        <div class="cv-row-2">
+          <label class="cv-field">
+            <span>Posisi</span>
+            <select id="wmPos" class="cv-select">
+              <option value="tl">Kiri Atas</option>
+              <option value="tr">Kanan Atas</option>
+              <option value="bl">Kiri Bawah</option>
+              <option value="br" selected>Kanan Bawah</option>
+              <option value="tc">Tengah Atas</option>
+              <option value="bc">Tengah Bawah</option>
+            </select>
+          </label>
+          <label class="cv-field">
+            <span>Ukuran Font</span>
+            <input type="number" id="wmSize" min="10" max="120" value="24" />
+          </label>
+        </div>
+        <div class="cv-row-2" style="margin-top:8px;">
+          <label class="cv-field">
+            <span>Warna</span>
+            <input type="color" id="wmColor" value="#ffffff" />
+          </label>
+          <label class="cv-field">
+            <span>Opacity <em id="valWmOpacity">0.8</em></span>
+            <input type="range" id="wmOpacity" min="0.1" max="1" step="0.05" value="0.8" />
+          </label>
+        </div>
+        <label class="cv-checkbox">
+          <input type="checkbox" id="wmBg" />
+          <span>Tambahkan latar hitam transparan</span>
+        </label>
+      </div>
+
+      <!-- Reset -->
+      <button type="button" class="cv-btn cv-btn-reset" id="btnReset">
+        <i class="fas fa-undo"></i> Reset ke Default
+      </button>
+
+      <!-- Estimate -->
+      <div class="cv-estimate">
+        <h4><i class="fas fa-chart-line"></i> Estimasi Output</h4>
+        <div class="cv-estimate-grid">
+          <div><span>Perkiraan Ukuran</span><strong id="estSize">-</strong></div>
+          <div><span>Video Bitrate</span><strong id="estVideoBitrate">-</strong></div>
+          <div><span>Audio Bitrate</span><strong id="estAudioBitrate">-</strong></div>
+          <div><span>Rasio</span><strong id="estRatio">-</strong></div>
+          <div><span>Kualitas</span><strong id="estQuality">-</strong></div>
+          <div><span>Perkiraan Waktu</span><strong id="estTime">-</strong></div>
+        </div>
+        <div class="cv-warning" id="estOutputWarning" style="display:none;margin-top:12px;">
+          <i class="fas fa-exclamation-circle"></i>
+          <span>Estimasi output <strong>≥ file asli</strong>. Turunkan bitrate/CRF atau resolusi.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ACTION ============ -->
+    <section class="cv-card" id="actionCard" style="display:none;" data-aos="fade-up">
+      <button type="button" class="cv-start-btn" id="btnStart">
+        <i class="fas fa-play"></i> MULAI COMPRESS
+      </button>
+
+      <div class="cv-progress-wrap" id="progressWrap" style="display:none;">
+        <div class="cv-progress-bar" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+          <div class="cv-progress-fill" id="progressFill" style="width:0%;"></div>
+        </div>
+        <div class="cv-progress-info">
+          <div class="cv-progress-pct" id="progressPct">0%</div>
+          <div class="cv-progress-stats">
+            <span><i class="fas fa-tachometer-alt"></i> <span id="progressSpeed">-</span></span>
+            <span><i class="fas fa-hourglass-half"></i> ETA <span id="progressEta">--:--</span></span>
+            <span><i class="fas fa-film"></i> <span id="progressFps">-</span> fps</span>
+          </div>
+        </div>
+        <div class="cv-chart" id="progressChart"></div>
+        <button type="button" class="cv-btn danger cv-cancel-btn" id="btnCancel">
+          <i class="fas fa-times"></i> Batalkan
+        </button>
+      </div>
+    </section>
+
+    <!-- ============ RESULT ============ -->
+    <section class="cv-card" id="resultCard" style="display:none;" data-aos="fade-up">
+      <div class="cv-card-header">
+        <i class="fas fa-check-circle"></i>
+        <span>Hasil Kompresi</span>
+        <span class="cv-codec-badge" id="resultCodecBadge"></span>
+      </div>
+      <div class="cv-result-grid">
+        <div class="cv-result-video"><video id="resultVideo" controls playsinline preload="metadata"></video></div>
+        <div class="cv-result-info">
+          <div class="cv-compare">
+            <div class="cv-compare-item before">
+              <span>SEBELUM</span>
+              <strong id="beforeSize">-</strong>
+              <small id="beforeRes">-</small>
+            </div>
+            <div class="cv-compare-arrow"><i class="fas fa-arrow-right"></i></div>
+            <div class="cv-compare-item after">
+              <span>SESUDAH</span>
+              <strong id="afterSize">-</strong>
+              <small id="afterRes">-</small>
+            </div>
+          </div>
+          <div class="cv-saved" id="savedText">-</div>
+          <div class="cv-target-status" id="targetStatus" style="display:none;"></div>
+          <div class="cv-result-actions">
+            <a class="cv-download-btn" id="btnDownload" download>
+              <i class="fas fa-download"></i> Download Hasil
+            </a>
+            <button type="button" class="cv-btn" id="btnRetry">
+              <i class="fas fa-redo"></i> Compress Ulang
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ HISTORY ============ -->
+    <section class="cv-card" id="historyCard" style="display:none;" data-aos="fade-up">
+      <div class="cv-history-header">
+        <h3><i class="fas fa-history"></i> Riwayat Compress</h3>
+        <button type="button" class="cv-btn danger" id="btnClearHistory">
+          <i class="fas fa-trash"></i> Hapus Riwayat
+        </button>
+      </div>
+      <div class="cv-history-list" id="historyList"></div>
+    </section>
+
+    <!-- ============ INFO & FAQ ============ -->
+    <section class="cv-info-grid" data-aos="fade-up">
+      <div class="cv-info-card">
+        <h3 class="cv-info-title"><i class="fas fa-book"></i> Cara Pakai</h3>
+        <ol class="cv-steps">
+          <li><span class="cv-step-num">1</span><div>Pilih / tarik file video ke area upload.</div></li>
+          <li><span class="cv-step-num">2</span><div>Pilih <strong>Preset</strong> atau atur manual.</div></li>
+          <li><span class="cv-step-num">3</span><div>Opsional: atur <strong>Trim</strong>, <strong>Watermark</strong>, <strong>Filter</strong>.</div></li>
+          <li><span class="cv-step-num">4</span><div>Cek <strong>Estimasi Output</strong>.</div></li>
+          <li><span class="cv-step-num">5</span><div>Klik <strong>MULAI COMPRESS</strong>.</div></li>
+          <li><span class="cv-step-num">6</span><div>Download hasil, bandingkan before/after.</div></li>
+        </ol>
+      </div>
+
+      <div class="cv-info-card">
+        <h3 class="cv-info-title"><i class="fas fa-question-circle"></i> FAQ</h3>
+        <div class="cv-faq">
+          <div class="cv-faq-item">
+            <button type="button" class="cv-faq-q">Apakah video saya di-upload ke server? <i class="fas fa-chevron-down"></i></button>
+            <div class="cv-faq-a">Tidak. Semua proses kompresi terjadi <strong>100% di browser Anda</strong> menggunakan FFmpeg.wasm.</div>
+          </div>
+          <div class="cv-faq-item">
+            <button type="button" class="cv-faq-q">Codec mana yang terbaik? <i class="fas fa-chevron-down"></i></button>
+            <div class="cv-faq-a">H.265 memberi ukuran lebih kecil di kualitas sama, tapi lebih lambat. H.264 paling kompatibel dengan semua perangkat.</div>
+          </div>
+          <div class="cv-faq-item">
+            <button type="button" class="cv-faq-q">Berapa lama prosesnya? <i class="fas fa-chevron-down"></i></button>
+            <div class="cv-faq-a">Video 1 menit 1080p → 720p H.264: 30–90 detik. H.265 sekitar 2× lebih lama.</div>
+          </div>
+          <div class="cv-faq-item">
+            <button type="button" class="cv-faq-q">Format apa yang didukung? <i class="fas fa-chevron-down"></i></button>
+            <div class="cv-faq-a">Input: MP4, MOV, MKV, WebM, AVI. Output selalu MP4 (H.264 atau H.265 + AAC) untuk kompatibilitas maksimal.</div>
+          </div>
+          <div class="cv-faq-item">
+            <button type="button" class="cv-faq-q">File besar bisa? <i class="fas fa-chevron-down"></i></button>
+            <div class="cv-faq-a">Disarankan &lt; 500 MB untuk stabilitas. Maks 1 GB di PC modern.</div>
+          </div>
+          <div class="cv-faq-item">
+            <button type="button" class="cv-faq-q">Ada keyboard shortcut? <i class="fas fa-chevron-down"></i></button>
+            <div class="cv-faq-a">Ya. Tekan <kbd>Ctrl</kbd>+<kbd>/</kbd> untuk daftar lengkap.</div>
+          </div>
+          <div class="cv-faq-item">
+            <button type="button" class="cv-faq-q">Kenapa hasil tidak lebih kecil? <i class="fas fa-chevron-down"></i></button>
+            <div class="cv-faq-a">Coba turunkan target size (%), naikkan CRF, atau turunkan resolusi. Video yang sudah terkompres tidak bisa banyak dikurangi lagi.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cv-info-card">
+        <h3 class="cv-info-title"><i class="fas fa-star"></i> Fitur v6.1</h3>
+        <ul class="cv-steps" style="list-style:none;padding-left:0;">
+          <li><span class="cv-step-num"><i class="fas fa-magic"></i></span><div><strong>8 Preset Profil</strong> siap pakai.</div></li>
+          <li><span class="cv-step-num"><i class="fas fa-cut"></i></span><div><strong>Trim presisi</strong> frame-accurate.</div></li>
+          <li><span class="cv-step-num"><i class="fas fa-tint"></i></span><div><strong>Watermark teks</strong> 6 posisi.</div></li>
+          <li><span class="cv-step-num"><i class="fas fa-sliders-h"></i></span><div><strong>Rotate / Flip / Filter</strong>.</div></li>
+          <li><span class="cv-step-num"><i class="fas fa-terminal"></i></span><div><strong>Log viewer</strong> real-time (Ctrl+L).</div></li>
+          <li><span class="cv-step-num"><i class="fas fa-chart-line"></i></span><div><strong>Progress + ETA + Chart</strong>.</div></li>
+          <li><span class="cv-step-num"><i class="fas fa-check-double"></i></span><div><strong>Target tercapai?</strong> indikator.</div></li>
+          <li><span class="cv-step-num"><i class="fas fa-redo"></i></span><div><strong>Compress Ulang</strong> dengan setting sama.</div></li>
+        </ul>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+  <p style="color:rgba(255,255,255,0.8);">&copy; 2025 IRGXY MODS — Compress Video Premium v6.1</p>
+</footer>
+
+<!-- ============ FLOATING BUTTONS ============ -->
+<button class="cv-float-btn" id="btnLog" title="Log Viewer (Ctrl+L)" aria-label="Buka log"><i class="fas fa-terminal"></i></button>
+<button class="cv-float-btn cv-float-btn-help" id="btnHelp" title="Shortcut (Ctrl+/)" aria-label="Buka shortcut"><i class="fas fa-keyboard"></i></button>
+
+<!-- ============ LOG PANEL ============ -->
+<div class="cv-log-panel" id="logPanel" style="display:none;">
+  <div class="cv-log-head">
+    <strong><i class="fas fa-terminal"></i> Worker Log</strong>
+    <div>
+      <button type="button" id="logClear" aria-label="Bersihkan log"><i class="fas fa-trash"></i></button>
+      <button type="button" id="logClose" aria-label="Tutup log"><i class="fas fa-times"></i></button>
+    </div>
+  </div>
+  <div class="cv-log-body" id="logBody"></div>
+</div>
+
+<!-- ============ HELP MODAL ============ -->
+<div class="cv-modal" id="helpModal" style="display:none;">
+  <div class="cv-modal-content">
+    <h3><i class="fas fa-keyboard"></i> Keyboard Shortcuts</h3>
+    <div class="cv-shortcuts">
+      <div><kbd>Ctrl</kbd> + <kbd>O</kbd> <span>Buka file</span></div>
+      <div><kbd>Ctrl</kbd> + <kbd>Enter</kbd> <span>Mulai compress</span></div>
+      <div><kbd>Esc</kbd> <span>Batalkan / tutup modal</span></div>
+      <div><kbd>Ctrl</kbd> + <kbd>L</kbd> <span>Toggle log viewer</span></div>
+      <div><kbd>Ctrl</kbd> + <kbd>/</kbd> <span>Toggle help ini</span></div>
+      <div><kbd>Ctrl</kbd> + <kbd>S</kbd> <span>Download hasil</span></div>
+      <div><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>R</kbd> <span>Reset semua</span></div>
+    </div>
+    <button type="button" class="cv-btn" id="helpClose">Tutup</button>
+  </div>
+</div>
+
+<!-- ============ SCRIPTS ============ -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js" crossorigin="anonymous" defer></script>
+<script>
+  window.addEventListener('DOMContentLoaded', function () {
+    try { if (window.AOS && AOS.init) AOS.init({ duration: 650, once: true, offset: 30 }); } catch (_) {}
+  });
+</script>
+<script src="main.js" defer></script>
+<script src="compressvideo.js" defer></script>
+</body>
+</html>
