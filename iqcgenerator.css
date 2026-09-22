@@ -1,0 +1,640 @@
+/* ================================================================
+   IQC GENERATOR — iqcgenerator.css
+   Version: 5.8.1 (PIXEL-PERFECT — Preview = Download 100%)
+   ================================================================
+   CHANGELOG v5.8.1:
+     [FIX #1] PISAHKAN CSS menu context (.iqc-cm-*) dan bubble chat
+              (.iqc-bubble-*) untuk mencegah konflik selector.
+     [FIX #1] Perbaiki CSS .iqc-cm-item img agar gambar tampil.
+     [FIX #2] Pastikan .iqc-cm-bubble dan .iqc-bubble memiliki
+              layout CSS Grid yang benar.
+   ================================================================ */
+
+/* ─────────────── 1. CSS VARIABLES ─────────────── */
+:root {
+  --iqc-primary: #25D366;
+  --iqc-primary-hover: #1DA851;
+  --iqc-danger: #FF453A;
+  --iqc-bg-card: rgba(30, 30, 42, 0.85);
+  --iqc-border: rgba(255, 255, 255, 0.08);
+  --iqc-text: #ffffff;
+  --iqc-text-muted: rgba(255, 255, 255, 0.65);
+  --iqc-radius: 14px;
+  --iqc-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+  --iqc-transition: 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  --iqc-chat-bg-url: url('https://ik.imagekit.io/IrgxyMods/2383af11-2091-4331-9887-6627d8b71d7c.png');
+
+  --iqc-bubble-dark: #1C1C1E;
+  --iqc-bubble-dark-rgb: 28, 28, 30;
+}
+
+/* ─────────────── 2. HERO SECTION ─────────────── */
+.iqc-hero{text-align:center;padding:2.5rem 1rem 1.5rem;position:relative;overflow:hidden}
+.iqc-hero::before{content:'';position:absolute;top:-120px;left:50%;transform:translateX(-50%);width:500px;height:500px;background:radial-gradient(circle,rgba(201,169,110,0.12) 0%,transparent 70%);pointer-events:none;z-index:-1}
+.iqc-hero-icon{width:90px;height:90px;margin:0 auto 1.2rem;border-radius:24px;display:flex;align-items:center;justify-content:center;font-size:2.6rem;color:#1a1a2e;background:var(--gold-gradient,linear-gradient(135deg,#C9A96E 0%,#D4B98C 30%,#B8946A 60%,#C9A96E 100%));box-shadow:0 8px 32px rgba(201,169,110,0.35),0 0 40px rgba(201,169,110,0.2);position:relative;animation:iqcFloat 4s ease-in-out infinite}
+.iqc-hero-icon::after{content:'';position:absolute;inset:-3px;border-radius:26px;background:var(--gold-gradient,linear-gradient(135deg,#C9A96E,#D4B98C,#B8946A));z-index:-1;filter:blur(15px);opacity:0.5;animation:premiumGlow 3s ease-in-out infinite alternate}
+@keyframes iqcFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-8px)}}
+.iqc-hero-title{font-family:var(--font-display,'Playfair Display',Georgia,serif);font-size:2.4rem;font-weight:700;margin-bottom:0.5rem;background:var(--gold-gradient,linear-gradient(135deg,#C9A96E,#D4B98C,#B8946A));-webkit-background-clip:text;background-clip:text;color:transparent;letter-spacing:0.5px}
+.iqc-hero-sub{color:var(--text-secondary,#b0b0b0);font-size:1rem;max-width:680px;margin:0 auto 1.2rem;line-height:1.6}
+.iqc-hero-sub strong{color:var(--gold-light,#f0d78c)}
+.iqc-hero-pills{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.iqc-pill{display:inline-flex;align-items:center;gap:6px;padding:6px 14px;background:rgba(255,255,255,0.04);border:1px solid var(--border-subtle,rgba(255,255,255,0.06));border-radius:30px;font-size:0.8rem;color:var(--text-secondary,#b0b0b0);font-weight:500;transition:var(--iqc-transition)}
+.iqc-pill:hover{border-color:rgba(201,169,110,0.35);color:var(--gold-light,#f0d78c);transform:translateY(-2px)}
+.iqc-pill i{color:var(--gold,#d4a745)}
+
+/* ─────────────── 3. TABS ─────────────── */
+.iqc-tabs{display:flex;justify-content:center;gap:8px;margin:1.5rem 0;flex-wrap:wrap}
+.iqc-tab{padding:12px 24px;background:rgba(255,255,255,0.04);border:1px solid var(--border-subtle,rgba(255,255,255,0.06));border-radius:30px;color:var(--text-secondary,#b0b0b0);cursor:pointer;font-family:var(--font-main,'Inter',sans-serif);font-weight:600;font-size:0.9rem;transition:var(--iqc-transition);display:inline-flex;align-items:center;gap:8px;backdrop-filter:blur(4px)}
+.iqc-tab:hover{background:rgba(201,169,110,0.08);color:#fff;border-color:rgba(201,169,110,0.3);transform:translateY(-2px)}
+.iqc-tab.active{background:var(--gold-gradient,linear-gradient(135deg,#C9A96E,#D4B98C,#B8946A));color:#1a1a2e;border-color:transparent;box-shadow:var(--shadow-gold,0 8px 32px rgba(201,169,110,0.2));font-weight:700}
+.iqc-tab i{font-size:1rem}
+
+/* ─────────────── 4. LAYOUT 2 KOLOM ─────────────── */
+.iqc-layout{display:grid;grid-template-columns:minmax(0,1fr) 420px;gap:24px;align-items:start;margin-bottom:3rem}
+.iqc-form-col{display:flex;flex-direction:column;gap:16px;min-width:0}
+.iqc-preview-col{position:relative}
+.iqc-preview-sticky{position:sticky;top:100px;display:flex;flex-direction:column;gap:12px}
+.iqc-preview-label{font-family:var(--font-display,'Playfair Display',serif);font-size:0.95rem;color:var(--gold-light,#f0d78c);font-weight:600;display:flex;align-items:center;gap:8px;justify-content:center}
+.iqc-preview-label i{color:var(--gold,#d4a745)}
+.iqc-preview-hint{text-align:center;font-size:0.75rem;color:var(--text-muted,#8888aa);display:flex;align-items:center;gap:6px;justify-content:center}
+.iqc-preview-hint i{color:var(--gold,#d4a745);opacity:0.7}
+
+/* ─────────────── 5. FORM CARDS ─────────────── */
+.iqc-form-card{background:rgba(255,255,255,0.04);backdrop-filter:blur(15px);-webkit-backdrop-filter:blur(15px);border:1px solid var(--border-subtle,rgba(255,255,255,0.06));border-radius:var(--radius,16px);padding:20px 20px 22px;position:relative;overflow:hidden;box-shadow:0 8px 24px rgba(0,0,0,0.2)}
+.iqc-form-card::before{content:'';position:absolute;top:0;left:0;width:100%;height:3px;background:linear-gradient(90deg,#C9A96E,#D4B98C,#C9A96E);background-size:200% auto;animation:shine 3s linear infinite}
+.iqc-form-header{display:flex;align-items:center;gap:10px;margin-bottom:16px;font-weight:600;color:var(--gold-light,#f0d78c);font-size:1rem}
+.iqc-form-header i{font-size:1.1rem}
+
+.iqc-field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+.iqc-field:last-child{margin-bottom:0}
+.iqc-label{font-size:0.78rem;font-weight:600;color:var(--text-secondary,#b0b0b0);text-transform:uppercase;letter-spacing:0.5px}
+.iqc-label-inline{font-size:0.88rem;color:var(--text-secondary,#b0b0b0);font-weight:500}
+.iqc-helper{font-size:0.72rem;color:var(--text-muted,#8888aa);margin-top:2px}
+
+.iqc-input,.iqc-textarea,.iqc-select{width:100%;padding:12px 14px;background:rgba(0,0,0,0.3);border:1.5px solid var(--border-subtle,rgba(255,255,255,0.06));border-radius:10px;color:#fff;font-family:var(--font-main,'Inter',sans-serif);font-size:0.92rem;transition:var(--iqc-transition);outline:none;resize:vertical}
+.iqc-input:focus,.iqc-textarea:focus,.iqc-select:focus{border-color:rgba(201,169,110,0.5);box-shadow:0 0 0 3px rgba(201,169,110,0.1)}
+.iqc-input::placeholder,.iqc-textarea::placeholder{color:rgba(255,255,255,0.35)}
+.iqc-textarea{min-height:78px;line-height:1.5;font-family:var(--font-main,'Inter',sans-serif)}
+.iqc-select{cursor:pointer;appearance:none;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'><path fill='%23C9A96E' d='M6 8L0 2l1.4-1.4L6 5.2 10.6.6 12 2z'/></svg>");background-repeat:no-repeat;background-position:right 14px center;padding-right:36px}
+.iqc-select option{background:#1a1a2e;color:#fff}
+
+.iqc-input-row{display:flex;gap:8px;align-items:center;position:relative}
+.iqc-btn-icon{flex-shrink:0;width:42px;height:42px;border-radius:10px;background:rgba(201,169,110,0.1);border:1px solid rgba(201,169,110,0.25);color:var(--gold,#d4a745);cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:var(--iqc-transition)}
+.iqc-btn-icon:hover{background:rgba(201,169,110,0.2);transform:translateY(-2px)}
+
+.iqc-color-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px}
+.iqc-color-picker{width:100%;height:44px;padding:2px;background:rgba(0,0,0,0.3);border:1.5px solid var(--border-subtle,rgba(255,255,255,0.06));border-radius:10px;cursor:pointer;transition:var(--iqc-transition);-webkit-appearance:none;appearance:none}
+.iqc-color-picker::-webkit-color-swatch-wrapper{padding:3px}
+.iqc-color-picker::-webkit-color-swatch{border:none;border-radius:6px}
+.iqc-color-picker::-moz-color-swatch{border:none;border-radius:6px}
+.iqc-color-picker:hover{border-color:rgba(201,169,110,0.5)}
+
+.iqc-slider{width:100%;height:6px;-webkit-appearance:none;appearance:none;background:rgba(255,255,255,0.08);border-radius:6px;outline:none;cursor:pointer;margin-top:6px}
+.iqc-slider::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:20px;height:20px;border-radius:50%;background:var(--gold-gradient,linear-gradient(135deg,#C9A96E,#D4B98C,#B8946A));cursor:pointer;box-shadow:0 0 20px rgba(201,169,110,0.5);transition:transform .2s ease}
+.iqc-slider::-webkit-slider-thumb:hover{transform:scale(1.15)}
+.iqc-slider::-moz-range-thumb{width:20px;height:20px;border-radius:50%;background:var(--gold-gradient,linear-gradient(135deg,#C9A96E,#D4B98C,#B8946A));cursor:pointer;border:none;box-shadow:0 0 20px rgba(201,169,110,0.5)}
+
+/* ─────────────── 6. TOGGLES ─────────────── */
+.iqc-toggle-row{display:flex;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px dashed rgba(255,255,255,0.05)}
+.iqc-toggle-row:last-child{border-bottom:none;padding-bottom:0}
+.iqc-toggle{position:relative;display:inline-block;width:46px;height:26px;flex-shrink:0}
+.iqc-toggle input{opacity:0;width:0;height:0}
+.iqc-toggle-switch{position:absolute;cursor:pointer;inset:0;background:rgba(255,255,255,0.1);border-radius:30px;transition:var(--iqc-transition);border:1px solid var(--border-subtle,rgba(255,255,255,0.06))}
+.iqc-toggle-switch::before{content:'';position:absolute;height:20px;width:20px;left:3px;top:2px;background:#fff;border-radius:50%;transition:var(--iqc-transition);box-shadow:0 2px 6px rgba(0,0,0,0.3)}
+.iqc-toggle input:checked + .iqc-toggle-switch{background:var(--gold-gradient,linear-gradient(135deg,#C9A96E,#D4B98C,#B8946A));border-color:transparent}
+.iqc-toggle input:checked + .iqc-toggle-switch::before{transform:translateX(20px)}
+
+/* ─────────────── 7. BUTTONS ─────────────── */
+.iqc-action-row{display:flex;gap:10px;margin-top:14px;flex-wrap:wrap}
+.iqc-btn-primary,.iqc-btn-secondary,.iqc-btn-danger{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 20px;border-radius:12px;font-family:var(--font-main,'Inter',sans-serif);font-weight:700;font-size:0.88rem;cursor:pointer;transition:var(--iqc-transition);border:1.5px solid transparent;letter-spacing:0.3px;flex:1 1 auto;min-width:0;text-decoration:none}
+.iqc-btn-primary{background:var(--gold-gradient,linear-gradient(135deg,#C9A96E,#D4B98C,#B8946A));color:#1a1a2e;box-shadow:0 4px 16px rgba(201,169,110,0.25)}
+.iqc-btn-primary:hover:not(:disabled){transform:translateY(-3px);box-shadow:0 8px 24px rgba(201,169,110,0.4)}
+.iqc-btn-secondary{background:rgba(255,255,255,0.05);color:#fff;border-color:var(--border-subtle,rgba(255,255,255,0.06))}
+.iqc-btn-secondary:hover:not(:disabled){background:rgba(255,255,255,0.1);border-color:rgba(201,169,110,0.3);transform:translateY(-3px);color:var(--gold-light,#f0d78c)}
+.iqc-btn-danger{background:rgba(255,65,108,0.1);color:#ff6584;border-color:rgba(255,65,108,0.3)}
+.iqc-btn-danger:hover:not(:disabled){background:rgba(255,65,108,0.18);transform:translateY(-3px);color:#ff8fa3}
+.iqc-btn-primary:disabled,.iqc-btn-secondary:disabled,.iqc-btn-danger:disabled{opacity:0.5;cursor:not-allowed;transform:none}
+.iqc-btn-full{width:100%;margin-top:10px;flex:none}
+
+/* ─────────────── 8. MESSAGE LIST ─────────────── */
+.iqc-message-list{display:flex;flex-direction:column;gap:8px;margin-top:16px;max-height:300px;overflow-y:auto;padding-right:4px}
+.iqc-message-list::-webkit-scrollbar{width:5px}
+.iqc-message-list::-webkit-scrollbar-thumb{background:rgba(201,169,110,0.3);border-radius:5px}
+.iqc-message-item{display:flex;align-items:center;gap:10px;padding:10px 12px;background:rgba(255,255,255,0.03);border:1px solid var(--border-subtle,rgba(255,255,255,0.06));border-radius:10px;font-size:0.85rem;transition:var(--iqc-transition)}
+.iqc-message-item:hover{border-color:rgba(201,169,110,0.25);background:rgba(201,169,110,0.05)}
+.iqc-message-item .iqc-mi-badge{font-size:0.65rem;padding:2px 8px;border-radius:20px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;flex-shrink:0}
+.iqc-message-item .iqc-mi-badge.in{background:rgba(255,255,255,0.1);color:#e0e0e0}
+.iqc-message-item .iqc-mi-badge.out{background:rgba(201,169,110,0.2);color:var(--gold-light,#f0d78c)}
+.iqc-message-item .iqc-mi-text{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:var(--text-secondary,#b0b0b0)}
+.iqc-message-item .iqc-mi-actions{display:flex;gap:6px;flex-shrink:0}
+.iqc-message-item .iqc-mi-actions button{background:transparent;border:none;color:var(--text-muted,#8888aa);cursor:pointer;font-size:0.85rem;padding:4px 6px;border-radius:6px;transition:var(--iqc-transition)}
+.iqc-message-item .iqc-mi-actions button:hover{color:var(--gold,#d4a745);background:rgba(201,169,110,0.1)}
+.iqc-message-item .iqc-mi-actions button.iqc-mi-del:hover{color:#ff6584;background:rgba(255,65,108,0.1)}
+
+.iqc-empty-state{padding:20px;text-align:center;color:var(--text-muted,#8888aa);font-size:0.85rem;border:1px dashed var(--border-subtle,rgba(255,255,255,0.06));border-radius:10px;margin-top:12px}
+.iqc-empty-state i{display:block;font-size:1.8rem;margin-bottom:8px;opacity:0.4;color:var(--gold,#d4a745)}
+
+/* ─────────────── 9. EXPORT GRID & LOADING ─────────────── */
+.iqc-export-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.iqc-export-grid .iqc-btn-primary,.iqc-export-grid .iqc-btn-secondary{flex:none;width:100%}
+
+.iqc-loading{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:14px;padding:12px;background:rgba(201,169,110,0.08);border:1px solid rgba(201,169,110,0.2);border-radius:10px;color:var(--gold-light,#f0d78c);font-size:0.85rem;font-weight:600}
+.iqc-spinner{width:18px;height:18px;border:2.5px solid rgba(201,169,110,0.25);border-top-color:var(--gold,#d4a745);border-radius:50%;animation:iqcSpin 0.8s linear infinite;flex-shrink:0}
+@keyframes iqcSpin{to{transform:rotate(360deg)}}
+
+/* ================================================================
+   === 10. PHONE FRAME + CHAT UI ===
+   ================================================================ */
+.iqc-preview-frame{display:flex;justify-content:center;align-items:flex-start;padding:8px 0}
+
+.iqc-phone-frame{
+  width:375px;
+  height:812px;
+  background:#000;
+  border-radius:44px;
+  padding:10px;
+  position:relative;
+  box-shadow:0 30px 60px rgba(0,0,0,0.6),0 0 0 2px #1a1a1a,0 0 0 10px #000,0 0 80px rgba(201,169,110,0.12);
+  overflow:hidden;
+  font-family:-apple-system,BlinkMacSystemFont,'SF Pro Display','SF Pro Text','Inter','Segoe UI',sans-serif;
+  display:flex;
+  flex-direction:column;
+}
+.iqc-phone-frame::before{
+  content:'';
+  position:absolute;
+  top:10px;left:50%;transform:translateX(-50%);
+  width:140px;height:26px;background:#000;
+  border-radius:0 0 20px 20px;
+  z-index:20;
+}
+
+.iqc-phone-frame.cm-mode::before{display:none !important;content:none !important;visibility:hidden !important}
+.iqc-phone-frame.cm-mode .iqc-status-bar{display:none !important;visibility:hidden !important;height:0 !important;overflow:hidden !important}
+
+.iqc-status-bar{height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;font-size:14px;font-weight:600;color:#000;background:transparent;position:relative;z-index:10;font-family:-apple-system,'SF Pro Display',sans-serif;flex-shrink:0}
+.iqc-status-left{margin-left:6px;letter-spacing:0.3px;display:flex;align-items:center;gap:5px}
+.iqc-status-notch{flex:1;text-align:center;font-variant-numeric:tabular-nums;letter-spacing:0.2px}
+.iqc-status-right{display:flex;gap:5px;align-items:center;margin-right:6px}
+.iqc-status-right svg{fill:#000;color:#000;display:block}
+
+.iqc-chat-header{display:flex;align-items:center;gap:10px;padding:8px 12px;background:#F6F6F6;border-bottom:0.5px solid rgba(0,0,0,0.15);color:#000;flex-shrink:0;position:relative;z-index:5}
+.iqc-chat-back{display:flex;align-items:center;color:#007AFF;font-size:15px;font-weight:400;background:none;border:none;padding:0;cursor:default}
+.iqc-chat-back svg{fill:#007AFF}
+.iqc-chat-back-label{margin-left:-4px}
+.iqc-chat-avatar{width:38px;height:38px;border-radius:50%;overflow:hidden;flex-shrink:0;background:#ddd;position:relative}
+.iqc-chat-avatar img{width:100%;height:100%;object-fit:cover;display:block}
+.iqc-chat-contact{flex:1;min-width:0;line-height:1.15}
+.iqc-chat-contact-name{font-size:15px;font-weight:600;color:#000;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.iqc-chat-contact-status{font-size:11px;color:#8E8E93;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.iqc-chat-header-actions{display:flex;gap:14px;color:#007AFF;align-items:center;padding-right:2px}
+.iqc-chat-header-actions svg{fill:#007AFF}
+
+.iqc-chat-bg{
+  flex:1;
+  position:relative;
+  overflow:hidden;
+  display:flex;
+  flex-direction:column;
+  background-color:#0B141A;
+  background-image:var(--iqc-chat-bg-url);
+  background-size:cover;
+  background-position:center center;
+  background-repeat:no-repeat;
+  background-attachment:scroll;
+}
+
+.iqc-chat-bg.has-wallpaper::before{
+  content:'';position:absolute;inset:0;pointer-events:none;opacity:0.03;z-index:0;
+  background-image:
+    radial-gradient(circle at 20% 30%, #000 0.8px, transparent 1.5px),
+    radial-gradient(circle at 70% 60%, #000 0.8px, transparent 1.5px),
+    radial-gradient(circle at 45% 85%, #000 0.8px, transparent 1.5px);
+  background-size: 60px 60px, 90px 90px, 75px 75px;
+  background-position: 0 0, 30px 20px, 15px 40px;
+}
+.iqc-chat-bg.dark.has-wallpaper::before{
+  background-image:
+    radial-gradient(circle at 20% 30%, #fff 0.8px, transparent 1.5px),
+    radial-gradient(circle at 70% 60%, #fff 0.8px, transparent 1.5px),
+    radial-gradient(circle at 45% 85%, #fff 0.8px, transparent 1.5px);
+  opacity:0.03;
+}
+
+.iqc-chat-messages{
+  flex:1;
+  padding:14px 10px;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  overflow-y:auto;
+  position:relative;
+  z-index:1;
+  scrollbar-width:none;
+}
+.iqc-chat-messages::-webkit-scrollbar{display:none}
+
+/* ================================================================
+   v5.8.1 FIX #1 — BUBBLE CHAT (Instagram mode) — CSS GRID
+   ================================================================ */
+.iqc-bubble{
+  display:inline-grid;
+  grid-template-columns:auto;
+  grid-template-rows:auto auto;
+  grid-template-areas:
+    "content"
+    "time";
+  row-gap:1px;
+  max-width:78%;
+  padding:7px 11px 6px;
+  border-radius:18px;
+  font-size:15px;
+  line-height:1.35;
+  word-wrap:break-word;
+  overflow-wrap:break-word;
+  position:relative;
+  box-shadow:0 1px 0.5px rgba(0,0,0,0.13);
+  color:#111;
+  font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Inter','Segoe UI',sans-serif;
+  box-sizing:border-box;
+}
+
+.iqc-bubble.out{align-self:flex-end;background:#DCF8C6;border-bottom-right-radius:4px;color:#111}
+.iqc-bubble.in{align-self:flex-start;background:#FFFFFF;border-bottom-left-radius:4px;color:#111}
+.iqc-bubble.dark.out{background:#005C4B;color:#E9EDEF}
+.iqc-bubble.dark.in{background:#202C33;color:#E9EDEF}
+
+.iqc-bubble.ig-out{align-self:flex-end;background:linear-gradient(135deg,#833AB4 0%,#E4405F 50%,#F77737 100%);color:#fff;border-bottom-right-radius:4px}
+.iqc-bubble.ig-in{align-self:flex-start;background:#EFEFEF;color:#000;border-bottom-left-radius:4px}
+.iqc-bubble.ig-out.dark{background:linear-gradient(135deg,#833AB4,#E4405F);color:#fff}
+.iqc-bubble.ig-in.dark{background:#262626;color:#fff}
+
+.iqc-bubble-content{
+  grid-area:content;
+  display:block;
+  min-width:0;
+  white-space:pre-wrap;
+  word-break:break-word;
+  text-align:left;
+  padding:0;
+  margin:0;
+}
+
+.iqc-bubble-time{
+  grid-area:time;
+  justify-self:end;
+  align-self:end;
+  display:inline-flex;
+  align-items:center;
+  gap:3px;
+  font-size:11px;
+  color:#667781;
+  line-height:1;
+  font-weight:500;
+  letter-spacing:0.2px;
+  padding:0;
+  margin:0;
+  white-space:nowrap;
+  font-variant-numeric:tabular-nums;
+}
+
+.iqc-bubble.dark .iqc-bubble-time{color:#8696A0}
+.iqc-bubble.ig-out .iqc-bubble-time{color:rgba(255,255,255,0.85)}
+.iqc-bubble.ig-in .iqc-bubble-time{color:#8E8E93}
+.iqc-bubble.ig-out.dark .iqc-bubble-time{color:rgba(255,255,255,0.85)}
+
+.iqc-check{display:inline-flex;align-items:center;gap:-2px;margin-left:2px;transform:translateY(1px)}
+.iqc-check svg{width:14px;height:10px;display:block}
+.iqc-check svg path{fill:#53BDEB}
+.iqc-check.delivered svg path{fill:#8696A0}
+.iqc-check.dark svg path{fill:#53BDEB}
+.iqc-check.dark.delivered svg path{fill:#8696A0}
+
+.iqc-bubble.out::after,
+.iqc-bubble.in::after{display:none !important}
+
+.iqc-date-pill{
+  align-self:center;
+  background:rgba(0,0,0,0.35);
+  color:#fff;
+  font-size:11px;
+  font-weight:600;
+  padding:4px 12px;
+  border-radius:20px;
+  margin:4px 0 6px;
+  letter-spacing:0.3px;
+  position:relative;
+  z-index:2;
+}
+.iqc-chat-bg.dark .iqc-date-pill{background:rgba(0,0,0,0.45);color:#E9EDEF}
+
+.iqc-typing{align-self:flex-start;background:#FFFFFF;padding:12px 16px;border-radius:18px;border-bottom-left-radius:4px;display:inline-flex;gap:4px;align-items:center;box-shadow:0 1px 0.5px rgba(0,0,0,0.13);margin-top:2px}
+.iqc-chat-bg.dark .iqc-typing{background:#202C33}
+.iqc-typing span{width:7px;height:7px;border-radius:50%;background:#8696A0;animation:iqcTyping 1.2s infinite ease-in-out}
+.iqc-typing span:nth-child(2){animation-delay:0.15s}
+.iqc-typing span:nth-child(3){animation-delay:0.3s}
+@keyframes iqcTyping{0%,60%,100%{transform:translateY(0);opacity:0.5}30%{transform:translateY(-4px);opacity:1}}
+
+.iqc-home-indicator{position:absolute;bottom:6px;left:50%;transform:translateX(-50%);width:130px;height:5px;background:#fff;border-radius:5px;z-index:20;opacity:0.9}
+
+.iqc-phone-frame.dark-frame{background:#000}
+.iqc-phone-frame.dark-frame .iqc-chat-header{background:#1F2C33;color:#E9EDEF;border-bottom-color:rgba(255,255,255,0.08)}
+.iqc-phone-frame.dark-frame .iqc-chat-contact-name{color:#E9EDEF}
+.iqc-phone-frame.dark-frame .iqc-chat-contact-status{color:#8696A0}
+.iqc-phone-frame.dark-frame .iqc-chat-back{color:#00A884}
+.iqc-phone-frame.dark-frame .iqc-chat-back svg{fill:#00A884}
+.iqc-phone-frame.dark-frame .iqc-chat-header-actions svg{fill:#00A884}
+.iqc-phone-frame.dark-frame .iqc-status-bar{color:#fff}
+.iqc-phone-frame.dark-frame .iqc-status-right svg{fill:#fff;color:#fff}
+.iqc-phone-frame.dark-frame .iqc-home-indicator{background:#fff}
+
+/* ================================================================
+   v5.8.1 FIX #1 — iOS CONTEXT MENU (terpisah dari .iqc-bubble)
+   ================================================================ */
+
+.iqc-cm-dim{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  z-index:1;
+}
+
+.iqc-cm-stage{
+  position:relative;
+  z-index:2;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  padding:16px 14px;
+  min-height:100%;
+  justify-content:center;
+  align-items:stretch;
+}
+
+.iqc-cm-reactions{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:7px 8px 7px 16px;
+  background:rgba(30,30,30,0.96);
+  border-radius:999px;
+  margin-bottom:10px;
+  box-shadow:0 4px 20px rgba(0,0,0,0.4);
+  align-self:flex-start;
+  font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;
+  max-width:fit-content;
+}
+.iqc-cm-reactions span{
+  font-size:26px;
+  line-height:1;
+  font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;
+  user-select:none;
+  display:inline-block;
+}
+.iqc-cm-plus{
+  width:32px;
+  height:32px;
+  border-radius:50%;
+  background:rgba(255,255,255,0.15);
+  border:none;
+  color:#FFFFFF;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:14px;
+  margin-left:4px;
+  cursor:default;
+  padding:0;
+  line-height:1;
+  flex-shrink:0;
+  pointer-events:none;
+}
+.iqc-cm-plus i{font-size:14px;color:#FFFFFF}
+
+/* v5.8.1 FIX #2 — BUBBLE CONTEXT MENU (CSS GRID 2-baris) */
+.iqc-cm-bubble{
+  position:relative;
+  display:inline-grid;
+  grid-template-columns:auto;
+  grid-template-rows:auto auto;
+  grid-template-areas:
+    "content"
+    "time";
+  row-gap:0;
+  max-width:85%;
+  min-width:70px;
+  padding:9px 14px 7px;
+  border-radius:18px;
+  font-family:-apple-system,"SF Pro Text","Helvetica Neue",Arial,sans-serif;
+  font-size:17px;
+  line-height:1.3;
+  word-break:break-word;
+  overflow-wrap:break-word;
+  text-align:left;
+  vertical-align:top;
+  box-shadow:0 2px 6px rgba(0,0,0,0.25);
+  box-sizing:border-box;
+  color:#FFFFFF;
+  background:#1C1C1E;
+}
+
+.iqc-cm-bubble.in{
+  border-radius:18px 18px 18px 4px;
+  align-self:flex-start;
+}
+.iqc-cm-bubble.out{
+  border-radius:18px 18px 4px 18px;
+  align-self:flex-end;
+}
+
+.iqc-cm-bubble-content{
+  grid-area:content;
+  min-width:0;
+  display:block;
+  font-family:-apple-system,"SF Pro Text","Helvetica Neue",
+              Arial,sans-serif,
+              "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji";
+  padding:0;
+  margin:0;
+  white-space:pre-wrap;
+  vertical-align:baseline;
+  text-align:left;
+  word-break:break-word;
+  overflow-wrap:break-word;
+}
+
+.iqc-cm-bubble-time{
+  grid-area:time;
+  justify-self:end;
+  align-self:end;
+  position:static;
+  display:inline-block;
+  font-size:13px;
+  line-height:1;
+  opacity:0.75;
+  font-family:-apple-system,"SF Pro Text","Helvetica Neue",Arial,sans-serif;
+  font-variant-numeric:tabular-nums;
+  letter-spacing:0.2px;
+  pointer-events:none;
+  margin:2px 0 0 0;
+  padding:0;
+  text-align:right;
+  white-space:nowrap;
+}
+
+.iqc-cm-menu{
+  width:62%;
+  max-width:270px;
+  background:rgba(28,28,30,0.98);
+  border-radius:14px;
+  overflow:hidden;
+  box-shadow:0 10px 40px rgba(0,0,0,0.55);
+  margin-top:10px;
+  align-self:flex-start;
+}
+.iqc-cm-item{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  width:100%;
+  padding:14px 18px;
+  font-size:17px;
+  font-weight:400;
+  color:#FFFFFF;
+  background:transparent;
+  border:none;
+  border-bottom:0.5px solid rgba(255,255,255,0.1);
+  cursor:pointer;
+  font-family:-apple-system,"SF Pro Text","Helvetica Neue",Arial,sans-serif;
+  text-align:left;
+  transition:background 0.15s ease;
+  letter-spacing:0.1px;
+  line-height:1.2;
+}
+.iqc-cm-item:last-child{border-bottom:none}
+.iqc-cm-item:active,.iqc-cm-item:hover{background:rgba(255,255,255,0.08)}
+.iqc-cm-item span{font-weight:400;letter-spacing:0.1px}
+
+/* v5.8 FIX — CONTEXT MENU ICON: IMAGE (bukan Font Awesome) */
+.iqc-cm-item img{
+  width:22px;
+  height:22px;
+  object-fit:contain;
+  display:block;
+  flex-shrink:0;
+  pointer-events:none;
+  user-select:none;
+  -webkit-user-select:none;
+  image-rendering:-webkit-optimize-contrast;
+  image-rendering:crisp-edges;
+  image-rendering:auto;
+  -webkit-backface-visibility:hidden;
+  backface-visibility:hidden;
+  transform:translateZ(0);
+}
+
+.iqc-cm-item.danger{
+  color:#FF453A;
+}
+.iqc-cm-item.danger img{
+  filter:brightness(0) saturate(100%) invert(40%) sepia(84%) saturate(2338%) hue-rotate(340deg) brightness(103%) contrast(102%);
+}
+
+.iqc-cm-item i{display:none !important}
+
+/* ================================================================
+   === 11. FAQ ===
+   ================================================================ */
+.iqc-faq{margin-top:3rem;display:flex;flex-direction:column;gap:8px;max-width:900px;margin-left:auto;margin-right:auto}
+.iqc-faq-item{background:rgba(0,0,0,0.2);border:1px solid var(--border-subtle,rgba(255,255,255,0.06));border-radius:12px;overflow:hidden;transition:var(--iqc-transition)}
+.iqc-faq-item:hover{border-color:rgba(201,169,110,0.25)}
+.iqc-faq-q{width:100%;background:none;border:none;padding:16px 18px;color:#fff;font-size:0.92rem;font-weight:600;text-align:left;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:10px;font-family:var(--font-main,'Inter',sans-serif);transition:var(--iqc-transition)}
+.iqc-faq-q i{color:var(--gold,#d4a745);transition:transform 0.3s ease;font-size:0.85rem;flex-shrink:0}
+.iqc-faq-item.open .iqc-faq-q i{transform:rotate(180deg)}
+.iqc-faq-a{max-height:0;overflow:hidden;transition:max-height 0.4s ease,padding 0.3s ease;padding:0 18px}
+.iqc-faq-a p{color:var(--text-secondary,#b0b0b0);font-size:0.85rem;line-height:1.65;padding-bottom:16px;margin:0}
+.iqc-faq-a strong{color:var(--gold-light,#f0d78c)}
+.iqc-faq-item.open .iqc-faq-a{max-height:280px}
+
+/* ================================================================
+   === 12. MEDIA QUERIES ===
+   ================================================================ */
+@media (max-width:1024px){
+  .iqc-layout{grid-template-columns:1fr}
+  .iqc-preview-sticky{position:relative;top:auto}
+  .iqc-phone-frame{margin:0 auto}
+}
+@media (max-width:768px){
+  .iqc-hero-title{font-size:1.8rem}
+  .iqc-hero-icon{width:72px;height:72px;font-size:2rem}
+  .iqc-hero-sub{font-size:0.9rem}
+  .iqc-tab{padding:10px 16px;font-size:0.82rem}
+  .iqc-phone-frame{width:100%;max-width:375px;height:auto;aspect-ratio:375/812}
+  .iqc-export-grid{grid-template-columns:1fr}
+  .iqc-cm-menu{width:72%;max-width:250px}
+  .iqc-cm-item{font-size:16px;padding:13px 16px}
+  .iqc-cm-item img{width:20px;height:20px}
+  .iqc-cm-reactions span{font-size:24px}
+  .iqc-cm-plus{width:30px;height:30px}
+  .iqc-cm-bubble{font-size:16px;padding:8px 12px}
+  .iqc-cm-bubble-time{font-size:12px}
+}
+@media (max-width:480px){
+  .iqc-hero-title{font-size:1.5rem}
+  .iqc-hero-sub{font-size:0.85rem}
+  .iqc-pill{font-size:0.7rem;padding:5px 10px}
+  .iqc-tabs{gap:6px}
+  .iqc-tab{padding:9px 12px;font-size:0.75rem;gap:5px}
+  .iqc-tab i{font-size:0.85rem}
+  .iqc-form-card{padding:16px}
+  .iqc-color-grid{grid-template-columns:1fr}
+  .iqc-phone-frame{border-radius:36px;padding:8px}
+  .iqc-phone-frame::before{width:110px;height:22px}
+  .iqc-chat-header{padding:6px 10px;gap:8px}
+  .iqc-chat-avatar{width:34px;height:34px}
+  .iqc-chat-contact-name{font-size:14px}
+  .iqc-chat-contact-status{font-size:10px}
+  .iqc-bubble{font-size:14px;padding:6px 10px 5px}
+  .iqc-bubble-time{font-size:10px}
+  .iqc-action-row{flex-direction:column}
+  .iqc-action-row .iqc-btn-primary,.iqc-action-row .iqc-btn-secondary,.iqc-action-row .iqc-btn-danger{width:100%;flex:none}
+  .iqc-faq-q{font-size:0.85rem;padding:14px 14px}
+  .iqc-faq-a p{font-size:0.8rem}
+  .iqc-cm-menu{width:80%;max-width:230px}
+  .iqc-cm-item{font-size:15px;padding:12px 14px}
+  .iqc-cm-item img{width:19px;height:19px}
+  .iqc-cm-reactions{padding:6px 7px 6px 14px;gap:6px}
+  .iqc-cm-reactions span{font-size:22px}
+  .iqc-cm-plus{width:28px;height:28px;font-size:12px}
+  .iqc-cm-plus i{font-size:12px}
+  .iqc-cm-bubble{font-size:15px;padding:7px 11px 6px;max-width:88%}
+  .iqc-cm-bubble-time{font-size:11px}
+}
+@media (max-width:360px){
+  .iqc-hero-title{font-size:1.3rem}
+  .iqc-pill{font-size:0.65rem;padding:4px 8px}
+  .iqc-tab{padding:8px 10px;font-size:0.7rem}
+  .iqc-form-card{padding:14px}
+  .iqc-phone-frame{border-radius:32px}
+  .iqc-status-bar{height:38px;font-size:12px;padding:0 18px}
+  .iqc-cm-item{font-size:14px;padding:11px 13px}
+  .iqc-cm-item img{width:18px;height:18px}
+  .iqc-cm-reactions span{font-size:20px}
+  .iqc-cm-bubble{font-size:14px;padding:6px 10px 5px}
+  .iqc-cm-bubble-time{font-size:10px}
+}
+
+/* ================================================================
+   === 13. DARK THEME OVERRIDES ===
+   ================================================================ */
+body.dark-theme .iqc-form-card{background:rgba(20,20,32,0.7)}
+body.dark-theme .iqc-input,body.dark-theme .iqc-textarea,body.dark-theme .iqc-select{background:rgba(0,0,0,0.45)}
+
+/* ================================================================
+   === 14. PRINT / EXPORT HELPERS ===
+   ================================================================ */
+@media print{
+  .iqc-form-col,.iqc-hero-pills,.iqc-tabs,.iqc-faq,.iqc-preview-label,.iqc-preview-hint{display:none !important}
+  .iqc-layout{display:block}
+  .iqc-phone-frame{box-shadow:none}
+}
