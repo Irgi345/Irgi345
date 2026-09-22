@@ -1,17 +1,21 @@
 /* ================================================================
    IQC GENERATOR — iqcgenerator.css
-   Version: 5.3 (Color & Status Match)
+   Version: 5.4 (Bubble Hug-Content Presisi 100%)
    ================================================================
+   CHANGELOG v5.4:
+     - FIX bubble presisi: ganti absolute-time → inline-flex + flex-wrap
+     - .iqc-cm-bubble-content: HAPUS padding-right 56px (penyebab melar)
+     - .iqc-cm-bubble-time: position static, sebaris dengan text
+     - align-items: baseline + align-self: flex-end (time nempel bawah
+       saat text panjang, tetap sebaris saat text pendek)
+     - Bubble "apa" jadi kecil hug-content, presisi seperti WhatsApp asli
    CHANGELOG v5.3:
      - .iqc-phone-frame.cm-mode → hide notch (::before) + status bar
-     - .iqc-cm-bubble → warna match #1F1F1F, teks putih
-     - .iqc-cm-reactions → pill gelap + tombol PLUS circle (baru)
-     - .iqc-cm-menu → warna #1C1C1E match iOS 15+
-     - Menu item lebih tinggi (~50px), font 17px, icon kanan
-     - Warna danger #FF453A presisi iOS
-   v5.2:
-     - Background image dari URL imagekit
-     - Wallpaper OFF tetap pakai background image
+     - Warna bubble #1F1F1F, teks putih, time #8E8E93
+     - Reactions pill + tombol PLUS circle
+     - Context menu warna #1C1C1E, danger #FF453A
+   CHANGELOG v5.2:
+     - Background image URL dari imagekit (cover, center, no-repeat)
    ================================================================ */
 
 /* ─────────────── 1. CSS VARIABLES ─────────────── */
@@ -257,7 +261,7 @@
 }
 .iqc-chat-messages::-webkit-scrollbar{display:none}
 
-/* Bubble */
+/* Bubble (Instagram mode) */
 .iqc-bubble{
   max-width:78%;
   padding:7px 11px 8px;
@@ -329,7 +333,7 @@
 .iqc-phone-frame.dark-frame .iqc-home-indicator{background:#fff}
 
 /* ================================================================
-   === 10B. iOS CONTEXT MENU (v5.3 — COLOR PRESISI) ===
+   === 10B. iOS CONTEXT MENU (v5.4 — PRESISI 100%) ===
    ================================================================ */
 
 /* Blurred fake background */
@@ -367,9 +371,7 @@
 }
 
 /* ─────────────────────────────────────────────────────────────
-   v5.3: REACTIONS PILL — match gambar (dark rounded + PLUS button)
-   Background: rgba(30,30,30,0.92) backdrop blur
-   Radius: pill (999px)
+   v5.3: REACTIONS PILL — match gambar
    ───────────────────────────────────────────────────────────── */
 .iqc-cm-reactions{
   display:inline-flex;
@@ -393,8 +395,6 @@
   user-select:none;
   display:inline-block;
 }
-
-/* v5.3: tombol PLUS circle di ujung reactions pill */
 .iqc-cm-plus{
   width:32px;
   height:32px;
@@ -416,63 +416,80 @@
 .iqc-cm-plus i{font-size:14px;color:#FFFFFF}
 
 /* ─────────────────────────────────────────────────────────────
-   v5.3: MAIN BUBBLE — match gambar
-   Warna: #1F1F1F (dari DEFAULT_CM)
-   Teks: #FFFFFF, font 17px (iOS standard)
-   Hug-content (span inline + time overlay absolute)
+   v5.4: MAIN BUBBLE — FIX PRESISI (inline-flex + flex-wrap)
+   Kunci fix:
+     - display:inline-flex → hug content, tidak stretch
+     - flex-wrap:wrap → time bisa pindah baris saat text panjang
+     - align-items:baseline → text & time sejajar rapi
+     - HAPUS padding-right 56px di content (penyebab melar)
+     - Time BUKAN absolute — jadi flow item yang mengikuti text
    ───────────────────────────────────────────────────────────── */
 .iqc-cm-bubble{
   position:relative;
+  display:inline-flex;          /* hug content */
+  flex-wrap:wrap;               /* time bisa wrap ke baris baru */
+  align-items:baseline;         /* text & time sejajar baseline */
+  justify-content:flex-start;
+  gap:2px 10px;                 /* row-gap 2px, column-gap 10px */
   max-width:85%;
-  width:fit-content;
   min-width:60px;
-  padding:9px 14px 9px;
+  padding:9px 14px;             /* padding merata (kiri/kanan sama) */
   border-radius:18px;
   font-family:-apple-system,"SF Pro Text","Helvetica Neue",Arial,sans-serif;
   font-size:17px;
   line-height:1.3;
   word-break:break-word;
   overflow-wrap:break-word;
-  white-space:pre-wrap;
+  text-align:left;
+  vertical-align:top;
   box-shadow:0 2px 6px rgba(0,0,0,0.25);
   animation:iqcBubbleIn 0.35s cubic-bezier(0.34,1.56,0.64,1);
+  box-sizing:border-box;
 }
-.iqc-cm-bubble.in{border-radius:18px 18px 18px 4px;align-self:flex-start}
-.iqc-cm-bubble.out{border-radius:18px 18px 4px 18px;align-self:flex-end}
+.iqc-cm-bubble.in{
+  border-radius:18px 18px 18px 4px;
+  align-self:flex-start;
+}
+.iqc-cm-bubble.out{
+  border-radius:18px 18px 4px 18px;
+  align-self:flex-end;
+}
 
+/* FIX: content jadi flex item — HAPUS padding-right 56px */
 .iqc-cm-bubble-content{
+  flex:0 1 auto;                /* boleh shrink, tidak boleh grow */
+  min-width:0;
   display:inline;
   font-family:-apple-system,"SF Pro Text","Helvetica Neue",
               Arial,sans-serif,
               "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji";
-  padding:0 56px 0 0;
+  padding:0;                    /* HAPUS padding-right! */
   margin:0;
-  vertical-align:top;
+  white-space:pre-wrap;
+  vertical-align:baseline;
+  text-align:left;
 }
 
+/* FIX: time jadi flex item inline — bukan absolute */
 .iqc-cm-bubble-time{
-  position:absolute;
-  right:12px;
-  bottom:7px;
+  flex:0 0 auto;                /* fixed size */
+  position:static;              /* BUKAN absolute */
+  display:inline-block;
   font-size:13px;
   line-height:1;
-  opacity:0.85;
+  opacity:0.75;
   font-family:-apple-system,"SF Pro Text","Helvetica Neue",Arial,sans-serif;
   font-variant-numeric:tabular-nums;
   letter-spacing:0.2px;
   pointer-events:none;
-  margin:0;
+  margin:0 0 1px 0;             /* margin kecil bawah saja */
   text-align:right;
-  display:inline-block;
-  font-weight:400;
+  white-space:nowrap;
+  align-self:flex-end;          /* nempel bawah saat text wrap */
 }
 
 /* ─────────────────────────────────────────────────────────────
-   v5.3: CONTEXT MENU — match gambar akurat
-   Background: rgba(28,28,30,0.94) iOS 15+ style
-   Item: font 17px, padding ~14px 18px, divider tipis
-   Icons: kanan, putih, ukuran ~20px
-   Danger: #FF453A
+   v5.3: CONTEXT MENU — match gambar
    ───────────────────────────────────────────────────────────── */
 .iqc-cm-menu{
   width:62%;
@@ -546,6 +563,9 @@
   .iqc-cm-item i{font-size:18px}
   .iqc-cm-reactions span{font-size:24px}
   .iqc-cm-plus{width:30px;height:30px}
+  /* v5.4: bubble responsive */
+  .iqc-cm-bubble{font-size:16px;padding:8px 12px;gap:2px 8px}
+  .iqc-cm-bubble-time{font-size:12px}
 }
 @media (max-width:480px){
   .iqc-hero-title{font-size:1.5rem}
@@ -576,6 +596,9 @@
   .iqc-cm-reactions span{font-size:22px}
   .iqc-cm-plus{width:28px;height:28px;font-size:12px}
   .iqc-cm-plus i{font-size:12px}
+  /* v5.4: bubble mobile */
+  .iqc-cm-bubble{font-size:15px;padding:7px 11px;gap:2px 8px;max-width:88%}
+  .iqc-cm-bubble-time{font-size:11px}
 }
 @media (max-width:360px){
   .iqc-hero-title{font-size:1.3rem}
@@ -586,6 +609,9 @@
   .iqc-status-bar{height:38px;font-size:12px;padding:0 18px}
   .iqc-cm-item{font-size:14px;padding:11px 13px}
   .iqc-cm-reactions span{font-size:20px}
+  /* v5.4: bubble small mobile */
+  .iqc-cm-bubble{font-size:14px;padding:6px 10px;gap:2px 6px}
+  .iqc-cm-bubble-time{font-size:10px}
 }
 
 /* ================================================================
@@ -601,4 +627,4 @@ body.dark-theme .iqc-input,body.dark-theme .iqc-textarea,body.dark-theme .iqc-se
   .iqc-form-col,.iqc-hero-pills,.iqc-tabs,.iqc-faq,.iqc-preview-label,.iqc-preview-hint{display:none !important}
   .iqc-layout{display:block}
   .iqc-phone-frame{box-shadow:none}
-}
+                                     }
