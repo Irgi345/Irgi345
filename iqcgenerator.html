@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>IQC Generator iOS/iPhone — IRGXYMODS</title>
+<!-- v5.12 — Instagram iOS Removed -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&family=Cormorant+Garamond:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="iqcgenerator.css" />
+</head>
+<body>
+<div class="toast-container" id="toastContainer"></div>
+
+<header>
+  <div class="header-top">
+    <a href="index.html" class="logo-brand"><i class="fas fa-crown"></i><h1>IRGXYMODS</h1></a>
+    <div class="header-actions">
+      <div style="position:relative;display:inline-block;">
+        <button class="settings-btn" id="settingsToggle"><i class="fas fa-cog"></i></button>
+        <div class="settings-dropdown" id="settingsDropdown">
+          <a href="login.html" class="dropdown-item"><i class="fas fa-sign-in-alt"></i> Login</a>
+          <div class="dropdown-divider"></div>
+          <button class="dropdown-item" id="profileDropdownBtn"><i class="fas fa-user"></i> Profil</button>
+          <button class="dropdown-item" id="themeToggleBtn"><i class="fas fa-palette"></i> Tema</button>
+          <div class="dropdown-divider"></div>
+          <a href="irgxymods.html" class="dropdown-item"><i class="fas fa-info-circle"></i> Tentang</a>
+          <button class="dropdown-item" id="helpBtn"><i class="fas fa-question-circle"></i> Bantuan</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="nav-tabs-container">
+    <div class="nav-tabs">
+      <a href="index.html" class="nav-tab">Aplikasi Mod</a>
+      <a href="irgxymods.html" class="nav-tab">IrgxyMods</a>
+      <a href="acount.html" class="nav-tab">Akun Premium</a>
+      <a href="fitur.html" class="nav-tab">Fitur Eksklusif</a>
+      <a href="testimoni.html" class="nav-tab">Testimoni</a>
+      <a href="cheat.html" class="nav-tab">Cheat Game</a>
+      <a href="jadwalsholat.html" class="nav-tab"><i class="fas fa-mosque"></i> Jadwal Sholat</a>
+      <a href="tiktok.html" class="nav-tab"><i class="fab fa-tiktok"></i> TikTok</a>
+      <a href="youtube.html" class="nav-tab"><i class="fab fa-youtube"></i> YouTube</a>
+      <a href="instagram.html" class="nav-tab"><i class="fab fa-instagram"></i> Instagram</a>
+      <a href="threads.html" class="nav-tab"><i class="fas fa-at"></i> Threads</a>
+      <a href="facebook.html" class="nav-tab"><i class="fab fa-facebook"></i> Facebook</a>
+      <a href="compressvideo.html" class="nav-tab"><i class="fas fa-compress"></i> Compress Video</a>
+      <a href="iqcgenerator.html" class="nav-tab active"><i class="fas fa-comments"></i> IQC Generator</a>
+      <a href="qris-barcode.html" class="nav-tab"><i class="fas fa-qrcode"></i> QRIS &amp; Barcode</a>
+      <a href="spotify.html" class="nav-tab"><i class="fab fa-spotify"></i> Spotify</a>
+      <a href="testspeed.html" class="nav-tab"><i class="fas fa-tachometer-alt"></i> Test Speed</a>
+      <a href="proyek.html" class="nav-tab">Proyek Saya</a>
+      <a href="portofolio.html" class="nav-tab">Portofolio</a>
+      <a href="kontak.html" class="nav-tab">Kontak</a>
+      <a href="login.html" class="nav-tab"><i class="fas fa-sign-in-alt"></i> Login</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="container">
+    <section id="iqc-section" class="section active" style="display:block;">
+
+      <div class="iqc-hero" data-aos="fade-up">
+        <div class="iqc-hero-icon"><i class="fas fa-comments"></i></div>
+        <h1 class="iqc-hero-title">IQC GENERATOR IOS/IPHONE</h1>
+        <p class="iqc-hero-sub">
+          Buat gambar tampilan chatting <strong>WhatsApp iOS</strong> seperti iPhone asli —
+          lengkap dengan <strong>iOS Context Menu</strong> (long-press) & emoji reaction.
+          100% client-side, tanpa kirim data ke server.
+        </p>
+        <div class="iqc-hero-pills">
+          <span class="iqc-pill"><i class="fas fa-check"></i> 100% iOS Style</span>
+          <span class="iqc-pill"><i class="fas fa-bolt"></i> Real-time Preview</span>
+          <span class="iqc-pill"><i class="fas fa-image"></i> Export HD PNG</span>
+          <span class="iqc-pill"><i class="fas fa-shield-alt"></i> No Watermark</span>
+          <span class="iqc-pill"><i class="fas fa-lock"></i> Privacy Safe</span>
+        </div>
+      </div>
+
+      <div class="iqc-layout">
+
+        <div class="iqc-form-col">
+
+          <div class="iqc-form-card" id="iqcContextMenuCard" data-aos="fade-up">
+            <div class="iqc-form-header"><i class="fab fa-whatsapp"></i> WhatsApp iOS — Context Menu</div>
+
+            <div class="iqc-field">
+              <label class="iqc-label" for="iqcCmMsgText">Isi Pesan</label>
+              <textarea id="iqcCmMsgText" class="iqc-textarea" rows="3" maxlength="300"
+                placeholder="Tulis pesan panjang di sini...">ikan hiu ngedek ngedek Indonesia nihhh dekkk</textarea>
+            </div>
+
+            <div class="iqc-field">
+              <label class="iqc-label" for="iqcCmMsgTime">Jam Pesan (HH:MM)</label>
+              <input type="text" id="iqcCmMsgTime" class="iqc-input" value="17:25" maxlength="5" />
+            </div>
+
+            <div class="iqc-field">
+              <label class="iqc-label" for="iqcCmMsgType">Tipe Bubble</label>
+              <select id="iqcCmMsgType" class="iqc-select">
+                <option value="in" selected>Masuk (kiri)</option>
+                <option value="out">Keluar (kanan)</option>
+              </select>
+            </div>
+
+            <div class="iqc-color-grid">
+              <div class="iqc-field">
+                <label class="iqc-label" for="iqcCmBubbleColor">Warna Bubble</label>
+                <input type="color" id="iqcCmBubbleColor" class="iqc-color-picker" value="#444444" />
+              </div>
+              <div class="iqc-field">
+                <label class="iqc-label" for="iqcCmTextColor">Warna Teks</label>
+                <input type="color" id="iqcCmTextColor" class="iqc-color-picker" value="#FFFFFF" />
+              </div>
+            </div>
+
+            <!-- ═══════════════ EMOJI SECTION ═══════════════ -->
+            <div class="iqc-form-divider">
+              <span><i class="fas fa-smile"></i> EMOJI REACTION</span>
+            </div>
+
+            <div class="iqc-field">
+              <label class="iqc-label" for="iqcCmReactions">Emoji Unicode (pisahkan koma, max 6)</label>
+              <input type="text" id="iqcCmReactions" class="iqc-input" value="👍,❤️,😂,😮,😢,🙏"
+                placeholder="👍,❤️,😂,😮,😢,🙏" />
+              <small class="iqc-helper">Contoh: 👍,❤️,😂 — kosongkan untuk sembunyikan</small>
+            </div>
+
+            <div class="iqc-field">
+              <label class="iqc-label">
+                <i class="fas fa-expand-arrows-alt"></i>
+                Ukuran Emoji: <span id="iqcCmEmojiSizeVal">26</span>px
+              </label>
+              <input type="range" id="iqcCmEmojiSize" class="iqc-slider"
+                     min="20" max="80" value="26" step="2" />
+              <small class="iqc-helper">20px (mini) – 80px (jumbo) • iOS standard = 26px</small>
+            </div>
+
+            <div class="iqc-toggle-row">
+              <span class="iqc-label-inline">
+                <i class="fas fa-image" style="color:var(--gold);margin-right:4px;"></i>
+                Gunakan Emoji Gambar Custom
+              </span>
+              <label class="iqc-toggle">
+                <input type="checkbox" id="iqcCmUseCustomEmoji" />
+                <span class="iqc-toggle-switch"></span>
+              </label>
+            </div>
+
+            <div class="iqc-field" id="iqcCmCustomEmojiField" style="display:none;">
+              <label class="iqc-label" for="iqcCmCustomEmojiUrls">
+                URL Gambar Emoji (1 URL per baris, max 6)
+              </label>
+              <textarea id="iqcCmCustomEmojiUrls" class="iqc-textarea" rows="6"
+                placeholder="https://contoh.com/emoji1.png&#10;https://contoh.com/emoji2.png&#10;..."
+              >https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f44d.png
+https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/2764.png
+https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f602.png
+https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f62e.png
+https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f622.png
+https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/72x72/1f64f.png</textarea>
+              <small class="iqc-helper">Format PNG/SVG/WebP • Hosting harus mendukung CORS (ImageKit, jsDelivr, Cloudinary ✓)</small>
+            </div>
+            <!-- ═══════════════ /EMOJI SECTION ═══════════════ -->
+
+            <div class="iqc-field">
+              <label class="iqc-label">Battery: <span id="iqcCmBatteryVal">59</span>%</label>
+              <input type="range" id="iqcCmBattery" class="iqc-slider" min="0" max="100" value="59" step="1" />
+            </div>
+
+            <div class="iqc-field">
+              <label class="iqc-label">Overlay Gelap: <span id="iqcCmDimVal">45</span>%</label>
+              <input type="range" id="iqcCmDim" class="iqc-slider" min="20" max="70" value="45" step="5" />
+            </div>
+
+            <div class="iqc-toggle-row">
+              <span class="iqc-label-inline">Dark Theme iOS</span>
+              <label class="iqc-toggle">
+                <input type="checkbox" id="iqcCmDarkTheme" checked />
+                <span class="iqc-toggle-switch"></span>
+              </label>
+            </div>
+
+            <div class="iqc-toggle-row">
+              <span class="iqc-label-inline">Tampilkan Emoji Reaction</span>
+              <label class="iqc-toggle">
+                <input type="checkbox" id="iqcCmShowReactions" checked />
+                <span class="iqc-toggle-switch"></span>
+              </label>
+            </div>
+
+            <div class="iqc-toggle-row">
+              <span class="iqc-label-inline">Tampilkan Context Menu</span>
+              <label class="iqc-toggle">
+                <input type="checkbox" id="iqcCmShowMenu" checked />
+                <span class="iqc-toggle-switch"></span>
+              </label>
+            </div>
+          </div>
+
+          <div class="iqc-form-card iqc-action-card" data-aos="fade-up">
+            <div class="iqc-form-header"><i class="fas fa-download"></i> Export Gambar</div>
+            <div class="iqc-export-grid">
+              <button type="button" class="iqc-btn-primary" id="iqcDownloadPng">
+                <i class="fas fa-image"></i> Download PNG
+              </button>
+              <button type="button" class="iqc-btn-primary" id="iqcDownloadHd">
+                <i class="fas fa-crown"></i> Download HD PNG
+              </button>
+              <button type="button" class="iqc-btn-secondary" id="iqcCopyImage">
+                <i class="fas fa-copy"></i> Copy Gambar
+              </button>
+              <button type="button" class="iqc-btn-secondary" id="iqcShareImage">
+                <i class="fas fa-share-alt"></i> Share
+              </button>
+            </div>
+            <button type="button" class="iqc-btn-danger iqc-btn-full" id="iqcResetAll">
+              <i class="fas fa-redo-alt"></i> Reset Semua
+            </button>
+            <div class="iqc-loading" id="iqcExportLoading" style="display:none;">
+              <span class="iqc-spinner"></span> <span id="iqcExportLoadingText">Memproses gambar...</span>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="iqc-preview-col">
+          <div class="iqc-preview-sticky">
+            <div class="iqc-preview-label"><i class="fas fa-mobile-alt"></i> Preview iPhone (Live)</div>
+
+            <div class="iqc-preview-frame" id="iqcPreviewFrame">
+              <div class="iqc-phone-frame" id="iqcPhoneFrame">
+
+                <div class="iqc-chat-bg" id="iqcChatBg">
+                  <div class="iqc-chat-messages" id="iqcChatMessages"></div>
+                </div>
+
+                <div class="iqc-home-indicator"></div>
+
+              </div>
+            </div>
+
+            <div class="iqc-preview-hint">
+              <i class="fas fa-info-circle"></i> Preview akan sama persis dengan hasil download
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="iqc-faq" data-aos="fade-up">
+        <h2 class="section-title-3d" style="display:block;text-align:center;margin-bottom:1.5rem;">PERTANYAAN UMUM</h2>
+
+        <div class="iqc-faq-item">
+          <button class="iqc-faq-q" type="button">Apakah data saya dikirim ke server? <i class="fas fa-chevron-down"></i></button>
+          <div class="iqc-faq-a"><p>Tidak. Semua proses IQC Generator berjalan <strong>100% di browser Anda</strong> menggunakan HTML5 Canvas dan html2canvas. Tidak ada data yang dikirim ke server manapun.</p></div>
+        </div>
+
+        <div class="iqc-faq-item">
+          <button class="iqc-faq-q" type="button">Bagaimana cara membuat WhatsApp iOS Context Menu? <i class="fas fa-chevron-down"></i></button>
+          <div class="iqc-faq-a"><p>Isi pesan, jam, tipe bubble (masuk/keluar), emoji reaction (👍❤️😂😮😢🙏), dan warna bubble. Preview akan langsung menampilkan seperti screenshot iPhone saat <strong>long-press bubble pesan WhatsApp</strong> lengkap dengan context menu iOS. Klik <strong>Download HD PNG</strong> untuk menyimpan.</p></div>
+        </div>
+
+        <div class="iqc-faq-item">
+          <button class="iqc-faq-q" type="button">Bagaimana cara pakai Emoji Gambar Custom? <i class="fas fa-chevron-down"></i></button>
+          <div class="iqc-faq-a"><p>Aktifkan toggle <strong>Gunakan Emoji Gambar Custom</strong>, lalu tempel URL gambar emoji (1 URL per baris, max 6). Contoh hosting gratis yang support CORS: <strong>jsDelivr</strong>, <strong>ImageKit</strong>, <strong>Cloudinary</strong>. Ukuran rekomendasi minimal 72×72px untuk hasil HD.</p></div>
+        </div>
+
+        <div class="iqc-faq-item">
+          <button class="iqc-faq-q" type="button">Bagaimana cara memperbesar emoji? <i class="fas fa-chevron-down"></i></button>
+          <div class="iqc-faq-a"><p>Gunakan slider <strong>Ukuran Emoji</strong> (20px – 80px). Default 26px sesuai iOS. Untuk hasil dramatis, coba 52px (2× lipat) atau 64px. Ukuran otomatis diaplikasikan ke preview dan hasil download.</p></div>
+        </div>
+
+        <div class="iqc-faq-item">
+          <button class="iqc-faq-q" type="button">Kenapa emoji gambar saya tidak muncul? <i class="fas fa-chevron-down"></i></button>
+          <div class="iqc-faq-a"><p>Pastikan hosting URL Anda mendukung <strong>CORS</strong> (header <code>Access-Control-Allow-Origin</code>). ImageKit, jsDelivr, dan Cloudinary sudah pasti support. Imgur sering gagal karena CORS.</p></div>
+        </div>
+      </div>
+
+    </section>
+  </div>
+</main>
+
+<div id="loginModal" class="login-modal">
+  <div class="login-modal-content card-3d">
+    <span class="login-close" id="loginModalClose">&times;</span>
+    <div class="login-logo"><i class="fas fa-crown logo-icon"></i><h1>IRGXYMODS</h1></div>
+    <h2 class="login-title">Masuk ke Akun Anda</h2>
+    <p class="login-subtitle">Akses konten eksklusif dan fitur premium</p>
+    <form id="loginForm" class="login-form">
+      <div class="form-group"><label for="username">Username atau Email</label>
+        <div class="input-with-icon"><i class="fas fa-user"></i><input type="text" id="username" placeholder="Masukkan username atau email" required /></div>
+      </div>
+      <div class="form-group"><label for="password">Password</label>
+        <div class="input-with-icon"><i class="fas fa-lock"></i><input type="password" id="password" placeholder="Masukkan password" required /></div>
+      </div>
+      <div class="remember-forgot">
+        <label class="remember-me"><input type="checkbox" id="rememberMe" /><span>Ingat saya</span></label>
+        <a href="#" class="forgot-password">Lupa password?</a>
+      </div>
+      <button type="submit" class="login-btn" id="loginBtn"><i class="fas fa-sign-in-alt"></i><span>Masuk</span></button>
+    </form>
+    <div class="divider"><span>atau masuk dengan</span></div>
+    <div class="social-login">
+      <a href="#" class="social-btn google-btn"><i class="fab fa-google"></i></a>
+      <a href="#" class="social-btn facebook-btn"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" class="social-btn twitter-btn"><i class="fab fa-twitter"></i></a>
+    </div>
+    <div class="register-link">Belum punya akun? <a href="#">Daftar sekarang</a></div>
+  </div>
+</div>
+
+<div id="profileModal" class="profile-modal">
+  <div class="profile-modal-content card-3d">
+    <span class="profile-close" id="profileModalClose">&times;</span>
+    <div class="profile-card">
+      <div class="profile-header">
+        <div class="profile-avatar-container">
+          <img src="https://ik.imagekit.io/IrgxyMods/IMG_20250922_195742.jpg?updatedAt=1758545932127" alt="Avatar" class="profile-avatar" />
+          <div class="profile-status"></div>
+          <div class="profile-edit-icon"><i class="fas fa-camera"></i></div>
+        </div>
+        <div class="profile-title"><h2 class="profile-name">Pengguna IRGXYMODS</h2><p class="profile-rank">Member Premium</p></div>
+        <div class="profile-badges">
+          <div class="badge gold-badge"><i class="fas fa-crown"></i></div>
+          <div class="badge verified-badge"><i class="fas fa-check-circle"></i></div>
+          <div class="badge vip-badge"><i class="fas fa-star"></i></div>
+        </div>
+      </div>
+      <div class="profile-stats">
+        <div class="stat-item"><div class="stat-value" id="statDownloads">0</div><div class="stat-label">Aplikasi Diunduh</div></div>
+        <div class="stat-item"><div class="stat-value" id="statDays">0</div><div class="stat-label">Hari Aktif</div></div>
+        <div class="stat-item"><div class="stat-value" id="statBugs">0</div><div class="stat-label">Laporan Bug</div></div>
+      </div>
+      <div class="profile-info">
+        <div class="info-section">
+          <h3 class="section-title"><i class="fas fa-history"></i> Aktivitas Terbaru</h3>
+          <div id="activityTimeline"></div>
+        </div>
+      </div>
+      <div class="profile-actions">
+        <button class="profile-action-btn edit-profile"><i class="fas fa-edit"></i><span>Edit Profil</span></button>
+        <button class="profile-action-btn upgrade-premium"><i class="fas fa-crown"></i><span>Upgrade Premium</span></button>
+        <button class="profile-action-btn logout"><i class="fas fa-sign-out-alt"></i><span>Keluar</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="recaptchaModal" class="recaptcha-modal" style="display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);backdrop-filter:blur(5px);z-index:2000;align-items:center;justify-content:center;">
+  <div class="card-3d" style="background:rgba(30,30,42,0.95);border-radius:16px;padding:30px;max-width:500px;width:90%;text-align:center;border:1px solid var(--border-subtle);position:relative;">
+    <span id="recaptchaModalClose" style="position:absolute;top:15px;right:15px;color:rgba(255,255,255,0.7);font-size:1.5rem;cursor:pointer;">&times;</span>
+    <h3 style="font-size:1.5rem;margin-bottom:1rem;color:#fff;"><i class="fas fa-shield-alt"></i> Verifikasi Download</h3>
+    <p style="margin-bottom:1.5rem;color:rgba(255,255,255,0.8);">Harap verifikasi bahwa Anda bukan robot sebelum mengunduh.</p>
+    <div class="g-recaptcha" data-sitekey="6LdtFAksAAAAAIPvTbNODpNyrE9zvK6a3iDljat4" data-callback="onDownloadRecaptchaSuccess" data-expired-callback="onDownloadRecaptchaExpired" style="display:flex;justify-content:center;margin-bottom:1.5rem;"></div>
+    <button id="downloadVerifiedBtn" disabled style="background:var(--gold-gradient);color:#1a1a2e;border:none;padding:14px 28px;border-radius:50px;font-weight:700;cursor:pointer;font-size:1rem;"><i class="fas fa-download"></i> Lanjutkan Download</button>
+    <div id="downloadRecaptchaStatus" style="margin-top:1rem;padding:10px 15px;border-radius:8px;font-weight:500;display:none;"></div>
+  </div>
+</div>
+
+<div class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></div>
+
+<footer>
+  <p style="margin-bottom:0.5rem;color:rgba(255,255,255,0.8);">&copy; 2025 IRGXY MODS — Website Download Aplikasi Mod Dan Premium Terlengkap</p>
+  <p style="margin-bottom:1.5rem;color:rgba(255,255,255,0.6);">✨ Support Modder IrgxyMods ✨</p>
+  <div class="footer-links">
+    <a href="https://policies.google.com/privacy?hl=en-US" class="footer-link" target="_blank">Privacy Policy</a>
+    <a href="https://policies.google.com/terms?hl=en-US" class="footer-link" target="_blank">Terms of Service</a>
+    <a href="https://t.me/irgxyzmods" class="footer-link" target="_blank">Contact Us</a>
+    <a href="https://policies.google.com/faq?hl=id" class="footer-link" target="_blank">FAQ</a>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="main.js"></script>
+<script src="iqcgenerator.js"></script>
+</body>
+</html>
