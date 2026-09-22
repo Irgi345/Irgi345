@@ -1,14 +1,17 @@
 /* ================================================================
    IQC GENERATOR — iqcgenerator.css
-   Version: 5.2 (Background Image Fix)
+   Version: 5.3 (Color & Status Match)
    ================================================================
-   CHANGELOG v5.2:
-     - .iqc-chat-bg pakai background-image dari URL imagekit
-     - .iqc-chat-bg.dark / .no-wallpaper / .dark.no-wallpaper
-       TIDAK lagi override background-image (hanya color overlay)
-     - .iqc-chat-bg.has-wallpaper::before → opacity diturunkan
-       ke 0.03 agar tidak mengganggu background image
-     - background-attachment: scroll (aman html2canvas)
+   CHANGELOG v5.3:
+     - .iqc-phone-frame.cm-mode → hide notch (::before) + status bar
+     - .iqc-cm-bubble → warna match #1F1F1F, teks putih
+     - .iqc-cm-reactions → pill gelap + tombol PLUS circle (baru)
+     - .iqc-cm-menu → warna #1C1C1E match iOS 15+
+     - Menu item lebih tinggi (~50px), font 17px, icon kanan
+     - Warna danger #FF453A presisi iOS
+   v5.2:
+     - Background image dari URL imagekit
+     - Wallpaper OFF tetap pakai background image
    ================================================================ */
 
 /* ─────────────── 1. CSS VARIABLES ─────────────── */
@@ -176,6 +179,10 @@
   z-index:20;
 }
 
+/* v5.3: cm-mode → HIDE notch (::before) + status bar di context menu */
+.iqc-phone-frame.cm-mode::before{display:none !important}
+.iqc-phone-frame.cm-mode .iqc-status-bar{display:none !important}
+
 /* Status Bar */
 .iqc-status-bar{height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 24px;font-size:14px;font-weight:600;color:#000;background:transparent;position:relative;z-index:10;font-family:-apple-system,'SF Pro Display',sans-serif;flex-shrink:0}
 .iqc-status-left{margin-left:6px;letter-spacing:0.3px;display:flex;align-items:center;gap:5px}
@@ -196,43 +203,24 @@
 .iqc-chat-header-actions{display:flex;gap:14px;color:#007AFF;align-items:center;padding-right:2px}
 .iqc-chat-header-actions svg{fill:#007AFF}
 
-/* ================================================================
-   v5.2 — CHAT BODY / BACKGROUND
-   Ganti background solid lama dengan background IMAGE dari URL.
-   - cover (tidak stretch/distort)
-   - center center
-   - no-repeat
-   - attachment: scroll (aman html2canvas)
-   ================================================================ */
+/* ─── CHAT BODY / BACKGROUND (v5.2) ─── */
 .iqc-chat-bg{
   flex:1;
   position:relative;
   overflow:hidden;
   display:flex;
   flex-direction:column;
-  background-color:#0B141A; /* fallback jika image gagal */
+  background-color:#0B141A;
   background-image:var(--iqc-chat-bg-url);
   background-size:cover;
   background-position:center center;
   background-repeat:no-repeat;
   background-attachment:scroll;
 }
+.iqc-chat-bg.dark{}
+.iqc-chat-bg.no-wallpaper{}
+.iqc-chat-bg.dark.no-wallpaper{}
 
-/* v5.2: dark class TIDAK override background — hanya deklarasi color (opsional overlay) */
-.iqc-chat-bg.dark{
-  /* background image dipertahankan; hanya menandai context dark */
-  /* JANGAN ganti background-image / background-color di sini */
-}
-
-/* v5.2: wallpaper OFF tetap pakai background image (tidak ganti ke warna solid) */
-.iqc-chat-bg.no-wallpaper{
-  /* background image tetap tampil */
-}
-.iqc-chat-bg.dark.no-wallpaper{
-  /* background image tetap tampil */
-}
-
-/* v5.2: doodle dots overlay — opacity sangat rendah (0.03) agar tidak mengganggu bg image */
 .iqc-chat-bg.has-wallpaper::before{
   content:'';
   position:absolute;
@@ -297,7 +285,6 @@
 .iqc-bubble.ig-out.dark{background:linear-gradient(135deg,#833AB4,#E4405F);color:#fff}
 .iqc-bubble.ig-in.dark{background:#262626;color:#fff}
 
-/* Bubble content layout */
 .iqc-bubble-content{display:inline;padding-right:52px;position:relative}
 .iqc-bubble-time{font-size:11px;color:#667781;position:absolute;right:8px;bottom:2px;display:inline-flex;align-items:center;gap:3px;line-height:1;font-weight:500;letter-spacing:0.2px}
 .iqc-bubble.dark .iqc-bubble-time{color:#8696A0}
@@ -305,7 +292,6 @@
 .iqc-bubble.ig-in .iqc-bubble-time{color:#8E8E93}
 .iqc-bubble.ig-out.dark .iqc-bubble-time{color:rgba(255,255,255,0.85)}
 
-/* Check marks (✓✓) */
 .iqc-check{display:inline-flex;align-items:center;gap:-2px;margin-left:2px;transform:translateY(1px)}
 .iqc-check svg{width:14px;height:10px;display:block}
 .iqc-check svg path{fill:#53BDEB}
@@ -313,16 +299,13 @@
 .iqc-check.dark svg path{fill:#53BDEB}
 .iqc-check.dark.delivered svg path{fill:#8696A0}
 
-/* Tail */
 .iqc-bubble.out::after{content:'';position:absolute;right:-6px;bottom:0;width:10px;height:14px;background:inherit;clip-path:path('M0 0 L10 0 C10 6 6 12 0 14 Z');border-bottom-right-radius:4px}
 .iqc-bubble.in::after{content:'';position:absolute;left:-6px;bottom:0;width:10px;height:14px;background:inherit;clip-path:path('M10 0 L0 0 C0 6 4 12 10 14 Z');border-bottom-left-radius:4px}
 .iqc-bubble.no-tail::after{display:none}
 
-/* Date pill */
 .iqc-date-pill{align-self:center;background:rgba(0,0,0,0.35);color:#fff;font-size:11px;font-weight:600;padding:4px 12px;border-radius:20px;margin:4px 0 6px;letter-spacing:0.3px;backdrop-filter:blur(4px);position:relative;z-index:2}
 .iqc-chat-bg.dark .iqc-date-pill{background:rgba(0,0,0,0.45);color:#E9EDEF}
 
-/* Typing indicator */
 .iqc-typing{align-self:flex-start;background:#FFFFFF;padding:12px 16px;border-radius:18px;border-bottom-left-radius:4px;display:inline-flex;gap:4px;align-items:center;box-shadow:0 1px 0.5px rgba(0,0,0,0.13);margin-top:2px}
 .iqc-chat-bg.dark .iqc-typing{background:#202C33}
 .iqc-typing span{width:7px;height:7px;border-radius:50%;background:#8696A0;animation:iqcTyping 1.2s infinite ease-in-out}
@@ -330,13 +313,10 @@
 .iqc-typing span:nth-child(3){animation-delay:0.3s}
 @keyframes iqcTyping{0%,60%,100%{transform:translateY(0);opacity:0.5}30%{transform:translateY(-4px);opacity:1}}
 
-/* Home Indicator */
 .iqc-home-indicator{position:absolute;bottom:6px;left:50%;transform:translateX(-50%);width:130px;height:5px;background:#fff;border-radius:5px;z-index:20;opacity:0.9}
 
-/* Emoji native rendering */
 .iqc-bubble,.iqc-bubble *{font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text','Segoe UI','Inter',sans-serif,'Apple Color Emoji','Segoe UI Emoji','Noto Color Emoji','EmojiOne Color','Android Emoji'}
 
-/* Dark mode frame */
 .iqc-phone-frame.dark-frame{background:#000}
 .iqc-phone-frame.dark-frame .iqc-chat-header{background:#1F2C33;color:#E9EDEF;border-bottom-color:rgba(255,255,255,0.08)}
 .iqc-phone-frame.dark-frame .iqc-chat-contact-name{color:#E9EDEF}
@@ -349,7 +329,7 @@
 .iqc-phone-frame.dark-frame .iqc-home-indicator{background:#fff}
 
 /* ================================================================
-   === 10B. iOS CONTEXT MENU (v5.2 — background image dipakai) ===
+   === 10B. iOS CONTEXT MENU (v5.3 — COLOR PRESISI) ===
    ================================================================ */
 
 /* Blurred fake background */
@@ -386,17 +366,21 @@
   align-items:stretch;
 }
 
-/* Reactions bar */
+/* ─────────────────────────────────────────────────────────────
+   v5.3: REACTIONS PILL — match gambar (dark rounded + PLUS button)
+   Background: rgba(30,30,30,0.92) backdrop blur
+   Radius: pill (999px)
+   ───────────────────────────────────────────────────────────── */
 .iqc-cm-reactions{
   display:inline-flex;
   align-items:center;
-  gap:6px;
-  padding:6px 14px;
+  gap:8px;
+  padding:7px 8px 7px 16px;
   background:rgba(30,30,30,0.92);
   backdrop-filter:blur(20px);
   -webkit-backdrop-filter:blur(20px);
   border-radius:999px;
-  margin-bottom:8px;
+  margin-bottom:10px;
   box-shadow:0 4px 20px rgba(0,0,0,0.4);
   align-self:flex-start;
   font-family:"Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji",sans-serif;
@@ -410,17 +394,43 @@
   display:inline-block;
 }
 
-/* Main bubble */
+/* v5.3: tombol PLUS circle di ujung reactions pill */
+.iqc-cm-plus{
+  width:32px;
+  height:32px;
+  border-radius:50%;
+  background:rgba(255,255,255,0.15);
+  border:none;
+  color:#FFFFFF;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:14px;
+  margin-left:4px;
+  cursor:default;
+  padding:0;
+  line-height:1;
+  flex-shrink:0;
+  pointer-events:none;
+}
+.iqc-cm-plus i{font-size:14px;color:#FFFFFF}
+
+/* ─────────────────────────────────────────────────────────────
+   v5.3: MAIN BUBBLE — match gambar
+   Warna: #1F1F1F (dari DEFAULT_CM)
+   Teks: #FFFFFF, font 17px (iOS standard)
+   Hug-content (span inline + time overlay absolute)
+   ───────────────────────────────────────────────────────────── */
 .iqc-cm-bubble{
   position:relative;
   max-width:85%;
   width:fit-content;
   min-width:60px;
-  padding:8px 12px 6px;
+  padding:9px 14px 9px;
   border-radius:18px;
   font-family:-apple-system,"SF Pro Text","Helvetica Neue",Arial,sans-serif;
-  font-size:15px;
-  line-height:1.35;
+  font-size:17px;
+  line-height:1.3;
   word-break:break-word;
   overflow-wrap:break-word;
   white-space:pre-wrap;
@@ -430,23 +440,21 @@
 .iqc-cm-bubble.in{border-radius:18px 18px 18px 4px;align-self:flex-start}
 .iqc-cm-bubble.out{border-radius:18px 18px 4px 18px;align-self:flex-end}
 
-/* Content */
 .iqc-cm-bubble-content{
   display:inline;
   font-family:-apple-system,"SF Pro Text","Helvetica Neue",
               Arial,sans-serif,
               "Apple Color Emoji","Segoe UI Emoji","Noto Color Emoji";
-  padding:0 48px 0 0;
+  padding:0 56px 0 0;
   margin:0;
   vertical-align:top;
 }
 
-/* Time overlay */
 .iqc-cm-bubble-time{
   position:absolute;
-  right:10px;
-  bottom:4px;
-  font-size:11px;
+  right:12px;
+  bottom:7px;
+  font-size:13px;
   line-height:1;
   opacity:0.85;
   font-family:-apple-system,"SF Pro Text","Helvetica Neue",Arial,sans-serif;
@@ -456,19 +464,26 @@
   margin:0;
   text-align:right;
   display:inline-block;
+  font-weight:400;
 }
 
-/* Context menu */
+/* ─────────────────────────────────────────────────────────────
+   v5.3: CONTEXT MENU — match gambar akurat
+   Background: rgba(28,28,30,0.94) iOS 15+ style
+   Item: font 17px, padding ~14px 18px, divider tipis
+   Icons: kanan, putih, ukuran ~20px
+   Danger: #FF453A
+   ───────────────────────────────────────────────────────────── */
 .iqc-cm-menu{
-  width:60%;
-  max-width:260px;
+  width:62%;
+  max-width:270px;
   background:rgba(28,28,30,0.94);
   backdrop-filter:blur(24px) saturate(180%);
   -webkit-backdrop-filter:blur(24px) saturate(180%);
   border-radius:14px;
   overflow:hidden;
   box-shadow:0 10px 40px rgba(0,0,0,0.55);
-  margin-top:8px;
+  margin-top:10px;
   align-self:flex-start;
 }
 .iqc-cm-item{
@@ -478,18 +493,21 @@
   width:100%;
   padding:14px 18px;
   font-size:17px;
+  font-weight:400;
   color:#FFFFFF;
   background:transparent;
   border:none;
-  border-bottom:0.5px solid rgba(255,255,255,0.12);
+  border-bottom:0.5px solid rgba(255,255,255,0.1);
   cursor:pointer;
   font-family:-apple-system,"SF Pro Text","Helvetica Neue",Arial,sans-serif;
   text-align:left;
   transition:background 0.15s ease;
+  letter-spacing:0.1px;
+  line-height:1.2;
 }
 .iqc-cm-item:last-child{border-bottom:none}
 .iqc-cm-item:active,.iqc-cm-item:hover{background:rgba(255,255,255,0.08)}
-.iqc-cm-item i{font-size:20px;opacity:0.9;color:#FFFFFF}
+.iqc-cm-item i{font-size:20px;opacity:0.95;color:#FFFFFF}
 .iqc-cm-item span{font-weight:400;letter-spacing:0.1px}
 .iqc-cm-item.danger{color:#FF453A}
 .iqc-cm-item.danger i{color:#FF453A}
@@ -523,10 +541,11 @@
   .iqc-tab{padding:10px 16px;font-size:0.82rem}
   .iqc-phone-frame{width:100%;max-width:375px;height:auto;aspect-ratio:375/812}
   .iqc-export-grid{grid-template-columns:1fr}
-  .iqc-cm-menu{width:72%;max-width:240px}
-  .iqc-cm-item{font-size:15px;padding:12px 15px}
-  .iqc-cm-item i{font-size:17px}
-  .iqc-cm-reactions span{font-size:22px}
+  .iqc-cm-menu{width:72%;max-width:250px}
+  .iqc-cm-item{font-size:16px;padding:13px 16px}
+  .iqc-cm-item i{font-size:18px}
+  .iqc-cm-reactions span{font-size:24px}
+  .iqc-cm-plus{width:30px;height:30px}
 }
 @media (max-width:480px){
   .iqc-hero-title{font-size:1.5rem}
@@ -550,11 +569,13 @@
   .iqc-action-row .iqc-btn-primary,.iqc-action-row .iqc-btn-secondary,.iqc-action-row .iqc-btn-danger{width:100%;flex:none}
   .iqc-faq-q{font-size:0.85rem;padding:14px 14px}
   .iqc-faq-a p{font-size:0.8rem}
-  .iqc-cm-menu{width:80%;max-width:220px}
-  .iqc-cm-item{font-size:14px;padding:11px 14px}
-  .iqc-cm-item i{font-size:16px}
-  .iqc-cm-reactions{padding:5px 11px;gap:4px}
-  .iqc-cm-reactions span{font-size:20px}
+  .iqc-cm-menu{width:80%;max-width:230px}
+  .iqc-cm-item{font-size:15px;padding:12px 14px}
+  .iqc-cm-item i{font-size:17px}
+  .iqc-cm-reactions{padding:6px 7px 6px 14px;gap:6px}
+  .iqc-cm-reactions span{font-size:22px}
+  .iqc-cm-plus{width:28px;height:28px;font-size:12px}
+  .iqc-cm-plus i{font-size:12px}
 }
 @media (max-width:360px){
   .iqc-hero-title{font-size:1.3rem}
@@ -563,8 +584,8 @@
   .iqc-form-card{padding:14px}
   .iqc-phone-frame{border-radius:32px}
   .iqc-status-bar{height:38px;font-size:12px;padding:0 18px}
-  .iqc-cm-item{font-size:13px;padding:10px 12px}
-  .iqc-cm-reactions span{font-size:18px}
+  .iqc-cm-item{font-size:14px;padding:11px 13px}
+  .iqc-cm-reactions span{font-size:20px}
 }
 
 /* ================================================================
