@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<meta name="theme-color" content="#0f0f1a" />
+<meta name="description" content="Base64 Converter Pro v7 Quantum — 200+ fitur: encode/decode file, teks, URL, kamera, QR, Base32/58/85/91/16, JWT, AES-GCM, ECDSA, steganografi, PWA, AI-lite. 100% offline." />
+<meta property="og:title" content="Base64 Pro v7 Quantum — IRGXYMODS" />
+<meta property="og:description" content="Quantum Base64 toolkit — 200+ fitur, zero-defect." />
+<meta property="og:type" content="website" />
+<meta http-equiv="Content-Security-Policy"
+  content="default-src 'self';
+           img-src 'self' data: blob: https:;
+           media-src 'self' data: blob: https:;
+           script-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://cdn.jsdelivr.net https://unpkg.com;
+           style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com https://fonts.googleapis.com https://unpkg.com;
+           font-src 'self' https://cdnjs.cloudflare.com https://fonts.gstatic.com;
+           connect-src 'self' https: blob: data:;
+           worker-src 'self' blob:;
+           frame-src 'self' blob: data:;
+           object-src 'none';
+           base-uri 'self';" />
+<title>Base64 Converter Pro v7 Quantum — IRGXYMODS</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,700&family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+<link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="base64_v7.css" />
+<link rel="manifest" href='data:application/manifest+json,{"name":"Base64 Pro v7","short_name":"Base64v7","start_url":"./base64_v7.html","display":"standalone","background_color":"%230f0f1a","theme_color":"%230f0f1a","icons":[]}' />
+</head>
+<body>
+<div class="toast-container" id="toastContainer" aria-live="polite" aria-atomic="true"></div>
+
+<!-- v7-merge: modal konfirmasi global -->
+<div class="b64-modal-backdrop" id="b64Modal" hidden aria-hidden="true">
+  <div class="b64-modal" role="dialog" aria-modal="true" aria-labelledby="b64ModalTitle">
+    <h3 id="b64ModalTitle">Konfirmasi</h3>
+    <p id="b64ModalMsg">Yakin?</p>
+    <div class="b64-modal-actions">
+      <button class="b64-btn" id="b64ModalCancel" type="button">Batal</button>
+      <button class="b64-btn b64-btn-danger" id="b64ModalOk" type="button">Ya, Lanjut</button>
+    </div>
+  </div>
+</div>
+
+<!-- v7-merge: command palette -->
+<div class="b64-cmdk" id="b64Cmdk" hidden aria-hidden="true" role="dialog" aria-label="Command palette">
+  <div class="b64-cmdk-inner">
+    <div class="b64-cmdk-search">
+      <i class="fas fa-search"></i>
+      <input type="text" id="b64CmdkInput" placeholder="Cari perintah... (ESC keluar)" spellcheck="false" autocomplete="off" />
+    </div>
+    <ul class="b64-cmdk-list" id="b64CmdkList" role="listbox"></ul>
+  </div>
+</div>
+
+<!-- v7-merge: fullscreen preview -->
+<div class="b64-fullscreen" id="b64Fullscreen" hidden aria-hidden="true">
+  <button class="b64-fullscreen-close" id="b64FullscreenClose" aria-label="Tutup"><i class="fas fa-times"></i></button>
+  <div class="b64-fullscreen-body" id="b64FullscreenBody"></div>
+</div>
+
+<!-- v7-new: XP / Level badge (gamifikasi) -->
+<div class="b64-xp-badge" id="b64XpBadge" title="Level & XP" role="status">
+  <i class="fas fa-trophy"></i>
+  <span id="b64XpLabel">Lv.1 · 0 XP</span>
+</div>
+
+<header>
+  <div class="header-top">
+    <a href="index.html" class="logo-brand"><i class="fas fa-crown"></i><h1>IRGXYMODS</h1></a>
+    <div class="header-actions">
+      <div style="position:relative;display:inline-block;">
+        <button class="settings-btn" id="settingsToggle" aria-label="Pengaturan"><i class="fas fa-cog"></i></button>
+        <div class="settings-dropdown" id="settingsDropdown">
+          <a href="login.html" class="dropdown-item"><i class="fas fa-sign-in-alt"></i> Login</a>
+          <div class="dropdown-divider"></div>
+          <button class="dropdown-item" id="profileDropdownBtn"><i class="fas fa-user"></i> Profil</button>
+          <button class="dropdown-item" id="themeToggleBtn"><i class="fas fa-palette"></i> Tema</button>
+          <div class="dropdown-divider"></div>
+          <a href="irgxymods.html" class="dropdown-item"><i class="fas fa-info-circle"></i> Tentang</a>
+          <button class="dropdown-item" id="helpBtn"><i class="fas fa-question-circle"></i> Bantuan</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="nav-tabs-container">
+    <div class="nav-tabs">
+      <a href="index.html" class="nav-tab">Aplikasi Mod</a>
+      <a href="irgxymods.html" class="nav-tab">IrgxyMods</a>
+      <a href="acount.html" class="nav-tab">Akun Premium</a>
+      <a href="fitur.html" class="nav-tab">Fitur Eksklusif</a>
+      <a href="testimoni.html" class="nav-tab">Testimoni</a>
+      <a href="cheat.html" class="nav-tab">Cheat Game</a>
+      <a href="jadwalsholat.html" class="nav-tab"><i class="fas fa-mosque"></i> Jadwal Sholat</a>
+      <a href="tiktok.html" class="nav-tab"><i class="fab fa-tiktok"></i> TikTok</a>
+      <a href="youtube.html" class="nav-tab"><i class="fab fa-youtube"></i> YouTube</a>
+      <a href="instagram.html" class="nav-tab"><i class="fab fa-instagram"></i> Instagram</a>
+      <a href="threads.html" class="nav-tab"><i class="fas fa-at"></i> Threads</a>
+      <a href="facebook.html" class="nav-tab"><i class="fab fa-facebook"></i> Facebook</a>
+      <a href="compressvideo.html" class="nav-tab"><i class="fas fa-compress"></i> Compress Video</a>
+      <a href="iqcgenerator.html" class="nav-tab"><i class="fas fa-comments"></i> IQC Generator</a>
+      <a href="qris-barcode.html" class="nav-tab"><i class="fas fa-qrcode"></i> QRIS &amp; Barcode</a>      
+      <a href="spotify.html" class="nav-tab"><i class="fab fa-spotify"></i> Spotify</a>
+      <a href="testspeed.html" class="nav-tab"><i class="fas fa-tachometer-alt"></i> Test Speed</a>
+      <a href="base64_v7.html" class="nav-tab active"><i class="fas fa-code"></i> Base64</a>
+      <a href="proyek.html" class="nav-tab">Proyek Saya</a>
+      <a href="portofolio.html" class="nav-tab">Portofolio</a>
+      <a href="kontak.html" class="nav-tab">Kontak</a>
+      <a href="login.html" class="nav-tab"><i class="fas fa-sign-in-alt"></i> Login</a>
+    </div>
+  </div>
+</header>
+
+<main>
+<section class="base64-tool-section" id="base64Section">
+  <div class="container">
+
+    <!-- HERO -->
+    <div class="b64-hero" data-aos="fade-down">
+      <div class="b64-hero-icon"><i class="fas fa-code"></i></div>
+      <h1 class="b64-hero-title">Base64 Converter <span>Pro v7 Quantum</span></h1>
+      <p class="b64-hero-sub" data-i18n="heroSub">Quantum toolkit — file, teks, URL, kamera, QR, Base32/58/85/91/16, JWT, AES-GCM, ECDSA, steganografi, PWA, AI-lite.</p>
+      <div class="b64-hero-pills">
+        <span class="b64-pill"><i class="fas fa-shield-alt"></i> <span data-i18n="pillSafe">Client-Side</span></span>
+        <span class="b64-pill"><i class="fas fa-bolt"></i> <span data-i18n="pillFast">Real-time</span></span>
+        <span class="b64-pill"><i class="fas fa-microchip"></i> <span data-i18n="pillWorker">Web Worker</span></span>
+        <span class="b64-pill"><i class="fas fa-universal-access"></i> <span data-i18n="pillA11y">WCAG 2.1 AA</span></span>
+        <button class="b64-pill b64-pill-btn" id="b64CmdkBtn" type="button" title="Ctrl+K"><i class="fas fa-terminal"></i> ⌘K</button>
+        <button class="b64-pill b64-pill-btn" id="b64ThemeToggle" type="button"><i class="fas fa-adjust"></i> <span id="b64ThemeLabel">Auto</span></button>
+        <button class="b64-pill b64-pill-btn" id="b64LangToggle" type="button"><i class="fas fa-globe"></i> <span id="b64LangLabel">ID</span></button>
+        <button class="b64-pill b64-pill-btn" id="b64TourStart" type="button" title="Tour"><i class="fas fa-graduation-cap"></i> Tour</button>
+      </div>
+    </div>
+
+    <!-- TAB NAV — 16 kategori (v7-merge + v7-new) -->
+    <div class="b64-tabs" role="tablist" aria-label="Kategori Base64">
+      <button class="b64-tab active" data-tab="file"      role="tab" aria-selected="true"  aria-controls="panel-file"><i class="fas fa-file"></i><span data-i18n="tabFile">File</span></button>
+      <button class="b64-tab" data-tab="text"    role="tab" aria-selected="false" aria-controls="panel-text"><i class="fas fa-font"></i><span data-i18n="tabText">Teks</span></button>
+      <button class="b64-tab" data-tab="url"     role="tab" aria-selected="false" aria-controls="panel-url"><i class="fas fa-link"></i><span data-i18n="tabUrl">URL</span></button>
+      <button class="b64-tab" data-tab="camera"  role="tab" aria-selected="false" aria-controls="panel-camera"><i class="fas fa-camera"></i><span data-i18n="tabCamera">Kamera</span></button>
+      <button class="b64-tab" data-tab="advanced" role="tab" aria-selected="false" aria-controls="panel-advanced"><i class="fas fa-flask"></i><span data-i18n="tabAdv">Advanced</span></button>
+      <button class="b64-tab" data-tab="qr"      role="tab" aria-selected="false" aria-controls="panel-qr"><i class="fas fa-qrcode"></i><span data-i18n="tabQr">QR</span></button>
+      <button class="b64-tab" data-tab="utility" role="tab" aria-selected="false" aria-controls="panel-utility"><i class="fas fa-toolbox"></i><span data-i18n="tabUtil">Utility</span></button>
+      <button class="b64-tab" data-tab="share"   role="tab" aria-selected="false" aria-controls="panel-share"><i class="fas fa-share-nodes"></i><span data-i18n="tabShare">Share</span></button>
+      <button class="b64-tab" data-tab="a11y"    role="tab" aria-selected="false" aria-controls="panel-a11y"><i class="fas fa-universal-access"></i><span data-i18n="tabA11y">A11y</span></button>
+      <button class="b64-tab" data-tab="analytics" role="tab" aria-selected="false" aria-controls="panel-analytics"><i class="fas fa-chart-line"></i><span data-i18n="tabStats">Statistik</span></button>
+      <button class="b64-tab" data-tab="integrate" role="tab" aria-selected="false" aria-controls="panel-integrate"><i class="fas fa-plug"></i><span data-i18n="tabInteg">Integrasi</span></button>
+      <button class="b64-tab" data-tab="pwa"     role="tab" aria-selected="false" aria-controls="panel-pwa"><i class="fas fa-mobile-screen"></i><span data-i18n="tabPwa">PWA</span></button>
+      <button class="b64-tab" data-tab="learn"   role="tab" aria-selected="false" aria-controls="panel-learn"><i class="fas fa-book"></i><span data-i18n="tabLearn">Edukasi</span></button>
+      <button class="b64-tab" data-tab="history" role="tab" aria-selected="false" aria-controls="panel-history"><i class="fas fa-history"></i><span data-i18n="tabHist">Riwayat</span></button>
+      <button class="b64-tab" data-tab="settings" role="tab" aria-selected="false" aria-controls="panel-settings"><i class="fas fa-cogs"></i><span data-i18n="tabSet">Pengaturan</span></button>
+    </div>
+
+    <!-- ═══ 1. FILE ═══ -->
+    <div class="b64-panel active" id="panel-file" role="tabpanel" data-aos="fade-up">
+      <div class="b64-dropzone" id="b64Dropzone" tabindex="0" role="button" aria-label="Dropzone upload">
+        <i class="fas fa-cloud-upload-alt b64-dropzone-icon" aria-hidden="true"></i>
+        <p class="b64-dropzone-title" data-i18n="dropTitle">Drag &amp; Drop file</p>
+        <p class="b64-dropzone-sub" data-i18n="dropSub">atau klik — multi-file (batch), maks 25 MB/file</p>
+        <div class="b64-format-badges" aria-hidden="true">
+          <span class="b64-fmt">PNG</span><span class="b64-fmt">JPG</span><span class="b64-fmt">GIF</span>
+          <span class="b64-fmt">WEBP</span><span class="b64-fmt">SVG</span><span class="b64-fmt">MP4</span>
+          <span class="b64-fmt">WEBM</span><span class="b64-fmt">MP3</span><span class="b64-fmt">PDF</span><span class="b64-fmt">ZIP</span>
+        </div>
+        <input type="file" id="b64FileInput" hidden multiple
+               accept="image/*,video/*,audio/*,.svg,.pdf,.zip,.txt,.json,.csv,.bin" />
+      </div>
+
+      <div class="b64-toolbar">
+        <label class="b64-toggle-wrap" for="b64DataUrl1"><input type="checkbox" id="b64DataUrl1" checked hidden /><span class="b64-toggle"><span class="b64-toggle-slider"></span></span><span class="b64-toggle-label">Data URL</span></label>
+        <label class="b64-toggle-wrap" for="b64UrlSafe1"><input type="checkbox" id="b64UrlSafe1" hidden /><span class="b64-toggle"><span class="b64-toggle-slider"></span></span><span class="b64-toggle-label">URL-safe</span></label>
+        <label class="b64-toggle-wrap" for="b64NoPad1"><input type="checkbox" id="b64NoPad1" hidden /><span class="b64-toggle"><span class="b64-toggle-slider"></span></span><span class="b64-toggle-label">Tanpa padding</span></label>
+        <label class="b64-toggle-wrap" for="b64Wrap1"><input type="checkbox" id="b64Wrap1" hidden /><span class="b64-toggle"><span class="b64-toggle-slider"></span></span><span class="b64-toggle-label">MIME wrap 76</span></label>
+        <label class="b64-toggle-wrap" for="b64Compress1"><input type="checkbox" id="b64Compress1" hidden /><span class="b64-toggle"><span class="b64-toggle-slider"></span></span><span class="b64-toggle-label" data-i18n="lblCompress">Kompres gambar</span></label>
+        <label class="b64-toggle-wrap" for="b64UseWorker1"><input type="checkbox" id="b64UseWorker1" checked hidden /><span class="b64-toggle"><span class="b64-toggle-slider"></span></span><span class="b64-toggle-label">Web Worker</span></label>
+      </div>
+
+      <div class="b64-loader" id="b64Loader1" style="display:none;" aria-live="polite">
+        <div class="b64-spinner" role="status" aria-label="Processing">
+          <div class="b64-ring"></div><div class="b64-ring"></div><div class="b64-ring"></div><div class="b64-ring"></div>
+        </div>
+        <div class="b64-progress-wrap">
+          <div class="b64-progress-bar"><div class="b64-progress-fill" id="b64ProgressFill1"></div></div>
+          <div class="b64-progress-text" id="b64ProgressText1">0%</div>
+        </div>
+        <button class="b64-btn b64-btn-danger" id="b64Cancel1" type="button"><i class="fas fa-times"></i> Cancel</button>
+      </div>
+
+      <div class="b64-output-section" id="b64Output1" style="display:none;">
+        <div class="b64-preview-wrap">
+          <div class="b64-preview" id="b64Preview1"></div>
+          <div class="b64-file-info" id="b64FileInfo1"></div>
+        </div>
+        <textarea class="b64-textarea" id="b64OutputText1" readonly spellcheck="false" aria-label="Hasil Base64"></textarea>
+        <div class="b64-stats" id="b64Stats1" aria-live="polite"></div>
+        <div class="b64-actions">
+          <button class="b64-btn b64-btn-primary" id="b64Copy1"><i class="fas fa-copy"></i> Copy</button>
+          <button class="b64-btn" id="b64Download1"><i class="fas fa-download"></i> Download</button>
+          <button class="b64-btn" id="b64Share1"><i class="fas fa-share-alt"></i> Share</button>
+          <button class="b64-btn" id="b64Print1"><i class="fas fa-print"></i> Print</button>
+          <button class="b64-btn" id="b64Hash1" title="SHA-256 integrity"><i class="fas fa-fingerprint"></i> SHA-256</button>
+          <button class="b64-btn" id="b64Pin1"><i class="fas fa-lock-open"></i> Pin</button>
+          <button class="b64-btn b64-btn-danger" id="b64Reset1"><i class="fas fa-trash"></i> Reset</button>
+        </div>
+        <div class="b64-batch" id="b64Batch1" style="display:none;">
+          <h3 class="b64-batch-title"><i class="fas fa-layer-group"></i> <span data-i18n="batchTitle">Batch Files</span></h3>
+          <ul class="b64-batch-list" id="b64BatchList1"></ul>
+          <div class="b64-actions">
+            <button class="b64-btn b64-btn-primary" id="b64BatchDownload"><i class="fas fa-file-archive"></i> Batch JSON</button>
+            <button class="b64-btn" id="b64BatchCsv"><i class="fas fa-file-csv"></i> Batch CSV</button>
+            <button class="b64-btn" id="b64BatchCopyAll"><i class="fas fa-copy"></i> Copy All</button>
+          </div>
+        </div>
+        <div class="b64-extra-block">
+          <h3 class="b64-block-title"><i class="fas fa-cut"></i> Split Base64</h3>
+          <div class="b64-input-row">
+            <input class="b64-input" type="number" id="b64SplitN" value="4" min="2" max="100" />
+            <button class="b64-btn b64-btn-primary" id="b64SplitBtn"><i class="fas fa-cut"></i> Split</button>
+          </div>
+          <div class="b64-split-out" id="b64SplitOut"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ 2. TEKS ═══ -->
+    <div class="b64-panel" id="panel-text" role="tabpanel" data-aos="fade-up">
+      <div class="b64-subtabs" role="tablist">
+        <button class="b64-subtab active" data-sub="encode" role="tab" aria-selected="true"><i class="fas fa-lock"></i> Encode</button>
+        <button class="b64-subtab" data-sub="decode" role="tab" aria-selected="false"><i class="fas fa-unlock"></i> Decode</button>
+        <button class="b64-subtab" data-sub="base32" role="tab" aria-selected="false"><i class="fas fa-chess-board"></i> Base32</button>
+        <button class="b64-subtab" data-sub="base85" role="tab" aria-selected="false"><i class="fas fa-star"></i> Base85</button>
+        <button class="b64-subtab" data-sub="base91" role="tab" aria-selected="false"><i class="fas fa-rocket"></i> Base91</button>
+        <button class="b64-subtab" data-sub="base58" role="tab" aria-selected="false"><i class="fas fa-bitcoin-sign"></i> Base58</button>
+        <button class="b64-subtab" data-sub="hex" role="tab" aria-selected="false"><i class="fas fa-hashtag"></i> Hex</button>
+        <button class="b64-subtab" data-sub="jwt" role="tab" aria-selected="false"><i class="fas fa-key"></i> JWT</button>
+      </div>
+
+      <div class="b64-subpanel active" data-sub="encode">
+        <label class="b64-label" for="b64EncodeInput">Plain Text</label>
+        <textarea class="b64-textarea" id="b64EncodeInput" placeholder="Ketik / paste teks... Halo ✨ مرحبا こんにちは 你好 🚀" spellcheck="false"></textarea>
+        <div class="b64-toolbar">
+          <label class="b64-toggle-wrap" for="b64UrlSafe3"><input type="checkbox" id="b64UrlSafe3" hidden /><span class="b64-toggle"><span class="b64-toggle-slider"></span></span><span class="b64-toggle-label">URL-safe</span></label>
+          <label class="b64-toggle-wrap" for="b64NoPad3"><input type="checkbox" id="b64NoPad3" hidden /><span class="b64-toggle"><span class="b64-toggle-slider"></span></span><span class="b64-toggle-label">Tanpa padding</span></label>
+          <label class="b64-toggle-wrap" for="b64Wrap3"><input type="checkbox" id="b64Wrap3" hidden /><span class="b64-toggle"><span class="b64-toggle-slider"></span></span><span class="b64-toggle-label">MIME wrap 76</span></label>
+        </div>
+        <div class="b64-actions" style="margin-top:14px;">
+          <button class="b64-btn b64-btn-primary" id="b64EncodeBtn"><i class="fas fa-lock"></i> Encode</button>
+          <button class="b64-btn" id="b64EncodePaste"><i class="fas fa-paste"></i> Paste</button>
+          <button class="b64-btn" id="b64EncodeVoice" title="Voice input"><i class="fas fa-microphone"></i> Voice</button>
+          <button class="b64-btn" id="b64EncodeSwap"><i class="fas fa-arrows-alt-h"></i> Swap</button>
+          <button class="b64-btn b64-btn-danger" id="b64EncodeReset"><i class="fas fa-trash"></i> Reset</button>
+        </div>
+        <label class="b64-label" for="b64EncodeOutput" style="margin-top:20px;">Hasil Base64</label>
+        <textarea class="b64-textarea" id="b64EncodeOutput" readonly spellcheck="false" placeholder="Hasil..."></textarea>
+        <div class="b64-stats" id="b64EncodeStats" aria-live="polite"></div>
+        <div class="b64-actions">
+          <button class="b64-btn b64-btn-primary" id="b64EncodeCopy"><i class="fas fa-copy"></i> Copy</button>
+          <button class="b64-btn" id="b64EncodeDownload"><i class="fas fa-download"></i> .txt</button>
+          <button class="b64-btn" id="b64EncodeShare"><i class="fas fa-share-alt"></i> Share</button>
+          <button class="b64-btn" id="b64EncodeQr"><i class="fas fa-qrcode"></i> QR</button>
+          <button class="b64-btn" id="b64EncodeEncrypt"><i class="fas fa-shield"></i> AES</button>
+          <button class="b64-btn" id="b64EncodeTts"><i class="fas fa-volume-up"></i> TTS</button>
+        </div>
+      </div>
+
+      <div class="b64-subpanel" data-sub="decode">
+        <label class="b64-label" for="b64DecodeInput">Base64 / Data-URI / URL-safe / Auto</label>
+        <textarea class="b64-textarea" id="b64DecodeInput" placeholder="Paste Base64 / Base32 / Base85 / Base58 / Base91 / Hex..." spellcheck="false"></textarea>
+        <div class="b64-actions" style="margin-top:14px;">
+          <button class="b64-btn b64-btn-primary" id="b64DecodeBtn"><i class="fas fa-unlock"></i> Decode Base64</button>
+          <button class="b64-btn" id="b64DecodeAuto"><i class="fas fa-magic"></i> Auto-detect</button>
+          <button class="b64-btn" id="b64DecodePaste"><i class="fas fa-paste"></i> Paste</button>
+          <button class="b64-btn" id="b64DecodeSwap"><i class="fas fa-arrows-alt-h"></i> Swap</button>
+          <button class="b64-btn b64-btn-danger" id="b64DecodeReset"><i class="fas fa-trash"></i> Reset</button>
+        </div>
+        <label class="b64-label" for="b64DecodeOutput" style="margin-top:20px;">Plain Text</label>
+        <textarea class="b64-textarea" id="b64DecodeOutput" readonly spellcheck="false" placeholder="Hasil decode..."></textarea>
+        <div class="b64-stats" id="b64DecodeStats" aria-live="polite"></div>
+        <div class="b64-actions">
+          <button class="b64-btn b64-btn-primary" id="b64DecodeCopy"><i class="fas fa-copy"></i> Copy</button>
+          <button class="b64-btn" id="b64DecodeDownload"><i class="fas fa-download"></i> .txt</button>
+          <button class="b64-btn" id="b64DecodeShare"><i class="fas fa-share-alt"></i> Share</button>
+        </div>
+      </div>
+
+      <div class="b64-subpanel" data-sub="base32">
+        <label class="b64-label" for="b64B32In">Base32 / Text</label>
+        <textarea class="b64-textarea" id="b64B32In" placeholder="Teks atau Base32..." spellcheck="false"></textarea>
+        <div class="b64-actions" style="margin-top:14px;">
+          <button class="b64-btn b64-btn-primary" id="b64B32Enc"><i class="fas fa-lock"></i> Encode B32</button>
+          <button class="b64-btn" id="b64B32Dec"><i class="fas fa-unlock"></i> Decode B32</button>
+          <button class="b64-btn b64-btn-danger" id="b64B32Clr"><i class="fas fa-trash"></i> Clear</button>
+        </div>
+        <label class="b64-label" for="b64B32Out" style="margin-top:20px;">Output Base32</label>
+        <textarea class="b64-textarea" id="b64B32Out" readonly spellcheck="false"></textarea>
+        <div class="b64-stats" id="b64B32Stats"></div>
+        <div class="b64-actions"><button class="b64-btn b64-btn-primary" id="b64B32Copy"><i class="fas fa-copy"></i> Copy</button></div>
+      </div>
+
+      <div class="b64-subpanel" data-sub="base85">
+        <label class="b64-label" for="b64B85In">Base85 / ASCII85 (RFC 1924)</label>
+        <textarea class="b64-textarea" id="b64B85In" placeholder="Teks atau Base85..." spellcheck="false"></textarea>
+        <div class="b64-actions" style="margin-top:14px;">
+          <button class="b64-btn b64-btn-primary" id="b64B85Enc"><i class="fas fa-lock"></i> Encode B85</button>
+          <button class="b64-btn" id="b64B85Dec"><i class="fas fa-unlock"></i> Decode B85</button>
+          <button class="b64-btn b64-btn-danger" id="b64B85Clr"><i class="fas fa-trash"></i> Clear</button>
+        </div>
+        <label class="b64-label" for="b64B85Out" style="margin-top:20px;">Output Base85</label>
+        <textarea class="b64-textarea" id="b64B85Out" readonly spellcheck="false"></textarea>
+        <div class="b64-stats" id="b64B85Stats"></div>
+        <div class="b64-actions"><button class="b64-btn b64-btn-primary" id="b64B85Copy"><i class="fas fa-copy"></i> Copy</button></div>
+      </div>
+
+      <!-- v7-new: Base91 -->
+      <div class="b64-subpanel" data-sub="base91">
+        <label class="b64-label" for="b64B91In">Base91 (basE91)</label>
+        <textarea class="b64-textarea" id="b64B91In" placeholder="Teks atau Base91..." spellcheck="false"></textarea>
+        <div class="b64-actions" style="margin-top:14px;">
+          <button class="b64-btn b64-btn-primary" id="b64B91Enc"><i class="fas fa-lock"></i> Encode B91</button>
+          <button class="b64-btn" id="b64B91Dec"><i class="fas fa-unlock"></i> Decode B91</button>
+          <button class="b64-btn b64-btn-danger" id="b64B91Clr"><i class="fas fa-trash"></i> Clear</button>
+        </div>
+        <label class="b64-label" for="b64B91Out" style="margin-top:20px;">Output Base91</label>
+        <textarea class="b64-textarea" id="b64B91Out" readonly spellcheck="false"></textarea>
+        <div class="b64-stats" id="b64B91Stats"></div>
+        <div class="b64-actions"><button class="b64-btn b64-btn-primary" id="b64B91Copy"><i class="fas fa-copy"></i> Copy</button></div>
+      </div>
+
+      <!-- v7-new: Base58 -->
+      <div class="b64-subpanel" data-sub="base58">
+        <label class="b64-label" for="b64B58In">Base58 (Bitcoin-style)</label>
+        <textarea class="b64-textarea" id="b64B58In" placeholder="Teks atau Base58..." spellcheck="false"></textarea>
+        <div class="b64-actions" style="margin-top:14px;">
+          <button class="b64-btn b64-btn-primary" id="b64B58Enc"><i class="fas fa-lock"></i> Encode B58</button>
+          <button class="b64-btn" id="b64B58Dec"><i class="fas fa-unlock"></i> Decode B58</button>
+          <button class="b64-btn b64-btn-danger" id="b64B58Clr"><i class="fas fa-trash"></i> Clear</button>
+        </div>
+        <label class="b64-label" for="b64B58Out" style="margin-top:20px;">Output Base58</label>
+        <textarea class="b64-textarea" id="b64B58Out" readonly spellcheck="false"></textarea>
+        <div class="b64-stats" id="b64B58Stats"></div>
+        <div class="b64-actions"><button class="b64-btn b64-btn-primary" id="b64B58Copy"><i class="fas fa-copy"></i> Copy</button></div>
+      </div>
+
+      <div class="b64-subpanel" data-sub="hex">
+        <label class="b64-label" for="b64HexIn">Text ↔ Hex (Base16)</label>
+        <textarea class="b64-textarea" id="b64HexIn" placeholder="Text atau hex (48 65 6c 6c 6f)..." spellcheck="false"></textarea>
+        <div class="b64-actions" style="margin-top:14px;">
+          <button class="b64-btn b64-btn-primary" id="b64HexEnc"><i class="fas fa-lock"></i> Text→Hex</button>
+          <button class="b64-btn" id="b64HexDec"><i class="fas fa-unlock"></i> Hex→Text</button>
+          <button class="b64-btn b64-btn-danger" id="b64HexClr"><i class="fas fa-trash"></i> Clear</button>
+        </div>
+        <label class="b64-label" for="b64HexOut" style="margin-top:20px;">Output</label>
+        <textarea class="b64-textarea" id="b64HexOut" readonly spellcheck="false"></textarea>
+        <div class="b64-stats" id="b64HexStats"></div>
+        <div class="b64-actions"><button class="b64-btn b64-btn-primary" id="b64HexCopy"><i class="fas fa-copy"></i> Copy</button></div>
+      </div>
+
+      <div class="b64-subpanel" data-sub="jwt">
+        <label class="b64-label" for="b64JwtIn">JWT Token</label>
+        <textarea class="b64-textarea" id="b64JwtIn" placeholder="eyJhbGciOi..." spellcheck="false"></textarea>
+        <div class="b64-actions" style="margin-top:14px;">
+          <button class="b64-btn b64-btn-primary" id="b64JwtDec"><i class="fas fa-key"></i> Decode JWT</button>
+          <button class="b64-btn b64-btn-danger" id="b64JwtClr"><i class="fas fa-trash"></i> Clear</button>
+        </div>
+        <div class="b64-jwt-out">
+          <div class="b64-jwt-block"><h4>Header</h4><pre id="b64JwtHeader">—</pre></div>
+          <div class="b64-jwt-block"><h4>Payload</h4><pre id="b64JwtPayload">—</pre></div>
+          <div class="b64-jwt-block"><h4>Signature</h4><pre id="b64JwtSig">—</pre></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ 3. URL ═══ -->
+    <div class="b64-panel" id="panel-url" role="tabpanel" data-aos="fade-up">
+      <label class="b64-label" for="b64UrlInput">URL file publik</label>
+      <div class="b64-input-row">
+        <input type="url" id="b64UrlInput" class="b64-input" placeholder="https://example.com/gambar.png" spellcheck="false" />
+        <button class="b64-btn b64-btn-primary" id="b64UrlFetch"><i class="fas fa-cloud-download-alt"></i> Fetch</button>
+        <button class="b64-btn" id="b64UrlCorsTest"><i class="fas fa-vial"></i> CORS Test</button>
+      </div>
+      <p class="b64-hint"><i class="fas fa-info-circle"></i> Timeout 30 detik. Server harus izinkan CORS.</p>
+      <div class="b64-loader" id="b64LoaderUrl" style="display:none;">
+        <div class="b64-spinner"><div class="b64-ring"></div><div class="b64-ring"></div><div class="b64-ring"></div><div class="b64-ring"></div></div>
+        <div class="b64-loader-text" id="b64UrlStatus">Menghubungi server...</div>
+      </div>
+      <div class="b64-output-section" id="b64OutputUrl" style="display:none;">
+        <div class="b64-preview-wrap">
+          <div class="b64-preview" id="b64PreviewUrl"></div>
+          <div class="b64-file-info" id="b64FileInfoUrl"></div>
+        </div>
+        <textarea class="b64-textarea" id="b64OutputUrlText" readonly spellcheck="false"></textarea>
+        <div class="b64-stats" id="b64StatsUrl"></div>
+        <div class="b64-actions">
+          <button class="b64-btn b64-btn-primary" id="b64UrlCopy"><i class="fas fa-copy"></i> Copy</button>
+          <button class="b64-btn" id="b64UrlDownload"><i class="fas fa-download"></i> .txt</button>
+          <button class="b64-btn b64-btn-danger" id="b64UrlReset"><i class="fas fa-trash"></i> Reset</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ 4. KAMERA ═══ -->
+    <div class="b64-panel" id="panel-camera" role="tabpanel" data-aos="fade-up">
+      <label class="b64-label">Ambil gambar dari kamera</label>
+      <div class="b64-camera-wrap">
+        <video id="b64CamPreview" class="b64-camera-video" autoplay playsinline muted></video>
+        <canvas id="b64CamCanvas" style="display:none;"></canvas>
+      </div>
+      <div class="b64-actions" style="margin-top:14px;">
+        <button class="b64-btn b64-btn-primary" id="b64CamStart"><i class="fas fa-video"></i> Nyalakan</button>
+        <button class="b64-btn" id="b64CamSnap" disabled><i class="fas fa-camera"></i> Jepret</button>
+        <button class="b64-btn" id="b64CamSwitch" disabled><i class="fas fa-sync-alt"></i> Switch</button>
+        <button class="b64-btn b64-btn-danger" id="b64CamStop" disabled><i class="fas fa-stop"></i> Matikan</button>
+      </div>
+      <div class="b64-output-section" id="b64OutputCam" style="display:none;">
+        <div class="b64-preview-wrap">
+          <div class="b64-preview" id="b64CamResult"></div>
+          <div class="b64-file-info" id="b64CamInfo"></div>
+        </div>
+        <textarea class="b64-textarea" id="b64CamOutputText" readonly spellcheck="false"></textarea>
+        <div class="b64-stats" id="b64CamStats"></div>
+        <div class="b64-actions">
+          <button class="b64-btn b64-btn-primary" id="b64CamCopy"><i class="fas fa-copy"></i> Copy</button>
+          <button class="b64-btn" id="b64CamDownload"><i class="fas fa-download"></i> .txt</button>
+          <button class="b64-btn b64-btn-danger" id="b64CamReset"><i class="fas fa-trash"></i> Reset</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ 5. ADVANCED ═══ -->
+    <div class="b64-panel" id="panel-advanced" role="tabpanel" data-aos="fade-up">
+      <!-- AES -->
+      <div class="b64-extra-block">
+        <h3 class="b64-block-title"><i class="fas fa-lock"></i> AES-GCM Encrypt / Decrypt</h3>
+        <div class="b64-input-row">
+          <input type="password" class="b64-input" id="b64AesPass" placeholder="Password..." autocomplete="new-password" />
+          <button class="b64-btn b64-btn-primary" id="b64AesEnc"><i class="fas fa-lock"></i> Encrypt</button>
+          <button class="b64-btn" id="b64AesDec"><i class="fas fa-unlock"></i> Decrypt</button>
+        </div>
+        <textarea class="b64-textarea" id="b64AesIn" placeholder="Teks untuk di-encrypt, atau ciphertext Base64..." spellcheck="false"></textarea>
+        <div class="b64-stats" id="b64AesStats"></div>
+        <textarea class="b64-textarea" id="b64AesOut" readonly spellcheck="false"></textarea>
+      </div>
+
+      <!-- Join -->
+      <div class="b64-extra-block">
+        <h3 class="b64-block-title"><i class="fas fa-puzzle-piece"></i> Gabung Base64</h3>
+        <textarea class="b64-textarea" id="b64JoinIn" placeholder="Satu per baris, atau JSON array..." spellcheck="false"></textarea>
+        <div class="b64-actions"><button class="b64-btn b64-btn-primary" id="b64JoinBtn"><i class="fas fa-object-group"></i> Gabung</button></div>
+        <textarea class="b64-textarea" id="b64JoinOut" readonly spellcheck="false"></textarea>
+      </div>
+
+      <!-- Hash -->
+      <div class="b64-extra-block">
+        <h3 class="b64-block-title"><i class="fas fa-fingerprint"></i> Hash / Checksum</h3>
+        <textarea class="b64-textarea" id="b64HashIn" placeholder="Teks untuk di-hash..." spellcheck="false"></textarea>
+        <div class="b64-actions">
+          <button class="b64-btn b64-btn-primary" id="b64HashSha256">SHA-256</button>
+          <button class="b64-btn" id="b64HashSha1">SHA-1</button>
+          <button class="b64-btn" id="b64HashSha512">SHA-512</button>
+          <button class="b64-btn" id="b64HashMd5">MD5</button>
+        </div>
+        <div class="b64-stats" id="b64HashStats"></div>
+        <textarea class="b64-textarea" id="b64HashOut" readonly spellcheck="false"></textarea>
+      </div>
+
+      <!-- Diff -->
+      <div class="b64-extra-block">
+        <h3 class="b64-block-title"><i class="fas fa-code-branch"></i> Bandingkan 2 Base64</h3>
+        <textarea class="b64-textarea" id="b64DiffA" placeholder="Base64 A..." spellcheck="false"></textarea>
+        <textarea class="b64-textarea" id="b64DiffB" placeholder="Base64 B..." spellcheck="false" style="margin-top:10px;"></textarea>
+        <div class="b64-actions"><button class="b64-btn b64-btn-primary" id="b64DiffBtn"><i class="fas fa-code-branch"></i> Bandingkan</button></div>
+        <div class="b64-stats" id="b64DiffStats"></div>
+      </div>
+
+      <!-- v7-new: ECDSA Sign / Verify -->
+      <div class="b64-extra-block">
+        <h3 class="b64-block-title"><i class="fas fa-signature"></i> Digital Signature (ECDSA P-256) <span class="b64-new-badge">v7-new</span></h3>
+        <textarea class="b64-textarea" id="b64SignIn" placeholder="Teks untuk di-sign / verify..." spellcheck="false"></textarea>
+        <textarea class="b64-textarea" id="b64SignKey" placeholder="Public key (JWK) untuk verify (opsional)..." spellcheck="false" style="margin-top:10px;"></textarea>
+        <div class="b64-actions">
+          <button class="b64-btn b64-btn-primary" id="b64SignKeygen"><i class="fas fa-key"></i> Generate Key</button>
+          <button class="b64-btn" id="b64SignBtn"><i class="fas fa-signature"></i> Sign</button>
+          <button class="b64-btn" id="b64VerifyBtn"><i class="fas fa-check-double"></i> Verify</button>
+        </div>
+        <div class="b64-stats" id="b64SignStats"></div>
+        <textarea class="b64-textarea" id="b64SignOut" readonly spellcheck="false"></textarea>
+      </div>
+
+      <!-- Steganografi -->
+      <div class="b64-extra-block">
+        <h3 class="b64-block-title"><i class="fas fa-user-secret"></i> Steganografi LSB</h3>
+        <input type="file" id="b64StegImage" accept="image/png,image/bmp" class="b64-input" />
+        <textarea class="b64-textarea" id="b64StegMsg" placeholder="Pesan rahasia..." spellcheck="false"></textarea>
+        <div class="b64-actions">
+          <button class="b64-btn b64-btn-primary" id="b64StegEmbed"><i class="fas fa-eye-slash"></i> Embed</button>
+          <button class="b64-btn" id="b64StegExtract"><i class="fas fa-eye"></i> Extract</button>
+        </div>
+        <div class="b64-preview" id="b64StegPreview" style="min-height:120px;margin-top:12px;"></div>
+        <div class="b64-stats" id="b64StegStats"></div>
+      </div>
+
+      <!-- Resize + Watermark -->
+      <div class="b64-extra-block">
+        <h3 class="b64-block-title"><i class="fas fa-crop"></i> Resize &amp; Watermark</h3>
+        <input type="file" id="b64RwFile" accept="image/*" class="b64-input" />
+        <div class="b64-input-row" style="margin-top:10px;">
+          <input class="b64-input" type="number" id="b64RwWidth" placeholder="Width px" min="16" max="4096" />
+          <input class="b64-input" type="number" id="b64RwHeight" placeholder="Height px" min="16" max="4096" />
+        </div>
+        <div class="b64-input-row" style="margin-top:10px;">
+          <input class="b64-input" id="b64RwText" placeholder="Watermark text" />
+          <input class="b64-input" type="range" id="b64RwOpacity" min="0" max="100" value="60" />
+        </div>
+        <div class="b64-actions"><button class="b64-btn b64-btn-primary" id="b64RwApply"><i class="fas fa-check"></i> Apply</button></div>
+        <div class="b64-preview" id="b64RwPreview" style="min-height:120px;margin-top:12px;"></div>
+      </div>
+
+      <!-- v7-new: EXIF reader -->
+      <div class="b64-extra-block">
+        <h3 class="b64-block-title"><i class="fas fa-camera-retro"></i> EXIF Metadata Reader <span class="b64-new-badge">v7-new</span></h3>
+        <input type="file" id="b64ExifFile" accept="image/jpeg,image/jpg" class="b64-input" />
+        <div class="b64-actions"><button class="b64-btn b64-btn-primary" id="b64ExifRead"><i class="fas fa-search"></i> Baca EXIF</button></div>
+        <pre class="b64-pre" id="b64ExifOut">—</pre>
+      </div>
+    </div>
+
+    <!-- ═══ 6. QR ═══ -->
+    <div class="b64-panel" id="panel-qr" role="tabpanel" data-aos="fade-up">
+      <div class="b64-qr-grid">
+        <div class="b64-qr-block">
+          <h3 class="b64-qr-title"><i class="fas fa-qrcode"></i> Generator QR</h3>
+          <label class="b64-label" for="b64QrText">Text / Base64 / URL</label>
+          <textarea class="b64-textarea" id="b64QrText" placeholder="Ketik teks, URL, atau paste Base64..." spellcheck="false"></textarea>
+          <div class="b64-actions" style="margin-top:12px;">
+            <button class="b64-btn b64-btn-primary" id="b64QrGen"><i class="fas fa-magic"></i> Generate</button>
+            <button class="b64-btn" id="b64QrDownload" disabled><i class="fas fa-download"></i> PNG</button>
+            <button class="b64-btn b64-btn-danger" id="b64QrClear"><i class="fas fa-trash"></i> Clear</button>
+          </div>
+          <div class="b64-qr-canvas-wrap"><canvas id="b64QrCanvas" width="256" height="256"></canvas></div>
+        </div>
+        <div class="b64-qr-block">
+          <h3 class="b64-qr-title"><i class="fas fa-expand"></i> Scanner QR</h3>
+          <label class="b64-label" for="b64QrScanInput">Upload gambar QR</label>
+          <input type="file" id="b64QrScanInput" accept="image/*" class="b64-input" />
+          <div class="b64-actions" style="margin-top:12px;">
+            <button class="b64-btn b64-btn-primary" id="b64QrScanBtn"><i class="fas fa-search"></i> Scan</button>
+            <button class="b64-btn" id="b64QrScanToEncode"><i class="fas fa-arrow-right"></i> Ke Encode</button>
+            <button class="b64-btn b64-btn-danger" id="b64QrScanClear"><i class="fas fa-trash"></i> Clear</button>
+          </div>
+          <div class="b64-qr-scan-result" id="b64QrScanResult"></div>
+          <canvas id="b64QrScanCanvas" style="display:none;"></canvas>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ 7. UTILITY ═══ -->
+    <div class="b64-panel" id="panel-utility" role="tabpanel" data-aos="fade-up">
+      <div class="b64-util-grid">
+        <div class="b64-util-card"><h4><i class="fas fa-link"></i> URL Encode / Decode</h4>
+          <textarea class="b64-textarea" id="b64UrlEncIn" placeholder="Input..." spellcheck="false"></textarea>
+          <div class="b64-actions"><button class="b64-btn b64-btn-primary" id="b64UrlEncBtn">Encode</button><button class="b64-btn" id="b64UrlDecBtn">Decode</button></div>
+          <textarea class="b64-textarea" id="b64UrlEncOut" readonly spellcheck="false"></textarea>
+        </div>
+        <div class="b64-util-card"><h4><i class="fas fa-microchip"></i> Binary ↔ Text</h4>
+          <textarea class="b64-textarea" id="b64BinIn" placeholder="Input..." spellcheck="false"></textarea>
+          <div class="b64-actions"><button class="b64-btn b64-btn-primary" id="b64BinEnc">Text→Bin</button><button class="b64-btn" id="b64BinDec">Bin→Text</button></div>
+          <textarea class="b64-textarea" id="b64BinOut" readonly spellcheck="false"></textarea>
+        </div>
+        <div class="b64-util-card"><h4><i class="fas fa-code"></i> HTML Entity</h4>
+          <textarea class="b64-textarea" id="b64HtmlIn" placeholder="Input..." spellcheck="false"></textarea>
+          <div class="b64-actions"><button class="b64-btn b64-btn-primary" id="b64HtmlEnc">Encode</button><button class="b64-btn" id="b64HtmlDec">Decode</button></div>
+          <textarea class="b64-textarea" id="b64HtmlOut" readonly spellcheck="false"></textarea>
+        </div>
+        <div class="b64-util-card"><h4><i class="fas fa-exchange-alt"></i> ROT13 / Caesar</h4>
+          <textarea class="b64-textarea" id="b64RotIn" placeholder="Input..." spellcheck="false"></textarea>
+          <input class="b64-input" type="number" id="b64RotN" value="13" min="1" max="25" />
+          <div class="b64-actions"><button class="b64-btn b64-btn-primary" id="b64RotBtn">Terapkan</button></div>
+          <textarea class="b64-textarea" id="b64RotOut" readonly spellcheck="false"></textarea>
+        </div>
+        <div class="b64-util-card"><h4><i class="fas fa-fingerprint"></i> UUID v4</h4>
+          <div class="b64-input-row"><input class="b64-input" type="number" id="b64UuidN" value="5" min="1" max="100" /><button class="b64-btn b64-btn-primary" id="b64UuidGen">Generate</button></div>
+          <textarea class="b64-textarea" id="b64UuidOut" readonly spellcheck="false"></textarea>
+        </div>
+        <div class="b64-util-card"><h4><i class="fas fa-clock"></i> Timestamp ↔ Date</h4>
+          <input class="b64-input" id="b64TsIn" placeholder="1700000000 atau ISO..." />
+          <div class="b64-actions"><button class="b64-btn b64-btn-primary" id="b64TsConv">Convert</button><button class="b64-btn" id="b64TsNow">Now</button></div>
+          <textarea class="b64-textarea" id="b64TsOut" readonly spellcheck="false"></textarea>
+        </div>
+        <div class="b64-util-card"><h4><i class="fas fa-palette"></i> Color → Base64</h4>
+          <div class="b64-input-row"><input class="b64-input" type="color" id="b64ColorIn" value="#d4a745" style="max-width:80px;padding:2px;" /><button class="b64-btn b64-btn-primary" id="b64ColorBtn">Convert</button></div>
+          <textarea class="b64-textarea" id="b64ColorOut" readonly spellcheck="false"></textarea>
+        </div>
+        <div class="b64-util-card"><h4><i class="fas fa-paragraph"></i> Lorem Ipsum</h4>
+          <div class="b64-input-row"><input class="b64-input" type="number" id="b64LoremN" value="3" min="1" max="50" /><button class="b64-btn b64-btn-primary" id="b64LoremGen">Generate</button></div>
+          <textarea class="b64-textarea" id="b64LoremOut" readonly spellcheck="false"></textarea>
+        </div>
+        <div class="b64-util-card"><h4><i class="fas fa-font"></i> Case Converter</h4>
+          <textarea class="b64-textarea" id="b64CaseIn" placeholder="Input..." spellcheck="false"></textarea>
+          <div class="b64-actions">
+            <button class="b64-btn" data-case="upper">UPPER</button>
+            <button class="b64-btn" data-case="lower">lower</button>
+            <button class="b64-btn" data-case="title">Title</button>
+            <button class="b64-btn" data-case="camel">camel</button>
+          </div>
+          <textarea class="b64-textarea" id="b64CaseOut" readonly spellcheck="false"></textarea>
+        </div>
+        <div class="b64-util-card"><h4><i class="fas fa-search"></i> Regex Tester</h4>
+          <div class="b64-input-row">
+            <input class="b64-input" id="b64RegexPattern" placeholder="pattern..." />
+            <input class="b64-input" id="b64RegexFlags" placeholder="flags" value="g" style="max-width:80px;" />
+          </div>
+          <textarea class="b64-textarea" id="b64RegexInput" placeholder="Text untuk di-test..." spellcheck="false"></textarea>
+          <div class="b64-actions"><button class="b64-btn b64-btn-primary" id="b64RegexRun">Test</button></div>
+          <div class="b64-stats" id="b64RegexStats"></div>
+        </div>
+        <div class="b64-util-card"><h4><i class="fas fa-brackets-curly"></i> JSON Formatter</h4>
+          <textarea class="b64-textarea" id="b64JsonIn" placeholder="JSON..." spellcheck="false"></textarea>
+          <div class="b64-actions">
+            <button class="b64-btn b64-btn-primary" id="b64JsonFormat">Format</button>
+            <button class="b64-btn" id="b64JsonMinify">Minify</button>
+            <button class="b64-btn" id="b64JsonB64">→ Base64</button>
+          </div>
+          <textarea class="b64-textarea" id="b64JsonOut" readonly spellcheck="false"></textarea>
+        </div>
+        <div class="b64-util-card"><h4><i class="fas fa-calendar-alt"></i> Cron Parser</h4>
+          <input class="b64-input" id="b64CronIn" placeholder="*/5 * * * *" />
+          <div class="b64-actions"><button class="b64-btn b64-btn-primary" id="b64CronParse">Parse</button></div>
+          <div class="b64-stats" id="b64CronOut"></div>
+        </div>
+
+        <!-- v7-new: Unicode inspector -->
+        <div class="b64-util-card"><h4><i class="fas fa-language"></i> Unicode Inspector <span class="b64-new-badge">v7-new</span></h4>
+          <textarea class="b64-textarea" id="b64UniIn" placeholder="Ketik teks... 🚀 مرحبا こんにちは" spellcheck="false"></textarea>
+          <div class="b64-actions"><button class="b64-btn b64-btn-primary" id="b64UniBtn">Inspect</button></div>
+          <pre class="b64-pre" id="b64UniOut">—</pre>
+        </div>
+
+        <!-- v7-new: Text diff -->
+        <div class="b64-util-card"><h4><i class="fas fa-code-compare"></i> Text Diff <span class="b64-new-badge">v7-new</span></h4>
+          <textarea class="b64-textarea" id="b64TdiffA" placeholder="Teks A..." spellcheck="false"></textarea>
+          <textarea class="b64-textarea" id="b64TdiffB" placeholder="Teks B..." spellcheck="false" style="margin-top:6px;"></textarea>
+          <div class="b64-actions"><button class="b64-btn b64-btn-primary" id="b64TdiffBtn">Diff</button></div>
+          <pre class="b64-pre" id="b64TdiffOut">—</pre>
+        </div>
+
+        <!-- v7-new: CSV ↔ JSON -->
+        <div class="b64-util-card"><h4><i class="fas fa-table"></i> CSV ↔ JSON <span class="b64-new-badge">v7-new</span></h4>
+          <textarea class="b64-textarea" id="b64CsvIn" placeholder="name,age&#10;Andi,20&#10;Budi,25" spellcheck="false"></textarea>
+          <div class="b64-actions">
+            <button class="b64-btn b64-btn-primary" id="b64CsvToJson">CSV→JSON</button>
+            <button class="b64-btn" id="b64JsonToCsv">JSON→CSV</button>
+          </div>
+          <textarea class="b64-textarea" id="b64CsvOut" readonly spellcheck="false"></textarea>
+        </div>
+
+        <!-- v7-new: Markdown preview -->
+        <div class="b64-util-card"><h4><i class="fab fa-markdown"></i> Markdown Preview <span class="b64-new-badge">v7-new</span></h4>
+          <textarea class="b64-textarea" id="b64MdIn" placeholder="# Halo&#10;**tebal** *miring* `code`" spellcheck="false"></textarea>
+          <div class="b64-actions"><button class="b64-btn b64-btn-primary" id="b64MdBtn">Preview</button></div>
+          <div class="b64-md-preview" id="b64MdOut"></div>
+        </div>
+
+        <!-- v7-new: Text stats -->
+        <div class="b64-util-card"><h4><i class="fas fa-calculator"></i> Text Stats <span class="b64-new-badge">v7-new</span></h4>
+          <textarea class="b64-textarea" id="b64TstatsIn" placeholder="Teks..." spellcheck="false"></textarea>
+          <div class="b64-actions"><button class="b64-btn b64-btn-primary" id="b64TstatsBtn">Hitung</button></div>
+          <pre class="b64-pre" id="b64TstatsOut">—</pre>
+        </div>
+
+        <!-- v7-new: Clipboard history -->
+        <div class="b64-util-card"><h4><i class="fas fa-clipboard-list"></i> Clipboard History <span class="b64-new-badge">v7-new</span></h4>
+          <div class="b64-actions"><button class="b64-btn b64-btn-danger" id="b64ClipClear">Clear</button></div>
+          <div class="b64-stats" id="b64ClipList"><span class="b64-hint">Belum ada riwayat clipboard.</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ 8. SHARE ═══ -->
+    <div class="b64-panel" id="panel-share" role="tabpanel" data-aos="fade-up">
+      <div class="b64-util-grid">
+        <div class="b64-util-card"><h4><i class="fas fa-link"></i> Share via URL hash</h4>
+          <textarea class="b64-textarea" id="b64ShareText" placeholder="Teks/Base64 untuk di-share..." spellcheck="false"></textarea>
+          <div class="b64-actions">
+            <button class="b64-btn b64-btn-primary" id="b64ShareUrlGen"><i class="fas fa-link"></i> Generate Link</button>
+            <button class="b64-btn" id="b64ShareUrlCopy"><i class="fas fa-copy"></i> Copy Link</button>
+          </div>
+          <textarea class="b64-textarea" id="b64ShareUrlOut" readonly spellcheck="false"></textarea>
+        </div>
+        <div class="b64-util-card"><h4><i class="fab fa-whatsapp"></i> WhatsApp / Telegram / Email</h4>
+          <textarea class="b64-textarea" id="b64ShareMsg" placeholder="Pesan..." spellcheck="false"></textarea>
+          <div class="b64-actions">
+            <button class="b64-btn" id="b64ShareWa"><i class="fab fa-whatsapp"></i> WhatsApp</button>
+            <button class="b64-btn" id="b64ShareTg"><i class="fab fa-telegram"></i> Telegram</button>
+            <button class="b64-btn" id="b64ShareMail"><i class="fas fa-envelope"></i> Email</button>
+          </div>
+        </div>
+        <div class="b64-util-card"><h4><i class="fas fa-cloud"></i> IndexedDB Storage</h4>
+          <input class="b64-input" id="b64IdbKey" placeholder="Key" />
+          <textarea class="b64-textarea" id="b64IdbVal" placeholder="Value..." spellcheck="false"></textarea>
+          <div class="b64-actions">
+            <button class="b64-btn b64-btn-primary" id="b64IdbSave">Save</button>
+            <button class="b64-btn" id="b64IdbLoad">Load</button>
+            <button class="b64-btn" id="b64IdbList">List</button>
+            <button class="b64-btn b64-btn-danger" id="b64IdbDel">Delete</button>
+          </div>
+          <div class="b64-stats" id="b64IdbStats"></div>
+        </div>
+        <div class="b64-util-card"><h4><i class="fas fa-tower-broadcast"></i> BroadcastChannel Sync</h4>
+          <p class="b64-hint"><i class="fas fa-info-circle"></i> Buka tab lain untuk sinkronisasi.</p>
+          <textarea class="b64-textarea" id="b64BcMsg" placeholder="Pesan broadcast..." spellcheck="false"></textarea>
+          <div class="b64-actions"><button class="b64-btn b64-btn-primary" id="b64BcSend"><i class="fas fa-paper-plane"></i> Send</button></div>
+          <div class="b64-stats" id="b64BcRecv"></div>
+        </div>
+        <div class="b64-util-card"><h4><i class="fab fa-github"></i> Import GitHub Gist</h4>
+          <input class="b64-input" id="b64GistUrl" placeholder="https://gist.github.com/..." />
+          <div class="b64-actions"><button class="b64-btn b64-btn-primary" id="b64GistFetch">Fetch</button></div>
+          <div class="b64-stats" id="b64GistStats"></div>
+        </div>
+        <div class="b64-util-card"><h4><i class="fas fa-file-export"></i> Export .b64 (custom)</h4>
+          <textarea class="b64-textarea" id="b64B64ExportIn" placeholder="Base64 untuk diekspor..." spellcheck="false"></textarea>
+          <div class="b64-actions"><button class="b64-btn b64-btn-primary" id="b64B64ExportBtn">Export .b64</button></div>
+        </div>
+        <!-- v7-new: Deep link generator -->
+        <div class="b64-util-card"><h4><i class="fas fa-link"></i> Deep Link Generator <span class="b64-new-badge">v7-new</span></h4>
+          <input class="b64-input" id="b64DeepType" placeholder="Type (mis. encode)" value="encode" />
+          <textarea class="b64-textarea" id="b64DeepData" placeholder="Data..." spellcheck="false"></textarea>
+          <div class="b64-actions"><button class="b64-btn b64-btn-primary" id="b64DeepGen">Generate</button></div>
+          <textarea class="b64-textarea" id="b64DeepOut" readonly spellcheck="false"></textarea>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ 9. A11Y ═══ -->
+    <div class="b64-panel" id="panel-a11y" role="tabpanel" data-aos="fade-up">
+      <div class="b64-util-grid">
+        <div class="b64-util-card"><h4><i class="fas fa-microphone"></i> Voice Input</h4>
+          <textarea class="b64-textarea" id="b64VoiceOut" placeholder="Hasil voice..." spellcheck="false"></textarea>
+          <div class="b64-actions">
+            <button class="b64-btn b64-btn-primary" id="b64VoiceStart"><i class="fas fa-microphone"></i> Start</button>
+            <button class="b64-btn b64-btn-danger" id="b64VoiceStop" disabled><i class="fas fa-stop"></i> Stop</button>
+          </div>
+        </div>
+        <div class="b64-util-card"><h4><i class="fas fa-volume-up"></i> Text-to-Speech</h4>
+          <textarea class="b64-textarea" id="b64TtsIn" placeholder="Teks untuk dibaca..." spellcheck="false"></textarea>
+          <div class="b64-actions">
+            <button class="b64-btn b64-btn-primary" id="b64TtsSpeak"><i class="fas fa-play"></i> Speak</button>
+            <button class="b64-btn" id="b64TtsStop"><i class="fas fa-stop"></i> Stop</button>
+          </div>
+        </div>
+        <div class="b64-util-card"><h4><i class="fas fa-text-height"></i> Font Size</h4>
+          <div class="b64-actions">
+            <button class="b64-btn" id="b64FontMinus"><i class="fas fa-minus"></i> A-</button>
+            <button class="b64-btn" id="b64FontPlus"><i class="fas fa-plus"></i> A+</button>
+            <button class="b64-btn" id="b64FontReset">Reset</button>
+          </div>
+          <div class="b64-stats" id="b64FontStats"></div>
+        </div>
+        <div class="b64-util-card"><h4><i class="fas fa-eye"></i> Visual Aids</h4>
+          <label class="b64-toggle-wrap" for="b64HighContrast"><input type="checkbox" id="b64HighContrast" hidden /><span class="b64-toggle"><span class="b64-toggle-slider"></span></span><span class="b64-toggle-label">High contrast</span></label>
+          <label class="b64-toggle-wrap" for="b64Dyslexia"><input type="checkbox" id="b64Dyslexia" hidden /><span class="b64-toggle"><span class="b64-toggle-slider"></span></span><span class="b64-toggle-label">Dyslexia font</span></label>
+          <label class="b64-toggle-wrap" for="b64ReduceMotion"><input type="checkbox" id="b64ReduceMotion" hidden /><span class="b64-toggle"><span class="b64-toggle-slider"></span></span><span class="b64-toggle-label">Reduce motion</span></label>
+        </div>
+        <!-- v7-new: sound & haptic -->
+        <div class="b64-util-card"><h4><i class="fas fa-volume-low"></i> Sound Feedback <span class="b64-new-badge">v7-new</span></h4>
+          <label class="b64-toggle-wrap" for="b64SoundToggle"><input type="checkbox" id="b64SoundToggle" hidden /><span class="b64-toggle"><span class="b64-toggle-slider"></span></span><span class="b64-toggle-label">Beep pada aksi</span></label>
+          <label class="b64-toggle-wrap" for="b64HapticToggle"><input type="checkbox" id="b64HapticToggle" hidden /><span class="b64-toggle"><span class="b64-toggle-slider"></span></span><span class="b64-toggle-label">Haptic (vibrate)</span></label>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ 10. ANALYTICS ═══ -->
+    <div class="b64-panel" id="panel-analytics" role="tabpanel" data-aos="fade-up">
+      <div class="b64-analytics-grid">
+        <div class="b64-stat-box"><div class="b64-stat-num" id="b64AnTotal">0</div><div class="b64-stat-lbl">Total konversi</div></div>
+        <div class="b64-stat-box"><div class="b64-stat-num" id="b64AnBytes">0 B</div><div class="b64-stat-lbl">Total data</div></div>
+        <div class="b64-stat-box"><div class="b64-stat-num" id="b64AnDays">0</div><div class="b64-stat-lbl">Hari aktif</div></div>
+        <div class="b64-stat-box"><div class="b64-stat-num" id="b64AnTop">—</div><div class="b64-stat-lbl">Tipe top</div></div>
+        <div class="b64-stat-box"><div class="b64-stat-num" id="b64AnAvg">0</div><div class="b64-stat-lbl">Avg ms/op</div></div>
+      </div>
+      <div class="b64-extra-block">
+        <h3 class="b64-block-title"><i class="fas fa-chart-bar"></i> Grafik aktivitas (7 hari)</h3>
+        <canvas id="b64Chart" width="600" height="200" style="max-width:100%;background:rgba(0,0,0,0.2);border-radius:8px;"></canvas>
+      </div>
+      <!-- v7-new: heatmap 12 minggu -->
+      <div class="b64-extra-block">
+        <h3 class="b64-block-title"><i class="fas fa-fire"></i> Heatmap 12 minggu <span class="b64-new-badge">v7-new</span></h3>
+        <div class="b64-heatmap" id="b64Heatmap"></div>
+      </div>
+      <div class="b64-extra-block">
+        <h3 class="b64-block-title"><i class="fas fa-list-ol"></i> Top tipe file</h3>
+        <div id="b64AnTopList" class="b64-stats"></div>
+      </div>
+      <div class="b64-actions">
+        <button class="b64-btn b64-btn-primary" id="b64AnExportPng"><i class="fas fa-image"></i> Export PNG</button>
+        <button class="b64-btn b64-btn-danger" id="b64AnReset"><i class="fas fa-trash"></i> Reset Statistik</button>
+      </div>
+    </div>
+
+    <!-- ═══ 11. INTEGRASI ═══ -->
+    <div class="b64-panel" id="panel-integrate" role="tabpanel" data-aos="fade-up">
+      <div class="b64-util-grid">
+        <div class="b64-util-card"><h4><i class="fas fa-bookmark"></i> Bookmarklet</h4>
+          <p class="b64-hint"><i class="fas fa-info-circle"></i> Drag ke bookmark bar.</p>
+          <a class="b64-btn b64-btn-primary" id="b64Bookmarklet"
+             href="javascript:void((function(){var t=window.getSelection().toString()||document.body.innerText.slice(0,500);alert(btoa(unescape(encodeURIComponent(t))))})())">
+            <i class="fas fa-bookmark"></i> Base64 Selection
+          </a>
+        </div>
+        <div class="b64-util-card"><h4><i class="fas fa-code"></i> Embed Widget</h4>
+          <input class="b64-input" id="b64EmbedUrl" placeholder="https://yoursite.com/base64_v7.html" />
+          <div class="b64-actions"><button class="b64-btn b64-btn-primary" id="b64EmbedGen">Generate</button></div>
+          <textarea class="b64-textarea" id="b64EmbedOut" readonly spellcheck="false"></textarea>
+        </div>
+        <div class="b64-util-card"><h4><i class="fas fa-terminal"></i> CLI Simulator</h4>
+          <textarea class="b64-textarea" id="b64CliIn" placeholder="echo 'Halo' | base64" spellcheck="false"></textarea>
+          <div class="b64-actions"><button class="b64-btn b64-btn-primary" id="b64CliRun">Run</button></div>
+          <textarea class="b64-textarea" id="b64CliOut" readonly spellcheck="false"></textarea>
+        </div>
+        <div class="b64-util-card"><h4><i class="fas fa-code"></i> cURL / API Docs</h4>
+          <div class="b64-actions"><button class="b64-btn b64-btn-primary" id="b64CurlGen">Generate</button></div>
+          <textarea class="b64-textarea" id="b64CurlOut" readonly spellcheck="false"></textarea>
+        </div>
+        <!-- v7-new: webhook simulator -->
+        <div class="b64-util-card"><h4><i class="fas fa-satellite-dish"></i> Webhook Simulator <span class="b64-new-badge">v7-new</span></h4>
+          <input class="b64-input" id="b64WebhookUrl" placeholder="https://httpbin.org/post" value="https://httpbin.org/post" />
+          <textarea class="b64-textarea" id="b64WebhookBody" placeholder='{"data":"SGVsbG8="}' spellcheck="false">{"data":"SGVsbG8="}</textarea>
+          <div class="b64-actions"><button class="b64-btn b64-btn-primary" id="b64WebhookSend">Send POST</button></div>
+          <pre class="b64-pre" id="b64WebhookOut">—</pre>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ 12. PWA ═══ -->
+    <div class="b64-panel" id="panel-pwa" role="tabpanel" data-aos="fade-up">
+      <div class="b64-util-grid">
+        <div class="b64-util-card"><h4><i class="fas fa-download"></i> Install Aplikasi</h4>
+          <p class="b64-hint"><i class="fas fa-info-circle"></i> Install sebagai PWA.</p>
+          <button class="b64-btn b64-btn-primary" id="b64PwaInstall" disabled><i class="fas fa-download"></i> Install</button>
+        </div>
+        <div class="b64-util-card"><h4><i class="fas fa-wifi"></i> Status</h4>
+          <div class="b64-stats" id="b64PwaStatus"></div>
+        </div>
+        <div class="b64-util-card"><h4><i class="fas fa-sync"></i> Service Worker</h4>
+          <div class="b64-actions">
+            <button class="b64-btn b64-btn-primary" id="b64PwaSwReg"><i class="fas fa-play"></i> Register</button>
+            <button class="b64-btn" id="b64PwaSwUpdate"><i class="fas fa-sync"></i> Check Update</button>
+          </div>
+          <div class="b64-stats" id="b64PwaSwStats"></div>
+        </div>
+        <div class="b64-util-card"><h4><i class="fas fa-chart-simple"></i> Cache</h4>
+          <div class="b64-actions"><button class="b64-btn b64-btn-primary" id="b64PwaCacheInfo">Info</button></div>
+          <div class="b64-stats" id="b64PwaCacheStats"></div>
+        </div>
+        <!-- v7-new: File System Access -->
+        <div class="b64-util-card"><h4><i class="fas fa-folder-open"></i> File System Access <span class="b64-new-badge">v7-new</span></h4>
+          <textarea class="b64-textarea" id="b64FsContent" placeholder="Konten untuk disimpan..." spellcheck="false"></textarea>
+          <div class="b64-actions"><button class="b64-btn b64-btn-primary" id="b64FsSave">Save ke File...</button></div>
+        </div>
+        <!-- v7-new: Badge API -->
+        <div class="b64-util-card"><h4><i class="fas fa-circle-dot"></i> Badge API <span class="b64-new-badge">v7-new</span></h4>
+          <input class="b64-input" type="number" id="b64BadgeNum" value="3" min="0" max="99" />
+          <div class="b64-actions">
+            <button class="b64-btn b64-btn-primary" id="b64BadgeSet">Set Badge</button>
+            <button class="b64-btn b64-btn-danger" id="b64BadgeClear">Clear</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ 13. LEARN / EDUKASI (v7-new) ═══ -->
+    <div class="b64-panel" id="panel-learn" role="tabpanel" data-aos="fade-up">
+      <div class="b64-util-grid">
+        <div class="b64-util-card">
+          <h4><i class="fas fa-graduation-cap"></i> Apa itu Base64?</h4>
+          <p style="font-size:.85rem;line-height:1.6;color:var(--b64-text-secondary);margin:0;">
+            Base64 adalah skema encoding biner-ke-teks yang merepresentasikan data biner (byte) dalam 64 karakter ASCII.
+            Digunakan di email (MIME), data URI, JWT, JSON, dan protokol yang hanya bisa memuat teks. Overhead ≈33%.
+          </p>
+        </div>
+        <div class="b64-util-card">
+          <h4><i class="fas fa-list-check"></i> Cheat Sheet</h4>
+          <div class="b64-actions">
+            <button class="b64-btn b64-btn-primary" id="b64CheatMd">Download .md</button>
+            <button class="b64-btn" id="b64CheatTxt">Download .txt</button>
+          </div>
+          <pre class="b64-pre" id="b64CheatPreview">—</pre>
+        </div>
+        <div class="b64-util-card">
+          <h4><i class="fas fa-code"></i> Code Examples</h4>
+          <select class="b64-input" id="b64CodeLang" style="margin-bottom:8px;">
+            <option value="js">JavaScript</option>
+            <option value="py">Python</option>
+            <option value="php">PHP</option>
+            <option value="go">Go</option>
+            <option value="rust">Rust</option>
+          </select>
+          <div class="b64-actions"><button class="b64-btn b64-btn-primary" id="b64CodeGen">Tampilkan</button></div>
+          <pre class="b64-pre" id="b64CodeOut">—</pre>
+        </div>
+        <div class="b64-util-card">
+          <h4><i class="fas fa-question"></i> Quiz Base64</h4>
+          <button class="b64-btn b64-btn-primary" id="b64QuizStart"><i class="fas fa-play"></i> Mulai Quiz</button>
+          <div id="b64QuizBody"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ 14. HISTORY ═══ -->
+    <div class="b64-panel" id="panel-history" role="tabpanel" data-aos="fade-up">
+      <div class="b64-history-head">
+        <h3 class="b64-qr-title"><i class="fas fa-history"></i> Riwayat (maks 50) + Favorit</h3>
+        <div class="b64-actions">
+          <button class="b64-btn" id="b64HistoryExport"><i class="fas fa-file-export"></i> Export</button>
+          <button class="b64-btn" id="b64HistoryImportBtn"><i class="fas fa-file-import"></i> Import</button>
+          <input type="file" id="b64HistoryImport" accept="application/json" hidden />
+          <button class="b64-btn b64-btn-danger" id="b64HistoryClear"><i class="fas fa-trash"></i> Hapus</button>
+        </div>
+      </div>
+      <div class="b64-history-list" id="b64HistoryList"></div>
+    </div>
+
+    <!-- ═══ 15. SETTINGS ═══ -->
+    <div class="b64-panel" id="panel-settings" role="tabpanel" data-aos="fade-up">
+      <div class="b64-util-grid">
+        <div class="b64-util-card"><h4><i class="fas fa-info-circle"></i> Feature Detection</h4>
+          <pre class="b64-pre" id="b64FeatureOut">—</pre>
+        </div>
+        <div class="b64-util-card"><h4><i class="fas fa-desktop"></i> Browser Info</h4>
+          <pre class="b64-pre" id="b64BrowserOut">—</pre>
+        </div>
+        <div class="b64-util-card"><h4><i class="fas fa-vial"></i> Self Test</h4>
+          <button class="b64-btn b64-btn-primary" id="b64SelfTestBtn"><i class="fas fa-play"></i> Run</button>
+          <pre class="b64-pre" id="b64SelfTestOut">—</pre>
+        </div>
+        <div class="b64-util-card"><h4><i class="fas fa-bug"></i> Debug</h4>
+          <label class="b64-toggle-wrap" for="b64DebugToggle"><input type="checkbox" id="b64DebugToggle" hidden /><span class="b64-toggle"><span class="b64-toggle-slider"></span></span><span class="b64-toggle-label">Verbose logging</span></label>
+          <div class="b64-actions" style="margin-top:12px;">
+            <button class="b64-btn" id="b64DebugExport"><i class="fas fa-file-export"></i> Export report</button>
+          </div>
+        </div>
+        <div class="b64-util-card"><h4><i class="fas fa-shield-halved"></i> Keamanan</h4>
+          <label class="b64-toggle-wrap" for="b64ClearClipboard"><input type="checkbox" id="b64ClearClipboard" hidden /><span class="b64-toggle"><span class="b64-toggle-slider"></span></span><span class="b64-toggle-label">Auto-clear clipboard (30s)</span></label>
+          <label class="b64-toggle-wrap" for="b64SandboxPreview"><input type="checkbox" id="b64SandboxPreview" hidden /><span class="b64-toggle"><span class="b64-toggle-slider"></span></span><span class="b64-toggle-label">Sandbox SVG preview</span></label>
+        </div>
+        <div class="b64-util-card"><h4><i class="fas fa-gauge-high"></i> Performance</h4>
+          <div class="b64-stats" id="b64PerfStats">—</div>
+          <button class="b64-btn" id="b64PerfCheck"><i class="fas fa-play"></i> Cek memori</button>
+        </div>
+        <div class="b64-util-card"><h4><i class="fas fa-network-wired"></i> Network Speed Test</h4>
+          <button class="b64-btn b64-btn-primary" id="b64NetTest"><i class="fas fa-play"></i> Test</button>
+          <div class="b64-stats" id="b64NetStats">—</div>
+        </div>
+        <!-- v7-new: Theme customizer -->
+        <div class="b64-util-card"><h4><i class="fas fa-palette"></i> Theme Customizer <span class="b64-new-badge">v7-new</span></h4>
+          <label class="b64-label" for="b64AccentColor">Accent Color</label>
+          <input type="color" id="b64AccentColor" value="#d4a745" style="width:100%;height:44px;border:1px solid var(--b64-border-subtle);border-radius:8px;background:transparent;cursor:pointer;" />
+        </div>
+        <!-- v7-new: Layout switcher -->
+        <div class="b64-util-card"><h4><i class="fas fa-table-cells-large"></i> Layout Utility <span class="b64-new-badge">v7-new</span></h4>
+          <select class="b64-input" id="b64LayoutSelect">
+            <option value="grid">Grid (default)</option>
+            <option value="list">List</option>
+            <option value="compact">Compact</option>
+          </select>
+        </div>
+        <!-- v7-new: Console API -->
+        <div class="b64-util-card"><h4><i class="fas fa-terminal"></i> Console API <span class="b64-new-badge">v7-new</span></h4>
+          <p class="b64-hint">Coba: <code>window.b64v7.encode("Halo")</code></p>
+          <pre class="b64-pre">window.b64v7 = {
+  encode(text) → string
+  decode(b64) → string
+  hash(algo, text) → Promise
+  stats() → object
+  reset() → void
+}</pre>
+        </div>
+        <div class="b64-util-card"><h4><i class="fas fa-trash-alt"></i> Reset Total</h4>
+          <button class="b64-btn b64-btn-danger" id="b64FullReset"><i class="fas fa-radiation"></i> Reset semua data</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="b64-info-grid" data-aos="fade-up">
+      <div class="b64-info-card"><i class="fas fa-shield-alt b64-info-icon"></i><h3>Privasi 100%</h3><p>Semua konversi di browser. Tidak ada upload ke server.</p></div>
+      <div class="b64-info-card"><i class="fas fa-bolt b64-info-icon"></i><h3>Web Worker</h3><p>File besar diproses di worker agar UI tidak freeze.</p></div>
+      <div class="b64-info-card"><i class="fas fa-universal-access b64-info-icon"></i><h3>WCAG 2.1 AA</h3><p>ARIA, keyboard nav, reduced motion, high contrast.</p></div>
+    </div>
+
+  </div>
+</section>
+</main>
+
+<div class="back-to-top" id="backToTop" aria-label="Kembali ke atas"><i class="fas fa-arrow-up"></i></div>
+
+<footer>
+  <p style="margin-bottom:0.5rem;color:rgba(255,255,255,0.8);">&copy; 2025 IRGXY MODS — Base64 Pro v7 Quantum</p>
+  <div class="footer-links">
+    <a href="https://policies.google.com/privacy?hl=en-US" class="footer-link" target="_blank" rel="noopener">Privacy</a>
+    <a href="https://policies.google.com/terms?hl=en-US" class="footer-link" target="_blank" rel="noopener">Terms</a>
+    <a href="https://t.me/irgxyzmods" class="footer-link" target="_blank" rel="noopener">Contact</a>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.3/build/qrcode.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jsqr@1.4.0/dist/jsQR.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="main.js"></script>
+<script src="base64_v7.js"></script>
+</body>
+</html>

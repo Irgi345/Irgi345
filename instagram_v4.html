@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="id" data-ig-theme="dark">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<title>Instagram Downloader v4.0 — IRGXYMODS</title>
+<meta name="description" content="Download Instagram Reels, Video, Foto carousel, IGTV, Story & MP3 hingga 1080p/4K. Cepat, akurat, tanpa watermark. IRGXYMODS." />
+<meta name="theme-color" content="#833AB4" />
+<link rel="canonical" href="instagram.html" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Instagram Downloader v4.0 — IRGXYMODS" />
+<meta property="og:description" content="Download Instagram Reels, Video, Foto, MP3 hingga 1080p/4K tanpa watermark." />
+<meta property="og:image" content="https://ik.imagekit.io/IrgxyMods/IMG_20250922_195742.jpg" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Instagram Downloader v4.0 — IRGXYMODS" />
+<meta name="twitter:description" content="Download Instagram Reels, Video, Foto, MP3 hingga 1080p/4K." />
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="instagram_v4.css" />
+</head>
+<body>
+
+<!-- ============================================================
+     SVG SPRITE — FALLBACK jika FA CDN gagal (dari v3.1)
+     ============================================================ -->
+<svg xmlns="http://www.w3.org/2000/svg" style="position:absolute;width:0;height:0;overflow:hidden" aria-hidden="true" focusable="false">
+<defs>
+<symbol id="ic-crown" viewBox="0 0 24 24"><path fill="currentColor" d="M3 8l4.5 3.5L12 5l4.5 6.5L21 8l-1.5 11h-15z"/></symbol>
+<symbol id="ic-instagram" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></symbol>
+<symbol id="ic-cog" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1A1.7 1.7 0 0 0 9 19.4a1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1A1.7 1.7 0 0 0 4.6 9a1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></symbol>
+<symbol id="ic-adjust" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></symbol>
+<symbol id="ic-keyboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="20" height="12" rx="2"/><path d="M6 10h.01M10 10h.01M14 10h.01M18 10h.01M6 14h12"/></symbol>
+<symbol id="ic-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
+<symbol id="ic-signin" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 17l5-5-5-5M15 12H3M21 3v18"/></symbol>
+<symbol id="ic-info" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8h.01M11 12h1v5h1"/></symbol>
+<symbol id="ic-help" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M9.5 9a2.5 2.5 0 1 1 4 2c-.7.6-1.5 1-1.5 2M12 17h.01"/></symbol>
+<symbol id="ic-bolt" viewBox="0 0 24 24"><path fill="currentColor" d="M13 2L3 14h7l-1 8 11-13h-7z"/></symbol>
+<symbol id="ic-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l8 3v7c0 5-4 9-8 10-4-1-8-5-8-10V5z"/></symbol>
+<symbol id="ic-hd" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="6" width="18" height="12" rx="2"/><path d="M7 10v4M7 12h3M10 10v4M14 10v4h2a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1z"/></symbol>
+<symbol id="ic-music" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 18V6l10-2v12"/><circle cx="6" cy="18" r="3"/><circle cx="16" cy="16" r="3"/></symbol>
+<symbol id="ic-images" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="14" height="14" rx="2"/><path d="M7 21h14V7"/></symbol>
+<symbol id="ic-paste" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="8" y="3" width="8" height="4" rx="1"/><path d="M16 5h2a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h2"/></symbol>
+<symbol id="ic-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 6l12 12M6 18L18 6"/></symbol>
+<symbol id="ic-download" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 3v12m0 0l-4-4m4 4l4-4M4 21h16"/></symbol>
+<symbol id="ic-video" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="6" width="14" height="12" rx="2"/><path d="M22 8l-6 4 6 4z"/></symbol>
+<symbol id="ic-image" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="M21 15l-5-5L5 21"/></symbol>
+<symbol id="ic-heart" viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-8-5-8-11a4 4 0 0 1 8-1 4 4 0 0 1 8 1c0 6-8 11-8 11z"/></symbol>
+<symbol id="ic-comment" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a8 8 0 0 1-8 8H8l-5 3 1-5a8 8 0 1 1 17-6z"/></symbol>
+<symbol id="ic-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 9h18M8 3v4M16 3v4"/></symbol>
+<symbol id="ic-server" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="6" rx="2"/><rect x="3" y="14" width="18" height="6" rx="2"/><path d="M7 7h.01M7 17h.01"/></symbol>
+<symbol id="ic-link" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 0 0 7 0l3-3a5 5 0 0 0-7-7l-1 1M14 11a5 5 0 0 0-7 0l-3 3a5 5 0 0 0 7 7l1-1"/></symbol>
+<symbol id="ic-share" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="12" r="3"/><circle cx="18" cy="6" r="3"/><circle cx="18" cy="18" r="3"/><path d="M8.6 13.5l6.8 3M15.4 7.5l-6.8 3"/></symbol>
+<symbol id="ic-star" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></symbol>
+<symbol id="ic-star-o" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"/></symbol>
+<symbol id="ic-flag" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 21V4h11l-2 4 2 4H4"/></symbol>
+<symbol id="ic-layers" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 8l10 6 10-6zM2 14l10 6 10-6M2 11l10 6 10-6"/></symbol>
+<symbol id="ic-hourglass" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 2h12M6 22h12M8 2v4a4 4 0 0 0 4 4 4 4 0 0 0 4-4V2M8 22v-4a4 4 0 0 1 4-4 4 4 0 0 1 4 4v4"/></symbol>
+<symbol id="ic-history" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5M12 7v5l4 2"/></symbol>
+<symbol id="ic-trash" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M8 6V4h8v2M6 6l1 14h10l1-14"/></symbol>
+<symbol id="ic-export" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v12m0-12l-4 4m4-4l4 4M4 21h16"/></symbol>
+<symbol id="ic-play" viewBox="0 0 24 24" fill="currentColor"><path d="M7 4l13 8-13 8z"/></symbol>
+<symbol id="ic-pip" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><rect x="12" y="12" width="8" height="6" rx="1" fill="currentColor"/></symbol>
+<symbol id="ic-expand" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 10V4h6M20 14v6h-6M4 14v6h6M20 10V4h-6"/></symbol>
+<symbol id="ic-chevdown" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></symbol>
+<symbol id="ic-chevleft" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6l-6 6 6 6"/></symbol>
+<symbol id="ic-chevright" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></symbol>
+<symbol id="ic-copy" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></symbol>
+<symbol id="ic-github" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2.2c-3.3.7-4-1.6-4-1.6-.6-1.4-1.4-1.8-1.4-1.8-1.1-.7.1-.7.1-.7 1.2.1 1.9 1.3 1.9 1.3 1.1 1.9 2.9 1.3 3.6 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-5.9 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.3 1.2a11.5 11.5 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.6 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 5.9.4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></symbol>
+<symbol id="ic-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 13l4 4L19 7"/></symbol>
+<symbol id="ic-camera" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8a2 2 0 0 1 2-2h2l2-2h6l2 2h2a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><circle cx="12" cy="13" r="4"/></symbol>
+<symbol id="ic-arrowup" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21V5m0 0l-6 6m6-6l6 6"/></symbol>
+<symbol id="ic-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></symbol>
+<symbol id="ic-external" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 3h7v7M21 3l-9 9M5 5h6v14H5z"/></symbol>
+<symbol id="ic-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a12 12 0 0 1 0 18 12 12 0 0 1 0-18z"/></symbol>
+<symbol id="ic-retry" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-3-6.7M21 3v6h-6"/></symbol>
+<symbol id="ic-folder" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></symbol>
+<symbol id="ic-alert" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L1 21h22zM12 9v5M12 18h.01"/></symbol>
+<symbol id="ic-mosque" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 21v-9a8 8 0 0 1 16 0v9M8 21v-4a4 4 0 0 1 8 0v4M12 3v3"/></symbol>
+<symbol id="ic-tiktok" viewBox="0 0 24 24" fill="currentColor"><path d="M16 3a5 5 0 0 0 5 5v3a8 8 0 0 1-5-1.7V15a6 6 0 1 1-6-6v3a3 3 0 1 0 3 3V3z"/></symbol>
+<symbol id="ic-youtube" viewBox="0 0 24 24" fill="currentColor"><path d="M22 12s0-3-.4-4.4a2.6 2.6 0 0 0-1.8-1.8C18.3 5.4 12 5.4 12 5.4s-6.3 0-7.8.4A2.6 2.6 0 0 0 2.4 7.6C2 9 2 12 2 12s0 3 .4 4.4a2.6 2.6 0 0 0 1.8 1.8c1.5.4 7.8.4 7.8.4s6.3 0 7.8-.4a2.6 2.6 0 0 0 1.8-1.8C22 15 22 12 22 12zM10 15V9l5 3z"/></symbol>
+<symbol id="ic-facebook" viewBox="0 0 24 24" fill="currentColor"><path d="M15 3h3v4h-2c-.6 0-1 .4-1 1v2h3l-.5 4H15v8h-4v-8H8v-4h3V7a4 4 0 0 1 4-4z"/></symbol>
+<symbol id="ic-spotify" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 1 0 0 20 10 10 0 0 0 0-20zm4.6 14.4c-.2.3-.6.4-.9.2-2.6-1.6-5.8-2-9.6-1.1-.3.1-.7-.1-.8-.4-.1-.3.1-.7.4-.8 4.1-1 7.8-.6 10.7 1.2.3.2.4.6.2.9zm1.2-2.7c-.2.3-.7.5-1 .2-3-1.8-7.4-2.4-10.9-1.3-.4.1-.8-.1-.9-.5-.1-.4.1-.8.5-.9 4-1.2 8.9-.6 12.2 1.4.4.2.5.8.1 1.1zm.1-2.8C14.4 8.9 8.8 8.7 5.4 9.7c-.5.1-1-.1-1.1-.6-.2-.5.1-1 .6-1.1 3.9-1.2 10.1-1 14 1.3.4.2.6.7.4 1.1-.2.4-.7.6-1.1.4z"/></symbol>
+<symbol id="ic-zip" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M11 3v4M13 7v4M11 11v4M13 15v4M11 19v2"/></symbol>
+<symbol id="ic-upload" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21V5m0 0l-6 6m6-6l6 6M4 3h16"/></symbol>
+<symbol id="ic-clipboard" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="8" y="3" width="8" height="4" rx="1"/><path d="M8 5H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2h-2"/></symbol>
+</defs>
+</svg>
+
+<div class="toast-container" id="toastContainer"></div>
+<canvas id="igFxCanvas" aria-hidden="true"></canvas>
+
+<!-- ============================================================
+     HEADER
+     ============================================================ -->
+<header>
+  <div class="header-top">
+    <a href="index.html" class="logo-brand">
+      <i class="fas fa-crown" aria-hidden="true"></i>
+      <h1>IRGXYMODS</h1>
+    </a>
+    <div class="header-actions">
+      <button class="settings-btn" id="igThemeToggle" aria-label="Ganti tema Instagram" aria-pressed="false" title="Tema IG (Ctrl+Shift+L)">
+        <i class="fas fa-adjust" aria-hidden="true"></i>
+      </button>
+      <button class="settings-btn" id="igShortcutToggle" aria-label="Panel keyboard shortcut" aria-pressed="false" title="Shortcut (Shift+?)">
+        <i class="fas fa-keyboard" aria-hidden="true"></i>
+      </button>
+      <button class="settings-btn" id="igSettingsToggle" aria-label="Pengaturan Instagram" title="Pengaturan (Ctrl+,)">
+        <i class="fas fa-cog" aria-hidden="true"></i>
+      </button>
+      <div class="settings-dropdown-wrap">
+        <button class="settings-btn" id="settingsToggle" aria-label="Menu utama" aria-expanded="false">
+          <i class="fas fa-ellipsis-v" aria-hidden="true"></i>
+        </button>
+        <div class="settings-dropdown" id="settingsDropdown" role="menu">
+          <a href="login.html" class="dropdown-item" role="menuitem"><i class="fas fa-sign-in-alt"></i> Login</a>
+          <div class="dropdown-divider" role="separator"></div>
+          <button class="dropdown-item" id="profileDropdownBtn" role="menuitem"><i class="fas fa-user"></i> Profil</button>
+          <button class="dropdown-item" id="aboutDropdownBtn" role="menuitem"><i class="fas fa-info-circle"></i> Tentang</button>
+          <button class="dropdown-item" id="helpBtn" role="menuitem"><i class="fas fa-question-circle"></i> Bantuan</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="nav-tabs-container" aria-label="Navigasi utama">
+    <div class="nav-tabs">
+      <a href="index.html" class="nav-tab">Aplikasi Mod</a>
+      <a href="irgxymods.html" class="nav-tab">IrgxyMods</a>
+      <a href="acount.html" class="nav-tab">Akun Premium</a>
+      <a href="fitur.html" class="nav-tab">Fitur Eksklusif</a>
+      <a href="testimoni.html" class="nav-tab">Testimoni</a>
+      <a href="cheat.html" class="nav-tab">Cheat Game</a>
+      <a href="jadwalsholat.html" class="nav-tab"><i class="fas fa-mosque"></i> Jadwal Sholat</a>
+      <a href="tiktok.html" class="nav-tab"><i class="fab fa-tiktok"></i> TikTok</a>
+      <a href="youtube.html" class="nav-tab"><i class="fab fa-youtube"></i> YouTube</a>
+      <a href="instagram.html" class="nav-tab active"><i class="fab fa-instagram"></i> Instagram</a>
+      <a href="threads.html" class="nav-tab"><i class="fas fa-at"></i> Threads</a>
+      <a href="facebook.html" class="nav-tab"><i class="fab fa-facebook"></i> Facebook</a>
+      <a href="compressvideo.html" class="nav-tab"><i class="fas fa-compress"></i> Compress Video</a>
+      <a href="iqcgenerator.html" class="nav-tab"><i class="fas fa-comments"></i> IQC Generator</a>
+      <a href="qris-barcode.html" class="nav-tab"><i class="fas fa-qrcode"></i> QRIS & Barcode</a>
+      <a href="spotify.html" class="nav-tab"><i class="fab fa-spotify"></i> Spotify</a>
+      <a href="testspeed.html" class="nav-tab"><i class="fas fa-tachometer-alt"></i> Test Speed</a>
+      <a href="base64_v7.html" class="nav-tab"><i class="fas fa-code"></i> Base64</a>
+      <a href="proyek.html" class="nav-tab">Proyek Saya</a>
+      <a href="portofolio.html" class="nav-tab">Portofolio</a>
+      <a href="kontak.html" class="nav-tab">Kontak</a>
+      <a href="login.html" class="nav-tab"><i class="fas fa-sign-in-alt"></i> Login</a>
+    </div>
+  </nav>
+</header>
+
+<!-- ============================================================
+     MAIN
+     ============================================================ -->
+<main>
+  <div class="container">
+    <section id="instagram-section" class="section active" style="display:block;">
+
+      <!-- HERO -->
+      <div class="ig-hero" data-aos="fade-up">
+        <div class="ig-hero-icon" id="igHeroIcon">
+          <i class="fab fa-instagram" aria-hidden="true"></i>
+        </div>
+        <h2 class="ig-hero-title" data-i18n="hero.title">Instagram Video / Reels / Foto / MP3 Downloader</h2>
+        <p class="ig-hero-sub" data-i18n="hero.sub">Download Reels, Video, Foto carousel, IGTV, Story & MP3 hingga 1080p/4K — cepat, akurat, tanpa watermark.</p>
+        <div class="ig-hero-pills">
+          <span class="ig-pill"><i class="fas fa-bolt"></i> <span data-i18n="pill.fast">Cepat</span></span>
+          <span class="ig-pill"><i class="fas fa-shield-alt"></i> <span data-i18n="pill.safe">Aman</span></span>
+          <span class="ig-pill"><i class="fas fa-hd"></i> <span data-i18n="pill.hd">Hingga 4K</span></span>
+          <span class="ig-pill"><i class="fas fa-music"></i> <span data-i18n="pill.mp3">Audio MP3</span></span>
+          <span class="ig-pill"><i class="fas fa-images"></i> <span data-i18n="pill.multi">Multi-Foto</span></span>
+        </div>
+      </div>
+
+      <!-- STATS STRIP -->
+      <div class="ig-stats-strip" id="igStatsStrip" data-aos="fade-up">
+        <div class="ig-stats-cell"><div class="ig-stats-num" id="igStatToday">0</div><div class="ig-stats-label" data-i18n="stats.today">Hari ini</div></div>
+        <div class="ig-stats-cell"><div class="ig-stats-num" id="igStatWeek">0</div><div class="ig-stats-label" data-i18n="stats.week">7 hari</div></div>
+        <div class="ig-stats-cell"><div class="ig-stats-num" id="igStatMonth">0</div><div class="ig-stats-label" data-i18n="stats.month">30 hari</div></div>
+        <div class="ig-stats-spark" id="igStatSpark" aria-hidden="true"></div>
+      </div>
+
+      <!-- CLIPBOARD BANNER (BARU v4) -->
+      <div class="ig-clipboard-banner" id="igClipboardBanner" hidden role="region" aria-label="Deteksi clipboard">
+        <i class="fas fa-clipboard"></i>
+        <span data-i18n="clip.detected">Link Instagram terdeteksi di clipboard!</span>
+        <button type="button" class="ig-clipboard-accept" id="igClipboardAccept" data-i18n="clip.use">Gunakan</button>
+        <button type="button" class="ig-clipboard-dismiss" id="igClipboardDismiss" aria-label="Abaikan"><i class="fas fa-times"></i></button>
+      </div>
+
+      <!-- INPUT CARD -->
+      <div class="ig-input-card card-3d" data-aos="fade-up">
+        <div class="ig-input-header">
+          <i class="fab fa-instagram" style="color:#E4405F;"></i>
+          <span data-i18n="input.title">Tempel link Instagram</span>
+          <button type="button" class="ig-quick-toggle" id="igQuickModeToggle" aria-pressed="false" title="Quick Mode: langsung download setelah parse">
+            <i class="fas fa-bolt"></i> <span data-i18n="input.quick">Quick</span>
+          </button>
+          <button type="button" class="ig-batch-toggle" id="igBatchToggle" aria-label="Mode batch URL" aria-pressed="false">
+            <i class="fas fa-layer-group"></i> <span data-i18n="input.batch">Batch</span>
+          </button>
+        </div>
+
+        <div class="ig-input-row" id="igSingleRow">
+          <input type="text" id="igUrlInput" class="ig-input"
+            placeholder="https://instagram.com/p/... atau /reel/... atau /tv/..."
+            autocomplete="off" spellcheck="false" aria-label="URL Instagram" />
+          <button type="button" class="ig-mini-btn" id="igPasteBtn" title="Paste (Ctrl+V)" aria-label="Paste"><i class="fas fa-paste"></i></button>
+          <button type="button" class="ig-mini-btn" id="igClearBtn" title="Bersihkan (Esc)" aria-label="Bersihkan" style="display:none;"><i class="fas fa-times"></i></button>
+        </div>
+
+        <div class="ig-batch-row" id="igBatchRow" hidden>
+          <textarea id="igBatchInput" class="ig-input ig-batch-textarea" rows="5"
+            placeholder="Tempel 2–20 URL Instagram, satu per baris…" aria-label="Batch URL Instagram"></textarea>
+          <div class="ig-batch-counter"><span id="igBatchCount">0</span>/20 URL</div>
+        </div>
+
+        <div class="ig-progress-line" id="igProgressLine" hidden><span class="ig-progress-fill" id="igProgressFill"></span></div>
+
+        <button type="button" class="ig-parse-btn" id="igParseBtn">
+          <i class="fas fa-download" aria-hidden="true"></i>
+          <span id="igParseBtnText" data-i18n="input.download">Download</span>
+        </button>
+
+        <div class="ig-cooldown" id="igCooldown" hidden>
+          <i class="fas fa-hourglass-half"></i>
+          <span><span data-i18n="input.cooldown">Rate limit — tunggu</span> <strong id="igCooldownNum">3</strong> <span data-i18n="input.seconds">detik</span></span>
+        </div>
+      </div>
+
+      <!-- STATUS -->
+      <div class="ig-status" id="igStatus" role="status" aria-live="polite">
+        <span class="ig-status-icon" id="igStatusIcon"></span>
+        <span class="ig-status-text" id="igStatusText"></span>
+      </div>
+
+      <!-- RESULT CARD -->
+      <div class="ig-result-card" id="igResultCard">
+        <div class="ig-skeleton" id="igSkeleton" hidden>
+          <div class="ig-sk-thumb"></div>
+          <div class="ig-sk-lines">
+            <div class="ig-sk-line" style="width:40%"></div>
+            <div class="ig-sk-line" style="width:80%"></div>
+            <div class="ig-sk-line" style="width:60%"></div>
+          </div>
+        </div>
+
+        <div class="ig-result-body" id="igResultBody">
+          <div class="ig-result-top">
+            <div class="ig-thumb-wrap" id="igThumbWrap" role="button" tabindex="0" aria-label="Preview media">
+              <img id="igThumb" class="ig-thumb" src="" alt="Thumbnail Instagram" loading="lazy" />
+              <span class="ig-play-overlay"><i class="fas fa-play"></i></span>
+              <span class="ig-duration-badge" id="igDuration"></span>
+              <span class="ig-type-badge" id="igTypeBadge">POST</span>
+              <span class="ig-demo-badge" id="igDemoBadge" hidden>DEMO</span>
+              <span class="ig-success-check" id="igSuccessCheck" aria-hidden="true">
+                <svg viewBox="0 0 52 52"><circle cx="26" cy="26" r="24"/><path d="M14 27 L23 36 L39 18"/></svg>
+              </span>
+            </div>
+            <div class="ig-info">
+              <div class="ig-author">
+                <div class="ig-author-avatar" id="igAuthorAvatar"><i class="fab fa-instagram"></i></div>
+                <div class="ig-author-text">
+                  <div class="ig-author-name" id="igAuthorName">Instagram User</div>
+                  <div class="ig-author-handle" id="igAuthorHandle">@user</div>
+                </div>
+              </div>
+              <p class="ig-desc" id="igDesc">—</p>
+              <button type="button" class="ig-desc-toggle" id="igDescToggle" style="display:none;">
+                <span data-i18n="result.more">Selengkapnya</span>
+              </button>
+
+              <div class="ig-stats">
+                <span class="ig-stat"><i class="fas fa-heart"></i> <strong id="igLikes">0</strong> <span data-i18n="result.likes">likes</span></span>
+                <span class="ig-stat"><i class="fas fa-comment"></i> <strong id="igComments">0</strong> <span data-i18n="result.comments">komentar</span></span>
+                <span class="ig-stat"><i class="fas fa-images"></i> <strong id="igMediaCount">1</strong> <span data-i18n="result.media">media</span></span>
+              </div>
+
+              <div class="ig-meta-row">
+                <span class="ig-meta-item"><i class="fas fa-calendar-alt"></i> <span id="igDate">—</span></span>
+                <span class="ig-meta-item"><i class="fas fa-server"></i> <span id="igSource">—</span></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="ig-quality-section">
+            <h4 class="ig-subsection-title"><i class="fas fa-video"></i> <span data-i18n="result.video">Pilih Kualitas Video</span></h4>
+            <div class="ig-quality-grid" id="igQualityGrid"></div>
+          </div>
+
+          <div class="ig-quality-section" id="igPhotosSection" style="display:none;">
+            <div class="ig-section-header-row">
+              <h4 class="ig-subsection-title"><i class="fas fa-images"></i> <span data-i18n="result.photos">Download Foto</span></h4>
+              <div class="ig-section-header-actions">
+                <button type="button" class="ig-mini-action" id="igCopyAllBtn">
+                  <i class="fas fa-copy"></i> <span data-i18n="result.copyAll">Copy All</span>
+                </button>
+                <button type="button" class="ig-mini-action" id="igDownloadAllBtn">
+                  <i class="fas fa-folder"></i> <span data-i18n="result.downloadAll">Download Semua</span>
+                </button>
+              </div>
+            </div>
+            <div class="ig-photos-grid" id="igPhotosGrid"></div>
+          </div>
+
+          <div class="ig-quality-section">
+            <h4 class="ig-subsection-title"><i class="fas fa-music"></i> <span data-i18n="result.audio">Download Audio MP3</span></h4>
+            <div class="ig-audio-grid" id="igAudioGrid"></div>
+          </div>
+
+          <div class="ig-action-row">
+            <button type="button" class="ig-action-btn" id="igFavoriteBtn"><i class="far fa-star"></i> <span data-i18n="action.favorite">Favorit</span></button>
+            <button type="button" class="ig-action-btn" id="igCopyLinkBtn"><i class="fas fa-link"></i> <span data-i18n="action.copy">Copy Link</span></button>
+            <button type="button" class="ig-action-btn" id="igShareBtn"><i class="fas fa-share-alt"></i> <span data-i18n="action.share">Share</span></button>
+            <button type="button" class="ig-action-btn" id="igDownloadThumbBtn"><i class="fas fa-image"></i> <span data-i18n="action.thumb">Thumbnail</span></button>
+            <button type="button" class="ig-action-btn ig-action-report" id="igReportBtn"><i class="fas fa-flag"></i> <span data-i18n="action.report">Laporkan</span></button>
+          </div>
+        </div>
+      </div>
+
+      <!-- TABS -->
+      <div class="ig-tabs-wrap" id="igTabsWrap" hidden>
+        <div class="ig-tabs-nav" role="tablist">
+          <button type="button" class="ig-tab-btn active" data-tab="history" role="tab" aria-selected="true"><i class="fas fa-history"></i> <span data-i18n="tabs.history">Riwayat</span></button>
+          <button type="button" class="ig-tab-btn" data-tab="favorites" role="tab" aria-selected="false"><i class="fas fa-star"></i> <span data-i18n="tabs.favorites">Favorit</span></button>
+          <div class="ig-tabs-spacer"></div>
+          <button type="button" class="ig-clear-history" id="igExportBtn" aria-label="Export JSON"><i class="fas fa-file-export"></i> <span data-i18n="tabs.export">Export</span></button>
+          <button type="button" class="ig-clear-history" id="igClearHistory"><i class="fas fa-trash-alt"></i> <span data-i18n="tabs.clear">Hapus</span></button>
+        </div>
+        <div class="ig-tab-panel active" data-panel="history"><div class="ig-history-list" id="igHistoryList"></div></div>
+        <div class="ig-tab-panel" data-panel="favorites"><div class="ig-history-list" id="igFavoritesList"></div></div>
+      </div>
+
+      <!-- INFO / FAQ -->
+      <div class="ig-info-grid">
+        <div class="ig-info-card" data-aos="fade-up">
+          <h3 class="ig-info-title"><i class="fas fa-magic"></i> <span data-i18n="howto.title">Cara Menggunakan</span></h3>
+          <ol class="ig-steps">
+            <li><span class="ig-step-num">1</span> <span data-i18n="howto.s1">Buka Instagram, salin link Reels / Post / IGTV.</span></li>
+            <li><span class="ig-step-num">2</span> <span data-i18n="howto.s2">Tempel di input (atau tekan Ctrl+V).</span></li>
+            <li><span class="ig-step-num">3</span> <span data-i18n="howto.s3">Klik Download / tekan Enter.</span></li>
+            <li><span class="ig-step-num">4</span> <span data-i18n="howto.s4">Pilih kualitas video, foto, atau MP3.</span></li>
+          </ol>
+        </div>
+        <div class="ig-info-card" data-aos="fade-up">
+          <h3 class="ig-info-title"><i class="fas fa-question-circle"></i> FAQ</h3>
+          <div class="ig-faq">
+            <div class="ig-faq-item">
+              <button type="button" class="ig-faq-q" aria-expanded="false">Kenapa postingan tidak bisa diunduh? <i class="fas fa-chevron-down"></i></button>
+              <div class="ig-faq-a">Akun private, postingan dihapus, atau konten dibatasi tidak dapat diakses.</div>
+            </div>
+            <div class="ig-faq-item">
+              <button type="button" class="ig-faq-q" aria-expanded="false">Apakah aman? <i class="fas fa-chevron-down"></i></button>
+              <div class="ig-faq-a">Ya, 100% aman. Kami tidak menyimpan file maupun data Anda.</div>
+            </div>
+            <div class="ig-faq-item">
+              <button type="button" class="ig-faq-q" aria-expanded="false">Mendukung carousel? <i class="fas fa-chevron-down"></i></button>
+              <div class="ig-faq-a">Ya. Klik foto di grid untuk membuka viewer carousel dengan tombol zoom & download.</div>
+            </div>
+            <div class="ig-faq-item">
+              <button type="button" class="ig-faq-q" aria-expanded="false">Bisa download Story/IGTV? <i class="fas fa-chevron-down"></i></button>
+              <div class="ig-faq-a">Story perlu login. IGTV (/tv/) didukung seperti video biasa.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+  </div>
+</main>
+
+<!-- ============================================================
+     MODAL 1: VIDEO PREVIEW
+     ============================================================ -->
+<div id="igVideoModal" class="ig-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="igVideoModalTitle">
+  <div class="ig-modal-backdrop" data-modal-close></div>
+  <div class="ig-modal-content ig-modal-video">
+    <button type="button" class="ig-modal-close" data-modal-close aria-label="Tutup">&times;</button>
+    <h3 class="ig-modal-title" id="igVideoModalTitle">Preview Media</h3>
+    <div class="ig-video-wrap"><video id="igPreviewVideo" controls playsinline preload="metadata"></video></div>
+    <div class="ig-video-controls">
+      <button type="button" class="ig-mini-action" id="igPreviewPip"><i class="fas fa-clone"></i> PiP</button>
+      <button type="button" class="ig-mini-action" id="igPreviewFullscreen"><i class="fas fa-expand"></i> Fullscreen</button>
+      <label class="ig-speed-label">Speed
+        <select id="igPreviewSpeed">
+          <option value="0.5">0.5x</option><option value="0.75">0.75x</option>
+          <option value="1" selected>1x</option><option value="1.25">1.25x</option>
+          <option value="1.5">1.5x</option><option value="2">2x</option>
+        </select>
+      </label>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     MODAL 2: CAROUSEL VIEWER (dari v3.1)
+     ============================================================ -->
+<div id="igCarouselModal" class="ig-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="igCarouselTitle">
+  <div class="ig-modal-backdrop" data-modal-close></div>
+  <div class="ig-modal-content ig-modal-carousel">
+    <button type="button" class="ig-modal-close" data-modal-close aria-label="Tutup">&times;</button>
+    <h3 class="ig-modal-title" id="igCarouselTitle">Carousel</h3>
+    <div class="ig-carousel-stage" id="igCarouselStage">
+      <button type="button" class="ig-carousel-nav ig-carousel-prev" id="igCarouselPrev" aria-label="Sebelumnya"><i class="fas fa-chevron-left"></i></button>
+      <div class="ig-carousel-imgwrap" id="igCarouselImgWrap">
+        <img id="igCarouselImg" src="" alt="Foto carousel" draggable="false" />
+      </div>
+      <button type="button" class="ig-carousel-nav ig-carousel-next" id="igCarouselNext" aria-label="Berikutnya"><i class="fas fa-chevron-right"></i></button>
+    </div>
+    <div class="ig-carousel-dots" id="igCarouselDots" role="tablist" aria-label="Navigasi foto"></div>
+    <div class="ig-carousel-controls">
+      <span class="ig-carousel-counter" id="igCarouselCounter">1 / 1</span>
+      <button type="button" class="ig-mini-action" id="igCarouselZoom"><i class="fas fa-search-plus"></i> Zoom</button>
+      <button type="button" class="ig-mini-action" id="igCarouselCopy"><i class="fas fa-copy"></i> Copy URL</button>
+      <button type="button" class="ig-mini-action" id="igCarouselDownload"><i class="fas fa-download"></i> Download</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     MODAL 3: ZOOM (dari v3.1)
+     ============================================================ -->
+<div id="igZoomModal" class="ig-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="igZoomTitle">
+  <div class="ig-modal-backdrop" data-modal-close></div>
+  <div class="ig-modal-content ig-modal-zoom">
+    <button type="button" class="ig-modal-close" data-modal-close aria-label="Tutup">&times;</button>
+    <h3 class="ig-modal-title" id="igZoomTitle" style="display:none">Zoom</h3>
+    <div class="ig-zoom-stage" id="igZoomStage">
+      <img id="igZoomImg" src="" alt="Zoom foto" draggable="false" />
+    </div>
+    <div class="ig-zoom-controls">
+      <button type="button" class="ig-mini-action" id="igZoomOut"><i class="fas fa-search-minus"></i> Perkecil</button>
+      <button type="button" class="ig-mini-action" id="igZoomReset"><i class="fas fa-undo"></i> Reset</button>
+      <button type="button" class="ig-mini-action" id="igZoomIn"><i class="fas fa-search-plus"></i> Perbesar</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     MODAL 4: SHORTCUT
+     ============================================================ -->
+<div id="igShortcutModal" class="ig-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="igShortcutTitle">
+  <div class="ig-modal-backdrop" data-modal-close></div>
+  <div class="ig-modal-content">
+    <button type="button" class="ig-modal-close" data-modal-close aria-label="Tutup">&times;</button>
+    <h3 class="ig-modal-title" id="igShortcutTitle"><i class="fas fa-keyboard"></i> Keyboard Shortcut</h3>
+    <div class="ig-shortcut-grid">
+      <div class="ig-shortcut-row"><kbd>Ctrl</kbd> + <kbd>V</kbd><span>Paste & auto-parse</span></div>
+      <div class="ig-shortcut-row"><kbd>Enter</kbd><span>Mulai parse</span></div>
+      <div class="ig-shortcut-row"><kbd>Esc</kbd><span>Bersihkan / tutup modal</span></div>
+      <div class="ig-shortcut-row"><kbd>/</kbd><span>Fokus ke input</span></div>
+      <div class="ig-shortcut-row"><kbd>Shift</kbd> + <kbd>?</kbd><span>Buka panel ini</span></div>
+      <div class="ig-shortcut-row"><kbd>Ctrl</kbd> + <kbd>S</kbd><span>Download kualitas terbaik</span></div>
+      <div class="ig-shortcut-row"><kbd>Ctrl</kbd> + <kbd>B</kbd><span>Toggle Batch mode</span></div>
+      <div class="ig-shortcut-row"><kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>L</kbd><span>Toggle tema IG</span></div>
+      <div class="ig-shortcut-row"><kbd>Ctrl</kbd> + <kbd>,</kbd><span>Buka pengaturan</span></div>
+      <div class="ig-shortcut-row"><kbd>←</kbd> / <kbd>→</kbd><span>Navigasi carousel</span></div>
+      <div class="ig-shortcut-row"><kbd>+</kbd> / <kbd>−</kbd><span>Zoom in / out</span></div>
+      <div class="ig-shortcut-row"><kbd>Ctrl</kbd> + <kbd>Enter</kbd><span>Parse (batch ok)</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     MODAL 5: SETTINGS (dari v3.1)
+     ============================================================ -->
+<div id="igSettingsModal" class="ig-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="igSettingsTitle">
+  <div class="ig-modal-backdrop" data-modal-close></div>
+  <div class="ig-modal-content">
+    <button type="button" class="ig-modal-close" data-modal-close aria-label="Tutup">&times;</button>
+    <h3 class="ig-modal-title" id="igSettingsTitle"><i class="fas fa-cog"></i> Pengaturan</h3>
+
+    <div class="ig-settings-group">
+      <label class="ig-settings-row">
+        <span><i class="fas fa-adjust"></i> <span data-i18n="set.theme">Tema</span></span>
+        <select id="igSettingTheme">
+          <option value="dark">Dark</option>
+          <option value="light">Light</option>
+        </select>
+      </label>
+      <label class="ig-settings-row">
+        <span><i class="fas fa-globe"></i> <span data-i18n="set.lang">Bahasa</span></span>
+        <select id="igSettingLang">
+          <option value="id">Indonesia</option>
+          <option value="en">English</option>
+        </select>
+      </label>
+      <label class="ig-settings-row">
+        <span><i class="fas fa-hd"></i> <span data-i18n="set.quality">Kualitas Default</span></span>
+        <select id="igSettingQuality">
+          <option value="original">Original / 4K</option>
+          <option value="1080p" selected>1080p</option>
+          <option value="720p">720p</option>
+          <option value="360p">360p</option>
+        </select>
+      </label>
+      <label class="ig-settings-row">
+        <span><i class="fas fa-download"></i> <span data-i18n="set.autoDl">Auto-download setelah parse</span></span>
+        <input type="checkbox" id="igSettingAutoDl" />
+      </label>
+      <label class="ig-settings-row">
+        <span><i class="fas fa-history"></i> <span data-i18n="set.histMax">Maks riwayat</span></span>
+        <input type="number" id="igSettingHistMax" min="4" max="50" value="12" />
+      </label>
+      <label class="ig-settings-row">
+        <span><i class="fas fa-bolt"></i> <span data-i18n="set.quickMode">Quick Mode</span></span>
+        <input type="checkbox" id="igSettingQuickMode" />
+      </label>
+      <label class="ig-settings-row">
+        <span><i class="fas fa-clipboard"></i> <span data-i18n="set.dedupe">Smart Dedupe (24 jam)</span></span>
+        <input type="checkbox" id="igSettingDedupe" checked />
+      </label>
+    </div>
+
+    <div class="ig-action-row">
+      <button type="button" class="ig-action-btn" id="igSettingSave"><i class="fas fa-check"></i> <span data-i18n="set.save">Simpan</span></button>
+      <button type="button" class="ig-action-btn ig-action-report" id="igSettingReset"><i class="fas fa-trash-alt"></i> <span data-i18n="set.reset">Reset Data</span></button>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     MODAL 6: ERROR REPORT
+     ============================================================ -->
+<div id="igReportModal" class="ig-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="igReportTitle">
+  <div class="ig-modal-backdrop" data-modal-close></div>
+  <div class="ig-modal-content">
+    <button type="button" class="ig-modal-close" data-modal-close aria-label="Tutup">&times;</button>
+    <h3 class="ig-modal-title" id="igReportTitle"><i class="fas fa-flag"></i> Laporkan Masalah</h3>
+    <p class="ig-report-sub">Salin laporan berikut & buka GitHub Issue (template terisi otomatis):</p>
+    <textarea id="igReportBody" class="ig-input ig-report-textarea" rows="10" readonly></textarea>
+    <div class="ig-action-row">
+      <button type="button" class="ig-action-btn" id="igReportCopy"><i class="fas fa-copy"></i> Copy Laporan</button>
+      <a class="ig-action-btn" id="igReportGithub" target="_blank" rel="noopener"><i class="fab fa-github"></i> GitHub</a>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     MODAL 7: CONFIRM (dari v3.1)
+     ============================================================ -->
+<div id="igConfirmModal" class="ig-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="igConfirmTitle">
+  <div class="ig-modal-backdrop" data-modal-close></div>
+  <div class="ig-modal-content ig-modal-confirm">
+    <button type="button" class="ig-modal-close" data-modal-close aria-label="Tutup">&times;</button>
+    <h3 class="ig-modal-title" id="igConfirmTitle">Konfirmasi</h3>
+    <p id="igConfirmMsg" class="ig-report-sub">Yakin?</p>
+    <div class="ig-action-row">
+      <button type="button" class="ig-action-btn" data-modal-close><i class="fas fa-times"></i> Batal</button>
+      <button type="button" class="ig-action-btn ig-action-report" id="igConfirmOk"><i class="fas fa-check"></i> Ya, Lanjut</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     MODAL 8: ABOUT (BARU v4)
+     ============================================================ -->
+<div id="igAboutModal" class="ig-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="igAboutTitle">
+  <div class="ig-modal-backdrop" data-modal-close></div>
+  <div class="ig-modal-content ig-modal-about">
+    <button type="button" class="ig-modal-close" data-modal-close aria-label="Tutup">&times;</button>
+    <div class="ig-about-hero">
+      <div class="ig-about-icon"><i class="fab fa-instagram"></i></div>
+      <h3 class="ig-about-title">Instagram Downloader</h3>
+      <div class="ig-about-version">v4.0.0 FINAL ULTIMATE</div>
+    </div>
+    <p class="ig-about-desc">Download Reels, Video, Foto carousel, IGTV, Story & MP3 hingga 1080p/4K — tanpa watermark. 7 sumber API, cache 5 menit, download 3-tier, dark/light theme, dan keyboard shortcut lengkap.</p>
+    <div class="ig-about-features">
+      <div class="ig-about-feature"><i class="fas fa-server"></i> 7 Sumber API</div>
+      <div class="ig-about-feature"><i class="fas fa-bolt"></i> Cache 5 Menit</div>
+      <div class="ig-about-feature"><i class="fas fa-layer-group"></i> Batch 20 URL</div>
+      <div class="ig-about-feature"><i class="fas fa-images"></i> Carousel Viewer</div>
+      <div class="ig-about-feature"><i class="fas fa-music"></i> Audio MP3</div>
+      <div class="ig-about-feature"><i class="fas fa-shield-alt"></i> 100% Aman</div>
+      <div class="ig-about-feature"><i class="fas fa-language"></i> i18n ID/EN</div>
+      <div class="ig-about-feature"><i class="fas fa-keyboard"></i> Keyboard Shortcut</div>
+    </div>
+    <div class="ig-about-links">
+      <a href="https://github.com/irgxymods" target="_blank" rel="noopener" class="ig-action-btn"><i class="fab fa-github"></i> GitHub</a>
+      <a href="https://t.me/irgxyzmods" target="_blank" rel="noopener" class="ig-action-btn"><i class="fab fa-telegram"></i> Telegram</a>
+    </div>
+    <div class="ig-about-footer">
+      <small>© 2025 IRGXYMODS — MIT License (bebas pakai)</small>
+    </div>
+    <div class="ig-action-row">
+      <button type="button" class="ig-action-btn" id="igAboutCopyVersion"><i class="fas fa-copy"></i> Copy Versi</button>
+      <button type="button" class="ig-action-btn" id="igAboutCheckUpdate"><i class="fas fa-sync"></i> Cek Update</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     MODAL 9: BATCH PREVIEW (BARU v4)
+     ============================================================ -->
+<div id="igBatchPreviewModal" class="ig-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="igBatchPreviewTitle">
+  <div class="ig-modal-backdrop" data-modal-close></div>
+  <div class="ig-modal-content ig-modal-batch-preview">
+    <button type="button" class="ig-modal-close" data-modal-close aria-label="Tutup">&times;</button>
+    <h3 class="ig-modal-title" id="igBatchPreviewTitle"><i class="fas fa-layer-group"></i> Hasil Batch</h3>
+    <p class="ig-report-sub">Klik item untuk load individual, atau download semua sekaligus.</p>
+    <div class="ig-batch-grid" id="igBatchGrid"></div>
+    <div class="ig-action-row">
+      <button type="button" class="ig-action-btn" id="igBatchDownloadAll"><i class="fas fa-download"></i> Download Semua Video</button>
+      <button type="button" class="ig-action-btn" id="igBatchExport"><i class="fas fa-file-export"></i> Export JSON</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     MODAL 10: QUEUE (BARU v4)
+     ============================================================ -->
+<div id="igQueueModal" class="ig-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="igQueueTitle">
+  <div class="ig-modal-backdrop" data-modal-close></div>
+  <div class="ig-modal-content ig-modal-queue">
+    <button type="button" class="ig-modal-close" data-modal-close aria-label="Tutup">&times;</button>
+    <h3 class="ig-modal-title" id="igQueueTitle"><i class="fas fa-tasks"></i> Download Queue</h3>
+    <div class="ig-queue-list" id="igQueueList"></div>
+    <div class="ig-action-row">
+      <button type="button" class="ig-action-btn" id="igQueueClear"><i class="fas fa-trash-alt"></i> Bersihkan Selesai</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============================================================
+     PROFILE MODAL (legacy)
+     ============================================================ -->
+<div id="profileModal" class="profile-modal">
+  <div class="profile-modal-content card-3d">
+    <span class="profile-close" id="profileModalClose">&times;</span>
+    <div class="profile-card">
+      <div class="profile-header">
+        <div class="profile-avatar-container">
+          <img src="https://ik.imagekit.io/IrgxyMods/IMG_20250922_195742.jpg?updatedAt=1758545932127" alt="Avatar" class="profile-avatar" />
+          <div class="profile-status"></div>
+          <div class="profile-edit-icon"><i class="fas fa-camera"></i></div>
+        </div>
+        <div class="profile-title">
+          <h2 class="profile-name">Pengguna IRGXYMODS</h2>
+          <p class="profile-rank">Member Premium</p>
+        </div>
+        <div class="profile-badges">
+          <div class="badge gold-badge"><i class="fas fa-crown"></i></div>
+          <div class="badge verified-badge"><i class="fas fa-check-circle"></i></div>
+          <div class="badge vip-badge"><i class="fas fa-star"></i></div>
+        </div>
+      </div>
+      <div class="profile-stats">
+        <div class="stat-item"><div class="stat-value" id="statDownloads">0</div><div class="stat-label">Aplikasi Diunduh</div></div>
+        <div class="stat-item"><div class="stat-value" id="statDays">0</div><div class="stat-label">Hari Aktif</div></div>
+        <div class="stat-item"><div class="stat-value" id="statBugs">0</div><div class="stat-label">Laporan Bug</div></div>
+      </div>
+      <div class="profile-info">
+        <div class="info-section">
+          <h3 class="section-title"><i class="fas fa-history"></i> Aktivitas Terbaru</h3>
+          <div id="activityTimeline"></div>
+        </div>
+      </div>
+      <div class="profile-actions">
+        <button class="profile-action-btn edit-profile"><i class="fas fa-edit"></i><span>Edit Profil</span></button>
+        <button class="profile-action-btn upgrade-premium"><i class="fas fa-crown"></i><span>Upgrade Premium</span></button>
+        <button class="profile-action-btn logout"><i class="fas fa-sign-out-alt"></i><span>Keluar</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="back-to-top" id="backToTop" role="button" tabindex="0" aria-label="Kembali ke atas"><i class="fas fa-arrow-up"></i></div>
+
+<footer>
+  <p style="margin-bottom:0.5rem;color:rgba(255,255,255,0.8);">&copy; 2025 IRGXY MODS — Website Download Aplikasi Mod Dan Premium Terlengkap</p>
+  <p style="margin-bottom:1.5rem;color:rgba(255,255,255,0.6);">✨ Support Modder IrgxyMods ✨</p>
+  <div class="footer-links">
+    <a href="https://policies.google.com/privacy?hl=en-US" class="footer-link" target="_blank" rel="noopener">Privacy Policy</a>
+    <a href="https://policies.google.com/terms?hl=en-US" class="footer-link" target="_blank" rel="noopener">Terms of Service</a>
+    <a href="https://t.me/irgxyzmods" class="footer-link" target="_blank" rel="noopener">Contact Us</a>
+    <a href="https://policies.google.com/faq?hl=id" class="footer-link" target="_blank" rel="noopener">FAQ</a>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+  // Fallback jika AOS gagal load
+  if (window.AOS) { AOS.init({ duration: 600, once: true, offset: 60 }); }
+</script>
+<script src="main.js"></script>
+<script src="instagram_v4.js"></script>
+</body>
+</html>

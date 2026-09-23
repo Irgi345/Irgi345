@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+<meta name="theme-color" content="#121212" />
+<title>Spotify Music — IRGXYMODS</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800;900&family=Inter:wght@300;400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet" />
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+<link rel="stylesheet" href="spotify.css" />
+</head>
+<body class="sp-body">
+
+<div class="toast-container" id="toastContainer"></div>
+
+<header>
+  <div class="header-top">
+    <a href="index.html" class="logo-brand"><i class="fas fa-crown"></i><h1>IRGXYMODS</h1></a>
+    <div class="header-actions">
+      <div style="position:relative;display:inline-block;">
+        <button class="settings-btn" id="settingsToggle"><i class="fas fa-cog"></i></button>
+        <div class="settings-dropdown" id="settingsDropdown">
+          <a href="login.html" class="dropdown-item"><i class="fas fa-sign-in-alt"></i> Login</a>
+          <div class="dropdown-divider"></div>
+          <button class="dropdown-item" id="profileDropdownBtn"><i class="fas fa-user"></i> Profil</button>
+          <button class="dropdown-item" id="themeToggleBtn"><i class="fas fa-palette"></i> Tema</button>
+          <div class="dropdown-divider"></div>
+          <a href="irgxymods.html" class="dropdown-item"><i class="fas fa-info-circle"></i> Tentang</a>
+          <button class="dropdown-item" id="helpBtn"><i class="fas fa-question-circle"></i> Bantuan</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="nav-tabs-container">
+    <div class="nav-tabs">
+      <a href="index.html" class="nav-tab">Aplikasi Mod</a>
+      <a href="irgxymods.html" class="nav-tab">IrgxyMods</a>
+      <a href="acount.html" class="nav-tab">Akun Premium</a>
+      <a href="fitur.html" class="nav-tab">Fitur Eksklusif</a>
+      <a href="testimoni.html" class="nav-tab">Testimoni</a>
+      <a href="cheat.html" class="nav-tab">Cheat Game</a>
+      <a href="jadwalsholat.html" class="nav-tab"><i class="fas fa-mosque"></i> Jadwal Sholat</a>
+      <a href="tiktok.html" class="nav-tab"><i class="fab fa-tiktok"></i> TikTok</a>
+      <a href="youtube.html" class="nav-tab"><i class="fab fa-youtube"></i> YouTube</a>
+      <a href="instagram.html" class="nav-tab"><i class="fab fa-instagram"></i> Instagram</a>
+      <a href="threads.html" class="nav-tab"><i class="fas fa-at"></i> Threads</a>
+      <a href="facebook.html" class="nav-tab"><i class="fab fa-facebook"></i> Facebook</a>
+      <a href="compressvideo.html" class="nav-tab"><i class="fas fa-compress"></i> Compress Video</a>
+      <a href="iqcgenerator.html" class="nav-tab"><i class="fas fa-comments"></i> IQC Generator</a>
+      <a href="qris-barcode.html" class="nav-tab"><i class="fas fa-qrcode"></i> QRIS &amp; Barcode</a>      
+      <a href="spotify.html" class="nav-tab active"><i class="fab fa-spotify"></i> Spotify</a>
+      <a href="testspeed.html" class="nav-tab"><i class="fas fa-tachometer-alt"></i> Test Speed</a>
+      <a href="base64_v7.html" class="nav-tab"><i class="fas fa-code"></i> Base64</a>
+      <a href="proyek.html" class="nav-tab">Proyek Saya</a>
+      <a href="portofolio.html" class="nav-tab">Portofolio</a>
+      <a href="kontak.html" class="nav-tab">Kontak</a>
+      <a href="login.html" class="nav-tab"><i class="fas fa-sign-in-alt"></i> Login</a>
+    </div>
+  </div>
+</header>
+
+<!-- ══════════════ SPOTIFY APP ══════════════ -->
+<div class="sp-app" id="spApp">
+
+  <!-- SIDEBAR -->
+  <aside class="sp-sidebar" id="spSidebar" aria-label="Navigasi utama">
+    <div class="sp-sidebar-inner">
+      <nav class="sp-nav-block">
+        <a href="#/home" class="sp-nav-item" data-route="home">
+          <i class="fas fa-home"></i><span>Beranda</span>
+        </a>
+        <a href="#/search" class="sp-nav-item" data-route="search">
+          <i class="fas fa-search"></i><span>Cari</span>
+        </a>
+        <a href="#/library" class="sp-nav-item" data-route="library">
+          <i class="fas fa-book"></i><span>Koleksi</span>
+        </a>
+      </nav>
+
+      <div class="sp-nav-block sp-nav-secondary">
+        <a href="#/liked" class="sp-nav-item" data-route="liked">
+          <span class="sp-icon-badge sp-icon-liked"><i class="fas fa-heart"></i></span>
+          <span>Lagu Disukai</span>
+        </a>
+        <a href="#/recent" class="sp-nav-item" data-route="recent">
+          <span class="sp-icon-badge sp-icon-recent"><i class="fas fa-history"></i></span>
+          <span>Terakhir Diputar</span>
+        </a>
+      </div>
+
+      <div class="sp-playlist-header">
+        <span>Playlist Saya</span>
+        <button class="sp-icon-btn-sm" id="spCreatePlaylist" title="Buat playlist baru">
+          <i class="fas fa-plus"></i>
+        </button>
+      </div>
+      <div class="sp-playlist-list" id="spPlaylistList">
+        <div class="sp-sidebar-empty">
+          <i class="fas fa-music"></i>
+          <p>Belum ada playlist</p>
+          <small>Buat playlist pertamamu</small>
+        </div>
+      </div>
+
+      <div class="sp-sidebar-footer">
+        <div class="sp-user-chip" id="spUserChip">
+          <div class="sp-user-avatar" id="spUserAvatar"><i class="fas fa-user"></i></div>
+          <div class="sp-user-meta">
+            <div class="sp-user-name" id="spUserName">Guest</div>
+            <div class="sp-user-status" id="spUserStatus">Belum login</div>
+          </div>
+          <button class="sp-icon-btn-sm" id="spUserMenuBtn" aria-label="Menu pengguna">
+            <i class="fas fa-ellipsis-h"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="sp-main" id="spMain">
+
+    <!-- TOP BAR -->
+    <div class="sp-topbar">
+      <div class="sp-topbar-left">
+        <button class="sp-nav-circle" id="spBack" aria-label="Kembali"><i class="fas fa-chevron-left"></i></button>
+        <button class="sp-nav-circle" id="spForward" aria-label="Maju"><i class="fas fa-chevron-right"></i></button>
+        <button class="sp-nav-circle sp-mobile-menu" id="spMobileMenu" aria-label="Menu"><i class="fas fa-bars"></i></button>
+      </div>
+
+      <div class="sp-topbar-search" id="spTopbarSearch">
+        <i class="fas fa-search"></i>
+        <input type="search" id="spSearchInput" placeholder="Cari lagu, artist, album..." autocomplete="off" spellcheck="false" />
+        <button class="sp-search-clear" id="spSearchClear" hidden><i class="fas fa-times"></i></button>
+      </div>
+
+      <div class="sp-topbar-right">
+        <button class="sp-btn-outline" id="spLoginBtn" hidden>
+          <i class="fab fa-spotify"></i> Login Spotify
+        </button>
+        <div class="sp-user-topbar" id="spUserTopbar" hidden>
+          <button class="sp-user-topbar-btn" id="spUserTopbarBtn">
+            <img id="spTopbarAvatar" src="" alt="" />
+            <span id="spTopbarName">User</span>
+            <i class="fas fa-chevron-down"></i>
+          </button>
+          <div class="sp-user-dropdown" id="spUserDropdown">
+            <a href="#/profile"><i class="fas fa-user"></i> Profil</a>
+            <a href="#/library"><i class="fas fa-book"></i> Koleksi</a>
+            <hr />
+            <button id="spLogoutBtn"><i class="fas fa-sign-out-alt"></i> Keluar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VIEW CONTAINER -->
+    <div class="sp-view-container" id="spViewContainer"></div>
+
+    <!-- LOADING OVERLAY -->
+    <div class="sp-view-loading" id="spViewLoading" hidden>
+      <div class="sp-spinner-lg"></div>
+    </div>
+  </main>
+</div>
+
+<!-- ══════════════ PLAYER BAR ══════════════ -->
+<div class="sp-player-bar" id="spPlayerBar" role="region" aria-label="Pemutar musik">
+  <div class="sp-player-left">
+    <div class="sp-now-cover" id="spNowCover"><i class="fas fa-music"></i></div>
+    <div class="sp-now-meta">
+      <div class="sp-now-title" id="spNowTitle">Tidak ada lagu</div>
+      <div class="sp-now-artist" id="spNowArtist">—</div>
+    </div>
+    <button class="sp-icon-btn" id="spLikeBtn" aria-label="Sukai"><i class="far fa-heart"></i></button>
+  </div>
+
+  <div class="sp-player-center">
+    <div class="sp-controls">
+      <button class="sp-icon-btn" id="spShuffle" aria-label="Acak"><i class="fas fa-random"></i></button>
+      <button class="sp-icon-btn" id="spPrev" aria-label="Sebelumnya"><i class="fas fa-step-backward"></i></button>
+      <button class="sp-play-btn" id="spPlayPause" aria-label="Putar">
+        <i class="fas fa-play" id="spPlayIcon"></i>
+      </button>
+      <button class="sp-icon-btn" id="spNext" aria-label="Selanjutnya"><i class="fas fa-step-forward"></i></button>
+      <button class="sp-icon-btn" id="spRepeat" aria-label="Ulangi"><i class="fas fa-redo"></i></button>
+    </div>
+    <div class="sp-progress">
+      <span class="sp-time" id="spTimeCur">0:00</span>
+      <div class="sp-progress-track" id="spProgressTrack">
+        <div class="sp-progress-fill" id="spProgressFill"></div>
+        <div class="sp-progress-handle" id="spProgressHandle"></div>
+      </div>
+      <span class="sp-time" id="spTimeDur">0:00</span>
+    </div>
+  </div>
+
+  <div class="sp-player-right">
+    <button class="sp-icon-btn sp-hide-sm" id="spQueueBtn" aria-label="Antrian"><i class="fas fa-list"></i></button>
+    <button class="sp-icon-btn sp-hide-sm" id="spDeviceBtn" aria-label="Perangkat"><i class="fas fa-tv"></i></button>
+    <button class="sp-icon-btn" id="spVolumeBtn" aria-label="Bisukan"><i class="fas fa-volume-up"></i></button>
+    <div class="sp-volume">
+      <div class="sp-volume-track" id="spVolumeTrack">
+        <div class="sp-volume-fill" id="spVolumeFill"></div>
+      </div>
+    </div>
+    <button class="sp-icon-btn sp-hide-sm" id="spFullscreen" aria-label="Layar penuh"><i class="fas fa-expand"></i></button>
+  </div>
+</div>
+
+<!-- CONTEXT MENU -->
+<div class="sp-context-menu" id="spContextMenu" hidden></div>
+
+<!-- QUEUE DRAWER -->
+<aside class="sp-queue-drawer" id="spQueueDrawer" hidden>
+  <div class="sp-drawer-header">
+    <h3><i class="fas fa-list"></i> Antrian</h3>
+    <button class="sp-icon-btn-sm" id="spQueueClose"><i class="fas fa-times"></i></button>
+  </div>
+  <div class="sp-drawer-body" id="spQueueBody">
+    <div class="sp-drawer-empty">Antrian kosong</div>
+  </div>
+</aside>
+
+<!-- NOW PLAYING FULLSCREEN -->
+<section class="sp-now-fullscreen" id="spNowFullscreen" hidden>
+  <button class="sp-now-close" id="spNowClose"><i class="fas fa-chevron-down"></i></button>
+  <div class="sp-now-bg" id="spNowBg"></div>
+  <div class="sp-now-content">
+    <div class="sp-now-cover-lg" id="spNowCoverLg"><i class="fas fa-music"></i></div>
+    <h2 class="sp-now-title-lg" id="spNowTitleLg">—</h2>
+    <p class="sp-now-artist-lg" id="spNowArtistLg">—</p>
+    <div class="sp-now-lyrics" id="spNowLyrics">Login dengan Spotify Premium untuk lirik</div>
+  </div>
+</section>
+
+<!-- MODALS -->
+<div id="loginModal" class="login-modal">
+  <div class="login-modal-content card-3d">
+    <span class="login-close" id="loginModalClose">&times;</span>
+    <div class="login-logo"><i class="fas fa-crown logo-icon"></i><h1>IRGXYMODS</h1></div>
+    <h2 class="login-title">Masuk ke Akun Anda</h2>
+    <p class="login-subtitle">Akses konten eksklusif dan fitur premium</p>
+    <form id="loginForm" class="login-form">
+      <div class="form-group"><label for="username">Username atau Email</label>
+        <div class="input-with-icon"><i class="fas fa-user"></i><input type="text" id="username" placeholder="Masukkan username atau email" required /></div>
+      </div>
+      <div class="form-group"><label for="password">Password</label>
+        <div class="input-with-icon"><i class="fas fa-lock"></i><input type="password" id="password" placeholder="Masukkan password" required /></div>
+      </div>
+      <div class="remember-forgot">
+        <label class="remember-me"><input type="checkbox" id="rememberMe" /><span>Ingat saya</span></label>
+        <a href="#" class="forgot-password">Lupa password?</a>
+      </div>
+      <button type="submit" class="login-btn" id="loginBtn"><i class="fas fa-sign-in-alt"></i><span>Masuk</span></button>
+    </form>
+    <div class="divider"><span>atau masuk dengan</span></div>
+    <div class="social-login">
+      <a href="#" class="social-btn google-btn"><i class="fab fa-google"></i></a>
+      <a href="#" class="social-btn facebook-btn"><i class="fab fa-facebook-f"></i></a>
+      <a href="#" class="social-btn twitter-btn"><i class="fab fa-twitter"></i></a>
+    </div>
+    <div class="register-link">Belum punya akun? <a href="#">Daftar sekarang</a></div>
+  </div>
+</div>
+
+<div id="profileModal" class="profile-modal">
+  <div class="profile-modal-content card-3d">
+    <span class="profile-close" id="profileModalClose">&times;</span>
+    <div class="profile-card">
+      <div class="profile-header">
+        <div class="profile-avatar-container">
+          <img src="https://ik.imagekit.io/IrgxyMods/IMG_20250922_195742.jpg?updatedAt=1758545932127" alt="Avatar" class="profile-avatar" />
+          <div class="profile-status"></div>
+          <div class="profile-edit-icon"><i class="fas fa-camera"></i></div>
+        </div>
+        <div class="profile-title"><h2 class="profile-name">Pengguna IRGXYMODS</h2><p class="profile-rank">Member Premium</p></div>
+        <div class="profile-badges">
+          <div class="badge gold-badge"><i class="fas fa-crown"></i></div>
+          <div class="badge verified-badge"><i class="fas fa-check-circle"></i></div>
+          <div class="badge vip-badge"><i class="fas fa-star"></i></div>
+        </div>
+      </div>
+      <div class="profile-stats">
+        <div class="stat-item"><div class="stat-value" id="statDownloads">0</div><div class="stat-label">Aplikasi Diunduh</div></div>
+        <div class="stat-item"><div class="stat-value" id="statDays">0</div><div class="stat-label">Hari Aktif</div></div>
+        <div class="stat-item"><div class="stat-value" id="statBugs">0</div><div class="stat-label">Laporan Bug</div></div>
+      </div>
+      <div class="profile-info">
+        <div class="info-section">
+          <h3 class="section-title"><i class="fas fa-history"></i> Aktivitas Terbaru</h3>
+          <div id="activityTimeline"></div>
+        </div>
+      </div>
+      <div class="profile-actions">
+        <button class="profile-action-btn edit-profile"><i class="fas fa-edit"></i><span>Edit Profil</span></button>
+        <button class="profile-action-btn upgrade-premium"><i class="fas fa-crown"></i><span>Upgrade Premium</span></button>
+        <button class="profile-action-btn logout"><i class="fas fa-sign-out-alt"></i><span>Keluar</span></button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></div>
+
+<footer>
+  <p style="margin-bottom:0.5rem;color:rgba(255,255,255,0.8);">&copy; 2025 IRGXY MODS — Website Download Aplikasi Mod Dan Premium Terlengkap</p>
+  <p style="margin-bottom:1.5rem;color:rgba(255,255,255,0.6);">✨ Support Modder IrgxyMods ✨</p>
+  <div class="footer-links">
+    <a href="https://policies.google.com/privacy?hl=en-US" class="footer-link" target="_blank">Privacy Policy</a>
+    <a href="https://policies.google.com/terms?hl=en-US" class="footer-link" target="_blank">Terms of Service</a>
+    <a href="https://t.me/irgxyzmods" class="footer-link" target="_blank">Contact Us</a>
+    <a href="https://policies.google.com/faq?hl=id" class="footer-link" target="_blank">FAQ</a>
+  </div>
+</footer>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script src="https://sdk.scdn.co/spotify-player.js"></script>
+<script src="main.js"></script>
+<script src="spotify.js" defer></script>
+</body>
+</html>
