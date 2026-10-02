@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="SPMB SMK Muhammadiyah Kudus 2025/2026 — Sistem Penerimaan Murid Baru. 8 Kompetensi Keahlian, didukung Cisco, Oracle, Daihatsu, Djarum, Samsung." />
+<meta name="theme-color" content="#06060a" />
+<title>SPMB SMK Muhammadiyah Kudus 2025/2026</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;900&family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+<link rel="stylesheet" href="smkmuhi.css" />
+</head>
+<body>
+
+<!-- ============ PRELOADER ============ -->
+<div id="preloader" class="preloader" aria-hidden="true">
+  <div class="loader-ring"></div>
+  <p class="loader-text">MEMUAT SPMB ...</p>
+</div>
+
+<!-- ============ SCROLL PROGRESS ============ -->
+<div id="scrollProgress" class="scroll-progress" aria-hidden="true"></div>
+
+<!-- ============ CURSOR GLOW ============ -->
+<div id="cursorGlow" class="cursor-glow" aria-hidden="true"></div>
+
+<!-- ============ BACKGROUND DECOR ============ -->
+<div class="bg-decor" aria-hidden="true">
+  <div class="orb orb-1" data-parallax="0.03"></div>
+  <div class="orb orb-2" data-parallax="0.05"></div>
+  <div class="orb orb-3" data-parallax="0.04"></div>
+  <div class="grid-overlay"></div>
+</div>
+
+<!-- ============ NAVBAR ============ -->
+<header id="navbar" class="navbar">
+  <nav class="nav-inner" aria-label="Navigasi utama">
+    <a href="#home" class="brand" aria-label="Beranda SPMB SMK Muhammadiyah Kudus">
+      <span class="brand-logo" aria-hidden="true">
+        <svg viewBox="0 0 48 48" width="42" height="42">
+          <defs>
+            <linearGradient id="gBrand" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#f5d76e"/>
+              <stop offset="100%" stop-color="#b8860b"/>
+            </linearGradient>
+          </defs>
+          <path d="M24 3 L42 12 V24 C42 35 34 43 24 46 C14 43 6 35 6 24 V12 Z"
+                fill="none" stroke="url(#gBrand)" stroke-width="2.5"/>
+          <path d="M16 24 l5 5 l11 -12" fill="none" stroke="url(#gBrand)"
+                stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      <span class="brand-text">
+        <span class="brand-title">SMK Muhammadiyah Kudus</span>
+        <span class="brand-sub">SPMB 2025/2026</span>
+      </span>
+    </a>
+
+    <ul id="navMenu" class="nav-menu">
+      <li><a href="#home" class="nav-link active">Home</a></li>
+      <li><a href="#daftar" class="nav-link">Daftar Sekarang</a></li>
+      <li><a href="#cara" class="nav-link">Cara Pendaftaran</a></li>
+      <li><a href="#profil" class="nav-link">Profil Sekolah</a></li>
+      <li><a href="#butawarna" class="nav-link">Tes Buta Warna</a></li>
+      <li><a href="#partner" class="nav-link">Didukung</a></li>
+      <li><a href="#biaya" class="nav-link">Biaya &amp; Jadwal</a></li>
+      <li><a href="#kontak" class="nav-link">Kontak</a></li>
+      <li class="nav-cta-wrap">
+        <a href="#daftar" class="btn btn-gold btn-sm nav-cta">Daftar Sekarang</a>
+      </li>
+    </ul>
+
+    <a href="#daftar" class="btn btn-gold btn-sm nav-cta-desktop">Daftar Sekarang</a>
+
+    <button id="hamburger" class="hamburger" aria-label="Buka menu" aria-expanded="false" aria-controls="navMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<main>
+
+<!-- ============ §1 HERO ============ -->
+<section id="home" class="section hero">
+  <div class="container hero-inner">
+    <span class="badge pulse-badge">
+      <span class="pulse-dot" aria-hidden="true"></span>
+      Penerimaan Murid Baru 2025/2026 Telah Dibuka
+    </span>
+
+    <h1 class="hero-title">
+      <span class="line">Wujudkan Masa Depan</span>
+      <span class="line gradient-gold">Gemilang Bersama</span>
+      <span class="line">SMK Muhammadiyah Kudus</span>
+    </h1>
+
+    <p class="hero-desc">
+      Bergabunglah dengan sekolah kejuruan berstandar global yang didukung oleh
+      <strong>Cisco</strong>, <strong>Oracle</strong>, <strong>Daihatsu</strong>,
+      <strong>Djarum Foundation</strong>, dan <strong>Samsung Tech Institute</strong>.
+      Raih keterampilan nyata, sertifikasi internasional, dan masa depan cerah.
+    </p>
+
+    <div class="hero-cta">
+      <a href="#daftar" class="btn btn-gold btn-lg">Daftar Sekarang <span aria-hidden="true">▸</span></a>
+      <a href="#cara" class="btn btn-ghost btn-lg">Cara Pendaftaran</a>
+    </div>
+
+    <div class="hero-stats" id="heroStats">
+      <div class="stat glass">
+        <div class="stat-num" data-target="1200" data-suffix="+">0</div>
+        <div class="stat-label">Siswa Aktif</div>
+      </div>
+      <div class="stat glass">
+        <div class="stat-num" data-target="8">0</div>
+        <div class="stat-label">Kompetensi Keahlian</div>
+      </div>
+      <div class="stat glass">
+        <div class="stat-num" data-target="98" data-suffix="%">0</div>
+        <div class="stat-label">Lulusan Terserap</div>
+      </div>
+      <div class="stat glass">
+        <div class="stat-num" data-target="5">0</div>
+        <div class="stat-label">Mitra Industri Global</div>
+      </div>
+    </div>
+
+    <a href="#daftar" class="scroll-down" aria-label="Gulir ke bawah">
+      <span class="mouse"><span class="wheel"></span></span>
+    </a>
+  </div>
+</section>
+
+<!-- ============ §2 DAFTAR ============ -->
+<section id="daftar" class="section">
+  <div class="container">
+    <header class="section-head reveal">
+      <span class="eyebrow">Formulir Pendaftaran</span>
+      <h2 class="section-title">Daftar <span class="gradient-gold">Sekarang</span></h2>
+      <p class="section-sub">Isi data diri dengan lengkap dan benar. Nomor pendaftaran akan dibuat otomatis setelah Anda menekan tombol kirim.</p>
+    </header>
+
+    <form id="regForm" class="form-card glass reveal" novalidate autocomplete="on">
+      <div class="form-grid">
+
+        <div class="field">
+          <label for="nama">Nama Lengkap <span class="req">*</span></label>
+          <input id="nama" name="nama" type="text" placeholder="Contoh: Ahmad Fauzi Ramadhan" required />
+          <small class="err" data-for="nama"></small>
+        </div>
+
+        <div class="field">
+          <label for="nisn">NISN <span class="req">*</span></label>
+          <input id="nisn" name="nisn" type="text" inputmode="numeric" maxlength="10" placeholder="10 digit angka" required />
+          <small class="err" data-for="nisn"></small>
+        </div>
+
+        <div class="field">
+          <label for="tempatLahir">Tempat Lahir <span class="req">*</span></label>
+          <input id="tempatLahir" name="tempatLahir" type="text" placeholder="Contoh: Kudus" required />
+          <small class="err" data-for="tempatLahir"></small>
+        </div>
+
+        <div class="field">
+          <label for="tanggalLahir">Tanggal Lahir <span class="req">*</span></label>
+          <input id="tanggalLahir" name="tanggalLahir" type="date" required />
+          <small class="err" data-for="tanggalLahir"></small>
+        </div>
+
+        <div class="field">
+          <label for="jenisKelamin">Jenis Kelamin <span class="req">*</span></label>
+          <select id="jenisKelamin" name="jenisKelamin" required>
+            <option value="">— Pilih —</option>
+            <option value="Laki-laki">Laki-laki</option>
+            <option value="Perempuan">Perempuan</option>
+          </select>
+          <small class="err" data-for="jenisKelamin"></small>
+        </div>
+
+        <div class="field">
+          <label for="agama">Agama <span class="req">*</span></label>
+          <select id="agama" name="agama" required>
+            <option value="">— Pilih —</option>
+            <option>Islam</option>
+            <option>Kristen</option>
+            <option>Katolik</option>
+            <option>Hindu</option>
+            <option>Buddha</option>
+            <option>Konghucu</option>
+          </select>
+          <small class="err" data-for="agama"></small>
+        </div>
+
+        <div class="field field-full">
+          <label for="alamat">Alamat Lengkap <span class="req">*</span></label>
+          <textarea id="alamat" name="alamat" rows="3" placeholder="Jalan, RT/RW, Desa/Kelurahan, Kecamatan, Kabupaten/Kota" required></textarea>
+          <small class="err" data-for="alamat"></small>
+        </div>
+
+        <div class="field">
+          <label for="hpSiswa">No. HP Siswa <span class="req">*</span></label>
+          <input id="hpSiswa" name="hpSiswa" type="tel" inputmode="numeric" placeholder="08xxxxxxxxxx" required />
+          <small class="err" data-for="hpSiswa"></small>
+        </div>
+
+        <div class="field">
+          <label for="hpOrtu">No. HP Orang Tua <span class="req">*</span></label>
+          <input id="hpOrtu" name="hpOrtu" type="tel" inputmode="numeric" placeholder="08xxxxxxxxxx" required />
+          <small class="err" data-for="hpOrtu"></small>
+        </div>
+
+        <div class="field">
+          <label for="email">Email Aktif <span class="req">*</span></label>
+          <input id="email" name="email" type="email" placeholder="nama@email.com" required />
+          <small class="err" data-for="email"></small>
+        </div>
+
+        <div class="field">
+          <label for="asalSekolah">Asal Sekolah (SMP/MTs) <span class="req">*</span></label>
+          <input id="asalSekolah" name="asalSekolah" type="text" placeholder="Contoh: SMP Negeri 1 Kudus" required />
+          <small class="err" data-for="asalSekolah"></small>
+        </div>
+
+        <div class="field">
+          <label for="namaOrtu">Nama Orang Tua / Wali <span class="req">*</span></label>
+          <input id="namaOrtu" name="namaOrtu" type="text" placeholder="Nama lengkap orang tua/wali" required />
+          <small class="err" data-for="namaOrtu"></small>
+        </div>
+
+        <div class="field">
+          <label for="pekerjaanOrtu">Pekerjaan Orang Tua <span class="req">*</span></label>
+          <input id="pekerjaanOrtu" name="pekerjaanOrtu" type="text" placeholder="Contoh: Petani / Karyawan / Wiraswasta" required />
+          <small class="err" data-for="pekerjaanOrtu"></small>
+        </div>
+
+        <div class="field">
+          <label for="jurusan">Pilih Jurusan <span class="req">*</span></label>
+          <select id="jurusan" name="jurusan" required>
+            <option value="">— Pilih Jurusan —</option>
+            <option value="TKRO">TKRO — Teknik Kendaraan Ringan Otomotif</option>
+            <option value="TSM">TSM — Teknik Sepeda Motor</option>
+            <option value="TITL">TITL — Teknik Instalasi Tenaga Listrik</option>
+            <option value="TKJ">TKJ — Teknik Komputer dan Jaringan</option>
+            <option value="RPL">RPL — Rekayasa Perangkat Lunak</option>
+            <option value="DKV">DKV — Desain Komunikasi Visual</option>
+            <option value="AKL">AKL — Akuntansi dan Keuangan Lembaga</option>
+            <option value="TPL">TPL — Teknik Pengelasan</option>
+          </select>
+          <small class="err" data-for="jurusan"></small>
+        </div>
+
+        <div class="field">
+          <label for="gelombang">Pilih Gelombang <span class="req">*</span></label>
+          <select id="gelombang" name="gelombang" required>
+            <option value="">— Pilih Gelombang —</option>
+            <option value="Gelombang 1">Gelombang 1</option>
+            <option value="Gelombang 2">Gelombang 2</option>
+            <option value="Gelombang 3">Gelombang 3</option>
+          </select>
+          <small class="err" data-for="gelombang"></small>
+        </div>
+
+      </div>
+
+      <label class="check-wrap">
+        <input id="setuju" type="checkbox" required />
+        <span class="check-box" aria-hidden="true"></span>
+        <span>Saya menyatakan data yang diisi benar dan menyetujui syarat &amp; ketentuan SPMB SMK Muhammadiyah Kudus 2025/2026.</span>
+      </label>
+      <small class="err err-check" data-for="setuju"></small>
+
+      <div class="form-actions">
+        <button type="submit" class="btn btn-gold btn-lg">Kirim Pendaftaran</button>
+        <button type="reset" class="btn btn-ghost btn-lg">Reset Formulir</button>
+      </div>
+    </form>
+  </div>
+</section>
+
+<!-- ============ §3 CARA ============ -->
+<section id="cara" class="section">
+  <div class="container">
+    <header class="section-head reveal">
+      <span class="eyebrow">Alur Pendaftaran</span>
+      <h2 class="section-title">Cara <span class="gradient-gold">Pendaftaran</span></h2>
+      <p class="section-sub">Ikuti 8 langkah mudah berikut untuk menjadi bagian dari keluarga besar SMK Muhammadiyah Kudus.</p>
+    </header>
+
+    <div class="steps">
+      <article class="step glass reveal"><span class="step-num">01</span><h3>Daftar Sekarang</h3><p>Buka menu <em>Daftar Sekarang</em> di website SPMB ini dan isi formulir pendaftaran.</p></article>
+      <article class="step glass reveal"><span class="step-num">02</span><h3>Isi Identitas Diri</h3><p>Lengkapi data siswa, data orang tua/wali, serta asal sekolah dengan benar.</p></article>
+      <article class="step glass reveal"><span class="step-num">03</span><h3>Pilih Jurusan</h3><p>Tentukan kompetensi keahlian sesuai minat, bakat, dan cita-cita Anda.</p></article>
+      <article class="step glass reveal"><span class="step-num">04</span><h3>Tes Buta Warna</h3><p>Ikuti tes buta warna daring pada halaman khusus PPDB sebagai syarat wajib.</p></article>
+      <article class="step glass reveal"><span class="step-num">05</span><h3>Verifikasi Berkas</h3><p>Serahkan KK, Akta Kelahiran, Ijazah/SKL, Foto 3×4, dan KIP (jika ada).</p></article>
+      <article class="step glass reveal"><span class="step-num">06</span><h3>Menunggu Pengumuman</h3><p>Hasil seleksi akan diumumkan melalui website resmi dan WhatsApp pendaftar.</p></article>
+      <article class="step glass reveal"><span class="step-num">07</span><h3>Bayar Daftar Ulang</h3><p>Lakukan pembayaran daftar ulang sesuai jadwal dan bank yang telah ditentukan.</p></article>
+      <article class="step glass reveal"><span class="step-num">08</span><h3>Masa Orientasi (MPLS)</h3><p>Pengenalan lingkungan sekolah, seragam, tata tertib, dan pembagian kelas.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ §4 PROFIL ============ -->
+<section id="profil" class="section">
+  <div class="container">
+    <header class="section-head reveal">
+      <span class="eyebrow">Profil Sekolah</span>
+      <h2 class="section-title">Kenali <span class="gradient-gold">SMK Muhammadiyah Kudus</span></h2>
+      <p class="section-sub">Saksikan video profil berikut untuk mengenal lebih dekat fasilitas, budaya, dan prestasi sekolah kami.</p>
+    </header>
+
+    <div class="video-wrap reveal">
+      <div class="video-frame">
+        <iframe
+          src="https://www.youtube.com/embed/wCv7c2GTKZc?rel=0&modestbranding=1"
+          title="Profil SMK Muhammadiyah Kudus"
+          loading="lazy"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ §5 TES BUTA WARNA ============ -->
+<section id="butawarna" class="section">
+  <div class="container">
+    <header class="section-head reveal">
+      <span class="eyebrow">PPDB 2025/2026</span>
+      <h2 class="section-title">Tes <span class="gradient-gold">Buta Warna</span> Online</h2>
+      <p class="section-sub">Syarat wajib bagi seluruh calon peserta didik baru.</p>
+    </header>
+
+    <div class="cta-card glass reveal">
+      <div class="cta-icon" aria-hidden="true">
+        <svg viewBox="0 0 64 64" width="56" height="56">
+          <defs>
+            <linearGradient id="gEye" x1="0" y1="0" x2="1" y2="1">
+              <stop offset="0%" stop-color="#f5d76e"/>
+              <stop offset="100%" stop-color="#b8860b"/>
+            </linearGradient>
+          </defs>
+          <path d="M4 32 C 14 16, 50 16, 60 32 C 50 48, 14 48, 4 32 Z"
+                fill="none" stroke="url(#gEye)" stroke-width="3"/>
+          <circle cx="32" cy="32" r="9" fill="none" stroke="url(#gEye)" stroke-width="3"/>
+          <circle cx="32" cy="32" r="3.5" fill="url(#gEye)"/>
+        </svg>
+      </div>
+      <div class="cta-body">
+        <h3>Tes Buta Warna Online</h3>
+        <p>Ikuti tes buta warna daring melalui portal PPDB resmi. Pastikan koneksi internet stabil dan pencahayaan ruangan memadai sebelum memulai tes.</p>
+      </div>
+      <div class="cta-action">
+        <a class="btn btn-gold btn-lg" target="_blank" rel="noopener"
+           href="https://ppdb.smkmuhkudus.sch.id/tes/index.php">
+          Mulai Tes Sekarang <span aria-hidden="true">↗</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ §6 PARTNER ============ -->
+<section id="partner" class="section">
+  <div class="container">
+    <header class="section-head reveal">
+      <span class="eyebrow">Mitra Industri</span>
+      <h2 class="section-title">Didukung <span class="gradient-gold">Oleh</span></h2>
+      <p class="section-sub">Kerja sama strategis dengan lima mitra global untuk menjamin mutu lulusan.</p>
+    </header>
+
+    <div class="partners">
+      <article class="partner glass reveal">
+        <div class="partner-logo" aria-hidden="true">🌐</div>
+        <h3>Cisco Networking Academy</h3>
+        <p>Sertifikasi jaringan bertaraf internasional serta kurikulum networking terkini.</p>
+      </article>
+      <article class="partner glass reveal">
+        <div class="partner-logo" aria-hidden="true">🗄️</div>
+        <h3>ORACLE Academy</h3>
+        <p>Kurikulum database dan pemrograman berstandar industri global.</p>
+      </article>
+      <article class="partner glass reveal">
+        <div class="partner-logo" aria-hidden="true">🚗</div>
+        <h3>Daihatsu</h3>
+        <p>Pelatihan otomotif intensif serta program prakerin bersertifikat.</p>
+      </article>
+      <article class="partner glass reveal">
+        <div class="partner-logo" aria-hidden="true">🏆</div>
+        <h3>Djarum Foundation</h3>
+        <p>Program beasiswa dan pengembangan soft skill siswa berprestasi.</p>
+      </article>
+      <article class="partner glass reveal">
+        <div class="partner-logo" aria-hidden="true">📱</div>
+        <h3>Samsung Tech Institute</h3>
+        <p>Pelatihan teknologi dan servis perangkat elektronik modern.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ §7 BIAYA ============ -->
+<section id="biaya" class="section">
+  <div class="container">
+    <header class="section-head reveal">
+      <span class="eyebrow">Biaya Masuk &amp; Jadwal</span>
+      <h2 class="section-title">Biaya <span class="gradient-gold">&amp; Jadwal</span> SPMB</h2>
+      <p class="section-sub">Pilih gelombang yang paling sesuai. Semakin awal mendaftar, semakin ringan biayanya.</p>
+    </header>
+
+    <div class="pricing">
+      <article class="price-card glass reveal">
+        <span class="price-badge">Gelombang 1</span>
+        <div class="price-amount">Rp <strong>100.000</strong></div>
+        <p class="price-sub">Biaya pendaftaran</p>
+        <ul class="price-list">
+          <li>✓ Prioritas pilihan jurusan</li>
+          <li>✓ Diskon daftar ulang</li>
+          <li>✓ Gratis merchandise SPMB</li>
+        </ul>
+        <div class="price-period">1 Desember – 28 Februari 2025</div>
+      </article>
+
+      <article class="price-card glass featured reveal">
+        <span class="ribbon">Paling Diminati</span>
+        <span class="price-badge">Gelombang 2</span>
+        <div class="price-amount">Rp <strong>125.000</strong></div>
+        <p class="price-sub">Biaya pendaftaran</p>
+        <ul class="price-list">
+          <li>✓ Semua benefit Gelombang 1</li>
+          <li>✓ Cicilan daftar ulang</li>
+          <li>✓ Konsultasi jurusan gratis</li>
+        </ul>
+        <div class="price-period">1 Maret – 30 April 2025</div>
+      </article>
+
+      <article class="price-card glass reveal">
+        <span class="price-badge">Gelombang 3</span>
+        <div class="price-amount">Rp <strong>150.000</strong></div>
+        <p class="price-sub">Biaya pendaftaran</p>
+        <ul class="price-list">
+          <li>✓ Pendaftaran terakhir</li>
+          <li>✓ Kuota terbatas</li>
+          <li>✓ Seleksi lebih ketat</li>
+        </ul>
+        <div class="price-period">1 Mei – 15 Juni 2025</div>
+      </article>
+    </div>
+
+    <div class="countdown-wrap reveal">
+      <p class="countdown-label">Penutupan Gelombang 1 dalam</p>
+      <div class="countdown" id="countdown">
+        <div class="cd-box glass"><span id="cdDays">00</span><small>Hari</small></div>
+        <div class="cd-box glass"><span id="cdHours">00</span><small>Jam</small></div>
+        <div class="cd-box glass"><span id="cdMins">00</span><small>Menit</small></div>
+        <div class="cd-box glass"><span id="cdSecs">00</span><small>Detik</small></div>
+      </div>
+      <p class="countdown-note">Batas akhir: 28 Februari 2025, 23:59 WIB</p>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ §8 FOOTER ============ -->
+<footer id="kontak" class="footer">
+  <div class="container footer-grid">
+
+    <div class="footer-col">
+      <div class="footer-brand">
+        <span class="brand-logo" aria-hidden="true">
+          <svg viewBox="0 0 48 48" width="38" height="38">
+            <path d="M24 3 L42 12 V24 C42 35 34 43 24 46 C14 43 6 35 6 24 V12 Z"
+                  fill="none" stroke="#d4af37" stroke-width="2.5"/>
+            <path d="M16 24 l5 5 l11 -12" fill="none" stroke="#d4af37"
+                  stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </span>
+        <div>
+          <h3>SMK Muhammadiyah Kudus</h3>
+          <p>SPMB 2025/2026</p>
+        </div>
+      </div>
+      <p class="footer-desc">Sekolah kejuruan unggulan di Kudus dengan 8 kompetensi keahlian dan kemitraan industri global.</p>
+      <a href="https://spmb.smkmuhikudus.sch.id/web/" target="_blank" rel="noopener" class="btn btn-ghost btn-sm">Tentang Kami →</a>
+    </div>
+
+    <div class="footer-col">
+      <h4>Navigasi</h4>
+      <ul class="footer-links">
+        <li><a href="#home">Home</a></li>
+        <li><a href="#daftar">Daftar Sekarang</a></li>
+        <li><a href="#cara">Cara Pendaftaran</a></li>
+        <li><a href="#biaya">Biaya &amp; Jadwal</a></li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Kontak</h4>
+      <ul class="footer-contact">
+        <li>📍 Kudus, Jawa Tengah, Indonesia</li>
+        <li>📞 (0291) 000-0000</li>
+        <li>✉️ spmb@smkmuhkudus.sch.id</li>
+      </ul>
+    </div>
+
+    <div class="footer-col">
+      <h4>Sosial Media</h4>
+      <div class="socials">
+        <a class="social" href="https://www.tiktok.com/@smkmuhkudus" target="_blank" rel="noopener" aria-label="TikTok">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M16 3v3.2a5.4 5.4 0 0 0 4 1.8v3.1a8.5 8.5 0 0 1-4-1.2v5.6a5.8 5.8 0 1 1-5.8-5.8c.3 0 .7 0 1 .1v3.2a2.6 2.6 0 1 0 1.8 2.5V3H16Z"/></svg>
+        </a>
+        <a class="social" href="https://www.instagram.com/smkmuhkudus" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a class="social" href="https://www.facebook.com/smkmuhkudus" target="_blank" rel="noopener" aria-label="Facebook">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M13.5 22v-8h2.7l.4-3.2h-3.1V8.7c0-.9.3-1.5 1.6-1.5h1.6V4.3c-.3 0-1.3-.1-2.4-.1-2.4 0-4 1.5-4 4.1v2.5H7.6V14h2.7v8h3.2Z"/></svg>
+        </a>
+        <a class="social" href="https://youtube.com/@smkmuhkudus" target="_blank" rel="noopener" aria-label="YouTube">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor"><path d="M21.6 7.2s-.2-1.4-.8-2c-.8-.8-1.6-.8-2-.9C16.8 4 12 4 12 4s-4.8 0-6.8.3c-.4 0-1.2.1-2 .9-.6.6-.8 2-.8 2S2 8.8 2 10.4v1.2c0 1.6.2 3.2.2 3.2s.2 1.4.8 2c.8.8 1.8.8 2.2.9 1.6.2 6.8.3 6.8.3s4.8 0 6.8-.3c.4 0 1.2-.1 2-.9.6-.6.8-2 .8-2s.2-1.6.2-3.2v-1.2c0-1.6-.2-3.2-.2-3.2ZM10 14.7V8.9l5.2 2.9-5.2 2.9Z"/></svg>
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>© <span id="year">2025</span> SMK Muhammadiyah Kudus — Built with <span class="heart">❤</span></p>
+  </div>
+</footer>
+
+<!-- ============ BACK TO TOP ============ -->
+<button id="backTop" class="back-top" aria-label="Kembali ke atas">↑</button>
+
+<!-- ============ MODAL SUKSES ============ -->
+<div id="successModal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle" aria-hidden="true">
+  <div class="modal-backdrop" data-close="1"></div>
+  <div class="modal-card glass">
+    <button class="modal-close" data-close="1" aria-label="Tutup">×</button>
+    <div class="modal-check" aria-hidden="true">
+      <svg viewBox="0 0 52 52" width="56" height="56">
+        <circle cx="26" cy="26" r="24" fill="none" stroke="#d4af37" stroke-width="2"/>
+        <path d="M15 27 l7 7 l15 -16" fill="none" stroke="#f5d76e" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+    <h3 id="modalTitle" class="modal-title">Pendaftaran Berhasil!</h3>
+    <p class="modal-sub">Simpan nomor pendaftaran Anda. Nomor ini digunakan untuk verifikasi berkas.</p>
+
+    <div class="modal-num" id="modalNumber">SPMB-XXXX-XXXX</div>
+
+    <div class="modal-summary">
+      <div class="sum-row"><span>Nama</span><strong id="sumNama">-</strong></div>
+      <div class="sum-row"><span>NISN</span><strong id="sumNisn">-</strong></div>
+      <div class="sum-row"><span>Jurusan</span><strong id="sumJurusan">-</strong></div>
+      <div class="sum-row"><span>Gelombang</span><strong id="sumGelombang">-</strong></div>
+      <div class="sum-row"><span>No. HP</span><strong id="sumHp">-</strong></div>
+      <div class="sum-row"><span>Email</span><strong id="sumEmail">-</strong></div>
+    </div>
+
+    <button class="btn btn-gold btn-lg modal-done" data-close="1">Selesai</button>
+  </div>
+</div>
+
+<script src="smkmuhi.js" defer></script>
+</body>
+</html>
