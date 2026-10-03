@@ -12,7 +12,7 @@
 <img src="https://img.shields.io/badge/reverse--engineering-deep-red" alt="">
 <img src="https://img.shields.io/badge/node-18%2B-green" alt="">
 
-**team reverse — neo:** ansari • zenno
+**team reverse irgi :** irgxymods
 
 </div>
 
